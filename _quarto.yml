@@ -1,0 +1,85 @@
+project:
+  type: website
+
+website:
+  title: "Yoshee Jain"
+  site-url: https://yosheejain.netlify.app
+  description: ""
+  favicon: assets/img/yosheejainnew.png
+  page-navigation: true
+  back-to-top-navigation: true
+  twitter-card:
+    creator: "@yosheejain"
+    site: "@yosheejain"
+    card-style: summary_large_image
+  comments: 
+    utterances: 
+      repo: yosheejain 
+      label: utterances
+      theme: body-light
+      issue-term: title
+
+  navbar:
+    logo: assets/silvia/img/logo_rounded.svg
+    navbar:
+      title: "Yoshee Jain"
+      title-href: index.qmd
+    tools:
+      - icon: github
+        href: https://www.github.com/yosheejain
+    right:
+      - text: About
+        href: construction.qmd 
+      - text: Experience
+        href: construction.qmd 
+      - text: Publications
+        href: construction.qmd 
+      - text: Awards
+        href: construction.qmd 
+  
+  page-footer:  
+    left: >-
+      &#169; 2025 Yoshee Jain &#8729; Made with [Quarto](https://quarto.org)
+    center: |
+      <a class="link-dark me-1" href="https://x.com/yosheejain" title="X" target="_blank" rel="noopener">{{< fa brands twitter >}}</a>
+      <a class="link-dark me-1" href="https://bsky.app/profile/yosheejain.bsky.social" title="Bluesky" target="_blank" rel="noopener">{{< fa brands bluesky >}}</a>
+      <a class="link-dark me-1" href="https://linkedin.com/in/yosheejain" title="LinkedIn" target="_blank" rel="noopener">{{< fa brands linkedin >}}</a>
+      <a class="link-dark me-1" href="https://github.com/yosheejain" title="github" target="_blank" rel="noopener">{{< fa brands github >}}</a>
+      <a class="link-dark me-1" href="https://orcid.org/0009-0005-6291-5438" title="orcid" target="_blank" rel="noopener">{{< ai orcid >}}</a>
+      <a class="link-dark me-1" href="https://scholar.google.com/citations?user=HSgotCcAAAAJ&hl=en" title="Google Scholar" target="_blank"rel="noopener">{{< ai google-scholar >}}</a>
+      <a class="link-dark me-1" href="mailto:yosheejain2@illinois.edu" title="Email" target="_blank" rel="noopener">{{< fa envelope >}}</a>
+    right: 
+      - text: "Contact"
+        href: contact.qmd
+      - text: "License"
+        href: license.qmd
+      - icon: rss
+        href: blog/index.xml
+
+format: 
+  html:
+    theme:
+      light:
+        - cosmo
+        - assets/silvia-theme-light.scss
+        # - assets/silvia/colors-light.scss
+        # - assets/silvia/fonts.scss
+      dark: 
+        - cosmo
+        - assets/silvia-theme-dark.scss
+        # - assets/silvia/colors-dark.scss
+    highlight-style:
+      light: assets/silvia/a11y-light.theme
+      dark: assets/silvia/a11y-dark.theme
+    code-link: true
+    pagetitle: "{{< meta title >}}"
+    lightbox: true
+
+execute: 
+  freeze: auto
+  echo: false
+  warning: false
+  allow: true     # <-- THIS enables raw HTML rendering
+
+
+# include-in-header: assets/silvia/umami.html
