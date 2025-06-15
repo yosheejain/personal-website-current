@@ -23,6 +23,55 @@ header-includes: >
 <div class="news-wrapper">
 ::: {.news-container}
 
+## 2025
+
+<div class="news-item">
+  <span class="news-date">Jun 2025</span>
+  🚀 Presenting <a href="https://link.springer.com/chapter/10.1007/978-3-031-92967-0_14">our paper</a> remotely at HCII 2025!
+</div>
+<div class="news-item">
+  <span class="news-date">Jun 2025</span>
+  👩🏻‍💻 Redesigned my personal website (finally)!
+</div>
+<div class="news-item">
+  <span class="news-date">May 2025</span>
+  🎉 Received the <a href="https://siebelschool.illinois.edu/about/awards/undergraduate-scholarships-awards/jeffrey-p-blahut-memorial-scholarship">Jeffrey P. Blahut Memorial Scholarship</a>!
+</div>
+<div class="news-item">
+  <span class="news-date">May 2025</span>
+  🏅 Received the Campus Honors Program Summer Travel Award for traveling to Korea!</a>
+</div>
+<div class="news-item">
+  <span class="news-date">May 2025</span>
+  🇰🇷 Interning at KIXLAB, KAIST with <a href="https://juhokim.com/">Dr. Juho Kim</a> in Daejeon, South Korea this summer!
+</div>
+<div class="news-item">
+  <span class="news-date">May 2025</span>
+  📚 Recevied the Harold and Ruth Hayward/Tau Beta Pi Award Fund!
+</div>
+<div class="news-item">
+  <span class="news-date">Apr 2025</span>
+  🌸 Traveling to Yokohama, Japan to present <a href="https://dl.acm.org/doi/full/10.1145/3706598.3713832">PLAID!</a>
+</div>
+<div class="news-item">
+  <span class="news-date">Mar 2025</span>
+  💰 Received conference travel grants from the Office of Undergraduate Research and Campus Honors Program to support PLAID!</a>
+</div>
+<div class="news-item">
+  <span class="news-date">Jan 2025</span>
+  📊 Our paper related to <a href="https://link.springer.com/chapter/10.1007/978-3-031-92967-0_14">LLMs for Reading Comprehension</a> is accepted at HCII 2025!</a>
+</div>
+<div class="news-item">
+  <span class="news-date">Jan 2025</span>
+  💐 Our paper <a href="https://dl.acm.org/doi/full/10.1145/3706598.3713832">PLAID</a> (my first first-author 🎊) is accepted at CHI 2025!</a>
+</div>
+<div class="news-item">
+  <span class="news-date">Jan 2025</span>
+  🎬 Saw that I got my first <a href="https://scholar.google.com/citations?user=HSgotCcAAAAJ&hl=en">citation!</a>
+</div>
+
+## 2024
+
 <div class="news-item">
   <span class="news-date">Dec 2024</span>
   📝 Our paper <a href="https://dl.acm.org/doi/abs/10.1145/3709366">AI vs. Humans for Online Support</a> (my first full paper publication 🙌🏻) is accepted at ACM HEALTH!
@@ -43,6 +92,9 @@ header-includes: >
   <span class="news-date">Apr 2024</span>
   🙌🏻 Part of the <a href="https://siebelschool.illinois.edu/research/undergraduate-research/srp">CS SRP 2024</a>!
 </div>
+
+## 2023 
+
 <div class="news-item">
   <span class="news-date">Aug 2023</span>
   👩🏻‍💻 Continuing research as an RA in the <a href="https://oncare.cs.illinois.edu/people/">OnCARE Lab</a> with <a href="https://koustuv.com/">Dr. Koustuv Saha</a>!
@@ -71,6 +123,9 @@ header-includes: >
   <span class="news-date">Jan 2023</span>
   📝 I got admitted to the <a href="https://siebelschool.illinois.edu/broadening-participation-computing/programs/csambassadors">CS STARS program</a> and will start research under the mentorship of <a href="https://www.kicunningham.com/">Dr. Katie Cunningham</a>.
 </div>
+
+## 2022
+
 <div class="news-item">
   <span class="news-date">Aug 2022</span>
   📚 I'll begin my undergrad at <a href="https://siebelschool.illinois.edu/">University of Illinois Urbana-Champaign</a> as a CS major this fall!
