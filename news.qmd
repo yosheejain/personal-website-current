@@ -1,0 +1,80 @@
+---
+title: "All News"
+format: html
+page-layout: full
+
+
+header-includes: >
+  <style>
+    .news-date {
+      display: inline-block;
+      background-color: #fde2e2;      /* pale red */
+      color: #9d1c1c;                 /* dark red text */
+      border-radius: 0.75rem;         /* pill shape */
+      padding: 0.25em 0.6em;          
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-right: 0.75em;
+      vertical-align: middle;
+    }
+  </style>
+---
+
+<div class="news-wrapper">
+::: {.news-container}
+
+<div class="news-item">
+  <span class="news-date">Dec 2024</span>
+  📝 Our paper <a href="https://dl.acm.org/doi/abs/10.1145/3709366">AI vs. Humans for Online Support</a> (my first full paper publication 🙌🏻) is accepted at ACM HEALTH!
+</div>
+<div class="news-item">
+  <span class="news-date">May 2024</span>
+  💸 I was awarded the Illinois Engineering Achievement and the Illinois Engineering Outstanding Scholarships for 2024–2025!
+</div>
+<div class="news-item">
+  <span class="news-date">May 2024</span>
+  💪🏻 Interning at HCII, CMU with <a href="https://sites.google.com/site/jiognhaolin/home?authuser=0">Dr. Jionghao Lin</a> in collaboration with Liang Zhang, Dr. John Hollander, and Dr. John Sabatini!
+</div>
+<div class="news-item">
+  <span class="news-date">Apr 2024</span>
+  💰 Received the Summer Research Grant from the Campus Honors Program to support my work as part of the CS SRP!
+</div>
+<div class="news-item">
+  <span class="news-date">Apr 2024</span>
+  🙌🏻 Part of the <a href="https://siebelschool.illinois.edu/research/undergraduate-research/srp">CS SRP 2024</a>!
+</div>
+<div class="news-item">
+  <span class="news-date">Aug 2023</span>
+  👩🏻‍💻 Continuing research as an RA in the <a href="https://oncare.cs.illinois.edu/people/">OnCARE Lab</a> with <a href="https://koustuv.com/">Dr. Koustuv Saha</a>!
+</div>
+<div class="news-item">
+  <span class="news-date">Aug 2023</span>
+  👩🏻‍💻 Continuing research as an RA in the <a href="http://www.eshwarchandrasekharan.com/lab.html">SCUBA Lab</a> with <a href="http://www.eshwarchandrasekharan.com/">Dr. Eshwar Chandrasekharan</a>!
+</div>
+<div class="news-item">
+  <span class="news-date">Jun 2023</span>
+  ✅ Our poster <a href="https://dl.acm.org/doi/abs/10.1145/3568812.3603478">Towards Methods for Identifying High-Quality Domain-Specific Programming Plans</a> (my first publication!) is accepted at ICER 2023!
+</div>
+<div class="news-item">
+  <span class="news-date">May 2023</span>
+  💸 I was awarded the Illinois Engineering Achievement and the Illinois Engineering Outstanding Scholarships for 2023–2024!
+</div>
+<div class="news-item">
+  <span class="news-date">Apr 2023</span>
+  📖 I'll continue my research project with Dr. Katie Cunningham as a summer research intern!
+</div>
+<div class="news-item">
+  <span class="news-date">Mar 2023</span>
+  👩🏼‍🏫 I was accepted as a <a href="https://honors.illinois.edu/">Chancellor’s Scholar</a> in the Campus Honors Program!
+</div>
+<div class="news-item">
+  <span class="news-date">Jan 2023</span>
+  📝 I got admitted to the <a href="https://siebelschool.illinois.edu/broadening-participation-computing/programs/csambassadors">CS STARS program</a> and will start research under the mentorship of <a href="https://www.kicunningham.com/">Dr. Katie Cunningham</a>.
+</div>
+<div class="news-item">
+  <span class="news-date">Aug 2022</span>
+  📚 I'll begin my undergrad at <a href="https://siebelschool.illinois.edu/">University of Illinois Urbana-Champaign</a> as a CS major this fall!
+</div>
+
+:::
+</div>

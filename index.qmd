@@ -105,69 +105,16 @@ I am a junior pursuing my undergraduate degree in Computer Science at the Univer
   <span class="news-date">Jan 2025</span>
   🎬 Saw that I got my first <a href="https://scholar.google.com/citations?user=HSgotCcAAAAJ&hl=en">citation!</a>
 </div>
-<div class="news-item">
-  <span class="news-date">Dec 2024</span>
-  📝 Our paper <a href="https://dl.acm.org/doi/abs/10.1145/3709366">AI vs. Humans for Online Support</a> (my first full paper publication 🙌🏻) is accepted at ACM HEALTH!
+<div class="see-more-link" style="text-align:center; margin-top:1em;">
+  <a href="news">See all news</a>
 </div>
-<div class="news-item">
-  <span class="news-date">May 2024</span>
-  💸 I was awarded the Illinois Engineering Achievement and the Illinois Engineering Outstanding Scholarships for 2024-2025!
-</div>
-<div class="news-item">
-  <span class="news-date">May 2024</span>
-  💪🏻 Interning at HCII, CMU with <a href="https://sites.google.com/site/jiognhaolin/home?authuser=0">Dr. Jionghao Lin</a> in collaboration with Liang Zhang, Dr. John Hollander, and Dr. John Sabatini!
-</div>
-<div class="news-item">
-  <span class="news-date">Apr 2024</span>
-  💰 Received the Summer Research Grant from the Campus Honors Program to support my work as part of the CS SRP!
-</div>
-<div class="news-item">
-  <span class="news-date">Apr 2024</span>
-  🙌🏻 Part of the <a href="https://siebelschool.illinois.edu/research/undergraduate-research/srp">CS SRP 2024</a>!
-</div>
-<div class="news-item">
-  <span class="news-date">Aug 2023</span>
-  👩🏻‍💻 Continuing research as a RA in the <a href="https://oncare.cs.illinois.edu/people/">OnCARE Lab</a> with <a href="https://koustuv.com/">Dr. Koustuv Saha</a>!
-</div>
-<div class="news-item">
-  <span class="news-date">Aug 2023</span>
-  👩🏻‍💻 Continuing research as a RA in the <a href="http://www.eshwarchandrasekharan.com/lab.html">SCUBA Lab</a> with <a href="http://www.eshwarchandrasekharan.com/">Dr. Eshwar Chandrasekharan</a>!
-</div>
-<div class="news-item">
-  <span class="news-date">Jun 2023</span>
-  ✅ Our poster <a href="https://dl.acm.org/doi/abs/10.1145/3568812.3603478">Towards Methods for Identifying High-Quality Domain-Specific Programming Plans</a> (my first publication!) is accepted at ICER 2023!
-</div>
-<div class="news-item">
-  <span class="news-date">May 2023</span>
-  💸 I was awarded the Illinois Engineering Achievement and the Illinois Engineering Outstanding Scholarships for 2023-2024!
-</div>
-<div class="news-item">
-  <span class="news-date">Apr 2023</span>
-  📖 I'll continue my research project with Dr. Katie Cunningham as a summer research intern!
-</div>
-<div class="news-item">
-  <span class="news-date">Mar 2023</span>
-  👩🏼‍🏫 I was accepted as a <a href="https://honors.illinois.edu/">Chancellor's Scholar</a> in the Campus Honors Program!
-</div>
-<div class="news-item">
-  <span class="news-date">Jan 2023</span>
-  📝 I got admitted to the <a href="https://siebelschool.illinois.edu/broadening-participation-computing/programs/csambassadors">CS STARS program</a> and I will start research under the mentorship of <a href="https://www.kicunningham.com/">Dr. Katie Cunningham</a>.
-</div>
-<div class="news-item">
-  <span class="news-date">Aug 2022</span>
-  📚 I'll begin my undergrad @ <a href="https://siebelschool.illinois.edu/">University of Illinois Urbana-Champaign</a> as a CS major this fall!
-</div>
-
-
-
 
 :::
 :::
 
-</div>
 
 ```{r write-manual-redirects}
-#| eval: true
+#| eval: false
 
 manual_redirects <-
   readr::read_table(here::here("static", "_manualredirects.txt"),

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.7.31">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Silvia Canelón">
-<meta name="dcterms.date" content="2022-09-29">
-<meta name="description" content="R-Ladies Philly workshop on webscraping, geocoding, and interactive map-making">
-<title>Creating the Philly Center City SIPS Interactive Map – Yoshee Jain</title>
+
+
+<title>All News – Yoshee Jain</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,33 +22,32 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../assets/img/yosheejainnew.png" rel="icon" type="image/png">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet" class="quarto-color-scheme-extra">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-cde5dd764cf62580401948159955f89c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-744dd304006d6169e373bcfd7ff0ef01.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-cde5dd764cf62580401948159955f89c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
-<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/img/yosheejainnew.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet" class="quarto-color-scheme-extra">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d53be2578e9c0cb90df85573b32e9361.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-7593d5d25e4b9384c7cb834250bf2961.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d53be2578e9c0cb90df85573b32e9361.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -74,17 +73,29 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><script src="../../site_libs/fitvids-2.1.1/fitvids.min.js"></script>
-<meta name="twitter:title" content="Creating the Philly Center City SIPS Interactive Map">
-<meta name="twitter:description" content="R-Ladies Philly workshop on webscraping, geocoding, and interactive map-making">
-<meta name="twitter:image" content="https://yosheejain.netlify.app/talk/2022-09-29-ccd-sips/featured.png">
+}</script>
+<style>
+  .news-date {
+    display: inline-block;
+    background-color: #fde2e2;      /* pale red */
+    color: #9d1c1c;                 /* dark red text */
+    border-radius: 0.75rem;         /* pill shape */
+    padding: 0.25em 0.6em;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-right: 0.75em;
+    vertical-align: middle;
+  }
+</style>
+
+
+<meta name="twitter:title" content="All News">
 <meta name="twitter:creator" content="@yosheejain">
 <meta name="twitter:site" content="@yosheejain">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="1000">
-<meta name="twitter:image-width" content="1910">
 </head>
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -249,11 +260,14 @@ ul.task-list li input[type="checkbox"] {
   </script>
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner"><nav class="navbar navbar-expand-lg " data-bs-theme="dark"><div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../assets/silvia/img/logo_rounded.svg" alt="" class="navbar-logo"></a>
-    <a class="navbar-brand" href="../../index.html">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./assets/silvia/img/logo_rounded.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Yoshee Jain</span>
     </a>
   </div>
@@ -263,111 +277,111 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-<li class="nav-item">
-    <a class="nav-link" href="../../construction.html"> 
+  <li class="nav-item">
+    <a class="nav-link" href="./construction.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../construction.html"> 
+    <a class="nav-link" href="./construction.html"> 
 <span class="menu-text">Experience</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../construction.html"> 
+    <a class="nav-link" href="./construction.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../construction.html"> 
+    <a class="nav-link" href="./construction.html"> 
 <span class="menu-text">Awards</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../news"> 
+    <a class="nav-link" href="./news"> 
 <span class="menu-text">News</span></a>
   </li>  
 </ul>
-</div> <!-- /navcollapse -->
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
     <a href="https://www.github.com/yosheejain" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
-    </nav></header><!-- content --><header id="title-block-header" class="quarto-title-block default page-columns"><div id="title-block-header-title" class="quarto-title page-columns page-full page-layout-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);">
-<h1 class="title">Creating the Philly Center City SIPS Interactive Map</h1>
-<p class="subtitle lead">R-Ladies Philly workshop on webscraping, geocoding, and interactive map-making</p>
-    <div class="quarto-categories">
-        <div class="quarto-category">R</div>
-        <div class="quarto-category">R-Ladies</div>
-        <div class="quarto-category">education</div>
-        <div class="quarto-category">workshop</div>
-        <div class="quarto-category">rvest</div>
-        <div class="quarto-category">tidygeocoder</div>
-        <div class="quarto-category">leaflet</div>
-      </div>
-  </div>
-
-<div>
-  <div id="title-block-title-desc" class="description pt-4">
-    <a href="https://www.rladiesphilly.org">R-Ladies Philly</a> workshop on webscraping, geocoding, and interactive map-making
-  </div>
-</div>
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Silvia Canelón </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 29, 2022</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-<div class="mt-4 d-flex flex-row flex-wrap gap-1 justify-content-left justify-content-sm-start" role="group" aria-label="Links">
-<a href="https://slides.silviacanelon.com/2022-ccd-sips" class="btn btn-secondary text-capitalize"><i class="bi bi-images me-1"></i> slides</a>
-<a href="https://github.com/spcanelon/2022-ccd-sips" class="btn btn-secondary text-capitalize"><i class="bi bi-github me-1"></i> materials</a>
-<a href="https://youtube.com/watch?v=tcfHr0oeOMw&amp;feature=share&amp;utm_source=EKLEiJECCKjOmKnC5IiRIQ" class="btn btn-secondary text-capitalize"><i class="bi bi-youtube me-1"></i> video</a>
-<a href="../../blog/2022-05-31-ccd-sips" class="btn btn-secondary text-capitalize"><i class="bi bi-pencil-fill me-1"></i> Related blog post</a>
-</div>
-
-</header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><!-- source: https://github.com/gadenbuie/garrickadenbuie-com/blob/main/_partials/title-block-link-buttons/title-block.html --><!-- 
+<main class="content column-page" id="quarto-document-content">
+
+
 <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title"> 
---><!-- <header id="title-block-header" class="quarto-title-block default page-columns"> --><!-- <div class="quarto-title page-columns page-full featured-image p-4" style="background-image: url(featured.png), url(featured.jpg), url(../featured.jpg);"> --><p>A gentle introduction to web-scraping, geocoding and map-making in an end-to-end analysis. The workshop will cover how to scrape the bar and restaurant data from the Center City SIPS website and convert the addresses to latitude and longitude, as well as how to plot the geographic data onto a map and customize the visualization with {leaflet}.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="shareagain" style="min-width:300px;margin:1em auto;" data-exeternal="1">
-<iframe src="https://slides.silviacanelon.com/2022-ccd-sips" width="1600" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen=""></iframe>
-<script>fitvids('.shareagain', {players: 'iframe'});</script>
+<div class="quarto-title">
+<h1 class="title">All News</h1>
 </div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="news-wrapper">
+<div class="news-container">
+<div class="news-item">
+<p><span class="news-date">Dec 2024</span> 📝 Our paper <a href="https://dl.acm.org/doi/abs/10.1145/3709366">AI vs.&nbsp;Humans for Online Support</a> (my first full paper publication 🙌🏻) is accepted at ACM HEALTH!</p>
 </div>
+<div class="news-item">
+<p><span class="news-date">May 2024</span> 💸 I was awarded the Illinois Engineering Achievement and the Illinois Engineering Outstanding Scholarships for 2024–2025!</p>
 </div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure"><p><a href="rladies-philly.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="rladies-philly.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="R-Ladies logo featuring the Liberty Bell"></a></p>
-</figure>
+<div class="news-item">
+<p><span class="news-date">May 2024</span> 💪🏻 Interning at HCII, CMU with <a href="https://sites.google.com/site/jiognhaolin/home?authuser=0">Dr.&nbsp;Jionghao Lin</a> in collaboration with Liang Zhang, Dr.&nbsp;John Hollander, and Dr.&nbsp;John Sabatini!</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">Apr 2024</span> 💰 Received the Summer Research Grant from the Campus Honors Program to support my work as part of the CS SRP!</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">Apr 2024</span> 🙌🏻 Part of the <a href="https://siebelschool.illinois.edu/research/undergraduate-research/srp">CS SRP 2024</a>!</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">Aug 2023</span> 👩🏻‍💻 Continuing research as an RA in the <a href="https://oncare.cs.illinois.edu/people/">OnCARE Lab</a> with <a href="https://koustuv.com/">Dr.&nbsp;Koustuv Saha</a>!</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">Aug 2023</span> 👩🏻‍💻 Continuing research as an RA in the <a href="http://www.eshwarchandrasekharan.com/lab.html">SCUBA Lab</a> with <a href="http://www.eshwarchandrasekharan.com/">Dr.&nbsp;Eshwar Chandrasekharan</a>!</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">Jun 2023</span> ✅ Our poster <a href="https://dl.acm.org/doi/abs/10.1145/3568812.3603478">Towards Methods for Identifying High-Quality Domain-Specific Programming Plans</a> (my first publication!) is accepted at ICER 2023!</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">May 2023</span> 💸 I was awarded the Illinois Engineering Achievement and the Illinois Engineering Outstanding Scholarships for 2023–2024!</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">Apr 2023</span> 📖 I’ll continue my research project with Dr.&nbsp;Katie Cunningham as a summer research intern!</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">Mar 2023</span> 👩🏼‍🏫 I was accepted as a <a href="https://honors.illinois.edu/">Chancellor’s Scholar</a> in the Campus Honors Program!</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">Jan 2023</span> 📝 I got admitted to the <a href="https://siebelschool.illinois.edu/broadening-participation-computing/programs/csambassadors">CS STARS program</a> and will start research under the mentorship of <a href="https://www.kicunningham.com/">Dr.&nbsp;Katie Cunningham</a>.</p>
+</div>
+<div class="news-item">
+<p><span class="news-date">Aug 2022</span> 📚 I’ll begin my undergrad at <a href="https://siebelschool.illinois.edu/">University of Illinois Urbana-Champaign</a> as a CS major this fall!</p>
 </div>
 </div>
 </div>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -778,10 +792,12 @@ ul.task-list li input[type="checkbox"] {
       }
     }
   });
-  </script><script src="https://utteranc.es/client.js" repo="yosheejain" issue-term="title" theme="body-light" crossorigin="anonymous" async="">
+  </script>
+<script src="https://utteranc.es/client.js" repo="yosheejain" issue-term="title" theme="body-light" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
 <p>© 2025 Yoshee Jain ∙ Made with <a href="https://quarto.org">Quarto</a></p>
 </div>   
@@ -790,57 +806,28 @@ ul.task-list li input[type="checkbox"] {
 </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-<li class="nav-item">
-    <a class="nav-link" href="../../contact.html">
+    <li class="nav-item">
+    <a class="nav-link" href="./contact.html">
 <p>Contact</p>
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../../license.html">
+    <a class="nav-link" href="./license.html">
 <p>License</p>
 </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="../../blog/index.xml">
+    <a class="nav-link" href="./blog/index.xml">
       <i class="bi bi-rss" role="img">
 </i> 
     </a>
   </li>  
 </ul>
-</div>
+    </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
+</footer>
+
+
 
 
 </body></html>
