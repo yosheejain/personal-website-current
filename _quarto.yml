@@ -33,7 +33,7 @@ website:
       - text: Experience
         href: construction.qmd 
       - text: Publications
-        href: publication/index.qmd 
+        href: construction.qmd 
       - text: Awards
         href: construction.qmd 
   
@@ -62,12 +62,10 @@ format:
       light:
         - cosmo
         - assets/silvia-theme-light.scss
-        # - assets/silvia/colors-light.scss
-        # - assets/silvia/fonts.scss
       dark: 
         - cosmo
         - assets/silvia-theme-dark.scss
-        # - assets/silvia/colors-dark.scss
+    css: assets/listing-default.css
     highlight-style:
       light: assets/silvia/a11y-light.theme
       dark: assets/silvia/a11y-dark.theme

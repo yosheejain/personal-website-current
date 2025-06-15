@@ -8,7 +8,7 @@ listing:
     - "**/index.markdown"
     - "**/index.md"
   sort: "date desc"
-  type: default
+  type: grid
   categories: false
   sort-ui: false
   filter-ui: false
