@@ -33,7 +33,7 @@ website:
       - text: Experience
         href: construction.qmd 
       - text: Publications
-        href: construction.qmd 
+        href: publication/index.qmd 
       - text: Awards
         href: construction.qmd 
   
