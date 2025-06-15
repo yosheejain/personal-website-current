@@ -36,8 +36,6 @@ website:
         href: construction.qmd 
       - text: Awards
         href: construction.qmd 
-      - text: News
-        href: news
   
   page-footer:  
     left: >-
