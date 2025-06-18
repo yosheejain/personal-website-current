@@ -36,6 +36,8 @@ website:
         href: construction.qmd 
       - text: Awards
         href: construction.qmd 
+      - text: CV
+        href: assets/cv/cv_yoshee.pdf
   
   page-footer:  
     left: >-
