@@ -1,4 +1,4 @@
-# Personal website for<br>Yoshee Jain <a href='https://yosheejain.com'>
+# Personal website for Yoshee Jain <a href='https://yosheejain.com'>
 
 This repository contains code that hosts [my personal website](https://yosheejain.com)!
 
