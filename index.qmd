@@ -63,6 +63,10 @@ I am a junior pursuing my undergraduate degree in Computer Science at the Univer
 ::: {.news-container}
 <div class="news-item">
   <span class="news-date">Jun 2025</span>
+  🗣️ Our poster examining the efficacy of Instagram's current banning approach is accepted at CSCW 2025!"
+</div>
+<div class="news-item">
+  <span class="news-date">Jun 2025</span>
   🚀 Presenting <a href="https://link.springer.com/chapter/10.1007/978-3-031-92967-0_14">our paper</a> remotely at HCII 2025!
 </div>
 <div class="news-item">
