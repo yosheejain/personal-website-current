@@ -1,0 +1,8 @@
+/*-- scss:defaults --*/
+$font-family-sans-serif: "Red Hat Text", "Segoe UI", "Helvetica Neue", sans-serif;
+$headings-font-family: "Red Hat Display", "Georgia", serif;
+
+/*-- scss:rules --*/
+body {
+  font-family: $font-family-sans-serif;
+}

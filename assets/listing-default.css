@@ -1,84 +1,41 @@
-/* --- Listing Cards --- */
-.quarto-listing-default .card {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 1em;
-  background-color: #fff !important;
-  color: #000 !important;
-  transition: all 0.2s ease;
-}
+/* title */
 
-.quarto-listing-default .card:hover {
-  background-color: #f8f8f8 !important;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  border-color: #bbb;
-}
-
-/* Title inside card */
-.quarto-listing-default .card h3 {
-  margin-top: 0.25em;
-  margin-bottom: 0.75em;
-  font-size: 1.25em;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-/* Author and date */
-.quarto-listing-default .card .listing-author,
-.quarto-listing-default .card .listing-date {
-  color: #333;
-  font-size: 0.9em;
-  line-height: 1.5;
-}
-
-/* Tags */
-.quarto-listing-default .listing-categories {
-  margin-top: 1em;
-}
-
-.quarto-listing-default .listing-categories .category {
-  display: inline-block;
-  border: 1px solid #999;
-  border-radius: 6px;
-  padding: 0.2em 0.6em;
-  font-size: 0.75em;
-  margin-right: 0.4em;
-  background-color: #f7f7f7;
-  color: #444;
-}
-
-/* Optional: if any image */
-.card-img {
-  border-radius: 12px 12px 0 0;
-}
-
-
-/* --- Page Title Section --- */
-#title-block-header,
-#title-block-header-title {
+/* remove styling from title block partial */
+#title-block-header, #title-block-header-title {
   all: unset;
   background-image: none !important;
 }
 
+/* page title  */
 #title-block-header.quarto-title-block.default .quarto-title .title {
   font-size: 2.5em;
   text-align: center;
-  margin: -1em 0 1.5em 0;
+  margin: 0 0 -0.5em 0;
 }
 
-
-/* --- Description Under Title --- */
+/* text below page title */
 .description p {
-  text-align: center;
-  margin: 0 auto 3em auto;
-  padding: 0;
-  max-width: 800px;
+  text-align: center; 
+  margin: 0 1em 10em 1em;
+  padding: 0 0 5em 0;
 }
 
 .description a {
-  text-decoration: underline;
+  text-decoration: underline !important;
 }
 
 .description a:hover {
-  text-decoration: none;
+  text-decoration: none !important;
+}
+
+/* listing cards  */
+.card {
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-img {
+    border-radius: 8px 8px 0px 0px;
 }

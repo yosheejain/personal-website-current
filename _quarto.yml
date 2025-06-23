@@ -61,13 +61,9 @@ website:
 format: 
   html:
     theme:
-      light:
-        - cosmo
-        - assets/silvia-theme-light.scss
-      dark: 
-        - cosmo
-        - assets/silvia-theme-dark.scss
-    css: assets/listing-default.css
+      - cosmo
+      - assets/silvia-theme-light.scss
+      - assets/fonts.scss
     highlight-style:
       light: assets/silvia/a11y-light.theme
       dark: assets/silvia/a11y-dark.theme
@@ -79,7 +75,6 @@ execute:
   freeze: auto
   echo: false
   warning: false
-  allow: true     # <-- THIS enables raw HTML rendering
 
 
 # include-in-header: assets/silvia/umami.html

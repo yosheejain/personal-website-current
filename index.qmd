@@ -1,6 +1,6 @@
 ---
 title: "Yoshee Jain"
-pagetitle: "Yoshee Jain"
+pagetitle: "Yoshee"
 subtitle: "University of Illinois Urbana-Champaign"
 image: assets/img/yosheejainnew.png
 image-alt: ""
@@ -13,7 +13,7 @@ twitter-card:
 
 about:
   template: solana
-  image-width: 28em
+  image-width: 25em
   id: hero-heading
   links:
     - text: "{{< fa brands twitter >}}"
@@ -57,64 +57,76 @@ I am a junior pursuing my undergraduate degree in Computer Science at the Univer
 
 :::
 
-<div style="text-align: center;"><strong>NEWS</strong></div>
+::: {.news-card}
 
-::: {.news-wrapper}
-::: {.news-container}
-<div class="news-item">
-  <span class="news-date">Jun 2025</span>
-  🗣️ Our poster examining the efficacy of Instagram's current banning approach is accepted at CSCW 2025!"
-</div>
-<div class="news-item">
-  <span class="news-date">Jun 2025</span>
-  🚀 Presenting <a href="https://link.springer.com/chapter/10.1007/978-3-031-92967-0_14">our paper</a> remotely at HCII 2025!
-</div>
-<div class="news-item">
-  <span class="news-date">Jun 2025</span>
-  👩🏻‍💻 Redesigned my personal website (finally)!
-</div>
-<div class="news-item">
-  <span class="news-date">May 2025</span>
-  🎉 Received the <a href="https://siebelschool.illinois.edu/about/awards/undergraduate-scholarships-awards/jeffrey-p-blahut-memorial-scholarship">Jeffrey P. Blahut Memorial Scholarship</a>!
-</div>
-<div class="news-item">
-  <span class="news-date">May 2025</span>
-  🏅 Received the Campus Honors Program Summer Travel Award for traveling to Korea!</a>
-</div>
-<div class="news-item">
-  <span class="news-date">May 2025</span>
-  🇰🇷 Interning at KIXLAB, KAIST with <a href="https://juhokim.com/">Dr. Juho Kim</a> in Daejeon, South Korea this summer!
-</div>
-<div class="news-item">
-  <span class="news-date">May 2025</span>
-  📚 Recevied the Harold and Ruth Hayward/Tau Beta Pi Award Fund!
-</div>
-<div class="news-item">
-  <span class="news-date">Apr 2025</span>
-  🌸 Traveling to Yokohama, Japan to present <a href="https://dl.acm.org/doi/full/10.1145/3706598.3713832">PLAID!</a>
-</div>
-<div class="news-item">
-  <span class="news-date">Mar 2025</span>
-  💰 Received conference travel grants from the Office of Undergraduate Research and Campus Honors Program to support PLAID!</a>
-</div>
-<div class="news-item">
-  <span class="news-date">Jan 2025</span>
-  📊 Our paper related to <a href="https://link.springer.com/chapter/10.1007/978-3-031-92967-0_14">LLMs for Reading Comprehension</a> is accepted at HCII 2025!</a>
-</div>
-<div class="news-item">
-  <span class="news-date">Jan 2025</span>
-  💐 Our paper <a href="https://dl.acm.org/doi/full/10.1145/3706598.3713832">PLAID</a> (my first first-author 🎊) is accepted at CHI 2025!</a>
-</div>
-<div class="news-item">
-  <span class="news-date">Jan 2025</span>
-  🎬 Saw that I got my first <a href="https://scholar.google.com/citations?user=HSgotCcAAAAJ&hl=en">citation!</a>
-</div>
+### NEWS
+
+::: {.news-item}
+<span class="news-date">Jun 2025</span>
+🗣️ Our poster examining the efficacy of Instagram's current banning approach is accepted at CSCW 2025!
+:::
+
+::: {.news-item}
+<span class="news-date">Jun 2025</span>
+🚀 Presenting [our paper](https://link.springer.com/chapter/10.1007/978-3-031-92967-0_14) remotely at HCII 2025!
+:::
+
+::: {.news-item}
+<span class="news-date">Jun 2025</span>
+👩🏻‍💻 Redesigned my personal website (finally)!
+:::
+
+::: {.news-item}
+<span class="news-date">May 2025</span>
+🎉 Received the [Jeffrey P. Blahut Memorial Scholarship](https://siebelschool.illinois.edu/about/awards/undergraduate-scholarships-awards/jeffrey-p-blahut-memorial-scholarship)!
+:::
+
+::: {.news-item}
+<span class="news-date">May 2025</span>
+🏅 Received the Campus Honors Program Summer Travel Award for traveling to Korea!
+:::
+
+::: {.news-item}
+<span class="news-date">May 2025</span>
+🇰🇷 Interning at KIXLAB, KAIST with [Dr. Juho Kim](https://juhokim.com/) in Daejeon, South Korea this summer!
+:::
+
+::: {.news-item}
+<span class="news-date">May 2025</span>
+📚 Received the Harold and Ruth Hayward/Tau Beta Pi Award Fund!
+:::
+
+::: {.news-item}
+<span class="news-date">Apr 2025</span>
+🌸 Traveling to Yokohama, Japan to present [PLAID!](https://dl.acm.org/doi/full/10.1145/3706598.3713832)
+:::
+
+::: {.news-item}
+<span class="news-date">Mar 2025</span>
+💰 Received travel grants from OUR and CHP to support PLAID!
+:::
+
+::: {.news-item}
+<span class="news-date">Jan 2025</span>
+📊 Paper on [LLMs for Reading Comprehension](https://link.springer.com/chapter/10.1007/978-3-031-92967-0_14) accepted at HCII 2025!
+:::
+
+::: {.news-item}
+<span class="news-date">Jan 2025</span>
+💐 First-author paper [PLAID](https://dl.acm.org/doi/full/10.1145/3706598.3713832) accepted at CHI 2025!
+:::
+
+::: {.news-item}
+<span class="news-date">Jan 2025</span>
+🎬 Got my first [citation](https://scholar.google.com/citations?user=HSgotCcAAAAJ&hl=en)!
+:::
+
 <div class="see-more-link" style="text-align:center; margin-top:1em;">
   <a href="news">See all news</a>
 </div>
 
 :::
-:::
+
 
 
 ```{r write-manual-redirects}
