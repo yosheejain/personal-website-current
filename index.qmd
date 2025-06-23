@@ -142,3 +142,12 @@ manual_redirects <- manual_redirects$redirect
 # write the _redirect file
 writeLines(manual_redirects, here::here("_site", "_redirects"))
 ```
+
+
+<p style="text-align: center; margin-top: 2em; font-size: 0.9em;">
+  PageViews: 
+  <img src="https://hitwebcounter.com/counter/counter.php?page=8967543&style=0006&nbdigits=5&type=page&initCount=0"
+       title="Pageview Counter"
+       alt="Pageview Counter"
+       style="border:none;" />
+</p>
