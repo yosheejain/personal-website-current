@@ -53,13 +53,28 @@ resources:
 
 ::: {#hero-heading}
 
-I am a junior pursuing my undergraduate degree in Computer Science at the University of Illinois, Urbana-Champaign, with a passion for research in Human-Computer Interaction, CS Education, and Applied AI/ML. My research interests are in designing human-centered systems that can integrate computing as a tool in real-world applications. I want to design educational technology tools so that all students can engage with computing in ways relevant to their learning objectives and meaningful for their future goals. The following is a non-exhaustive list that summarizes my technical skills and tools I've worked with! Feel free to reach out to me to chat about any of these or anything else!
+I am a senior pursuing my undergraduate degree in Computer Science at the University of Illinois, Urbana-Champaign, with a passion for research in Human-Computer Interaction, CS Education, and Applied AI/ML. My research interests are in designing human-centered systems that can integrate computing as a tool in real-world applications. I want to design educational technology tools so that all students can engage with computing in ways relevant to their learning objectives and meaningful for their future goals. The following is a non-exhaustive list that summarizes my technical skills and tools I've worked with! Feel free to reach out to me to chat about any of these or anything else!
 
 :::
 
 ::: {.news-card}
 
 ### NEWS
+
+::: {.news-item}
+<span class="news-date">Jun 2025</span>
+🏆 Honored with the CHP Outstanding Senior Award!
+:::
+
+::: {.news-item}
+<span class="news-date">Jun 2025</span>
+🙋‍♀️ Received the John and Dorothy Durkin Women in Engineering Scholarship!
+:::
+
+::: {.news-item}
+<span class="news-date">Jun 2025</span>
+💰 Re-awarded with the Illinois Engineering Achievement Scholarship for 2025-2026!
+:::
 
 ::: {.news-item}
 <span class="news-date">Jun 2025</span>
