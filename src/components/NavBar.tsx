@@ -8,8 +8,9 @@ const NavContainer = styled.nav<{ isScrolled: boolean }>`
   right: 0;
   display: flex;
   justify-content: center;
-  z-index: 1000;
+  align-items: center;
   pointer-events: none;
+  z-index: 1000;
   transition: transform 0.3s ease, opacity 0.3s ease;
   transform: ${({ isScrolled }) => (isScrolled ? "translateY(-2px)" : "translateY(0)")};
   opacity: ${({ isScrolled }) => (isScrolled ? 0.95 : 1)};
@@ -59,6 +60,19 @@ const NavLink = styled.a<{ isActive: boolean }>`
   @media (max-width: 768px) {
     font-size: 13px;
     padding: 8px 14px;
+  }
+`;
+
+const RightLink = styled.a`
+  margin-left: 14px;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  text-decoration: none;
+  pointer-events: auto;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -122,6 +136,9 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection, activePage, onSectionCha
           </NavItem>
         ))}
       </NavList>
+      <RightLink href="/CV.pdf" target="_blank" rel="noreferrer">
+        CV
+      </RightLink>
     </NavContainer>
   );
 };
