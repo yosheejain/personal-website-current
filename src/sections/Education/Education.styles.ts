@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   min-height: 100vh;
-  padding: 80px 20px 40px;
+  padding: 160px 12px 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.backgroundWhite};
+  background: #fafafa;
 `;
 
 export const Container = styled.div`
-  max-width: 1000px;
+  max-width: 880px;
   width: 100%;
 `;
 
@@ -164,4 +164,64 @@ export const Divider = styled.hr`
   height: 1px;
   background: ${({ theme }) => theme.colors.gray200};
   margin: 20px 0 0;
+`;
+
+export const FactList = styled.ul`
+  margin: 8px 0 6px;
+  padding-left: 1.1rem;
+  color: ${({ theme }) => theme.colors.textMuted};
+  line-height: 1.65;
+  font-size: 0.98rem;
+
+  li {
+    margin: 2px 0;
+  }
+
+  li::marker {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const CourseTagRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+`;
+
+export const CourseTag = styled.span`
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: ${({ theme }) => theme.colors.backgroundLight};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid ${({ theme }) => theme.colors.borderColor};
+`;
+
+export const PhotoCard = styled.div`
+  margin-top: 24px;
+  background: ${({ theme }) => theme.colors.backgroundWhite};
+  border: 1px solid ${({ theme }) => theme.colors.borderColor};
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  max-width: 660px;
+  margin-left: auto;
+  margin-right: auto;
+`;
+
+export const Photo = styled.img`
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 3 / 2;
+`;
+
+export const PhotoCaption = styled.p`
+  margin: 0;
+  padding: 10px 14px 12px;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  font-size: 0.9rem;
+  background: ${({ theme }) => theme.colors.backgroundGray};
 `;

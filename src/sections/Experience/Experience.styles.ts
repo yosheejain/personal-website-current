@@ -27,6 +27,14 @@ export const SectionContainer = styled(BaseSectionContainer)`
   }
 `;
 
+export const FilterStack = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+`;
+
 export const Timeline = styled.div`
   position: relative;
   min-height: 400px; /* 최소 높이 설정으로 레이아웃 폭 유지 */
@@ -129,6 +137,35 @@ export const OrgLogo = styled.div`
   }
 `;
 
+export const YearFilterRow = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 48px;
+`;
+
+export const YearFilterPill = styled.button<{ active: boolean }>`
+  border: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  background: ${({ active, theme }) => (active ? theme.colors.primary : "transparent")};
+  color: ${({ active, theme }) => (active ? theme.colors.backgroundWhite : theme.colors.textSecondary)};
+  box-shadow: ${({ active }) => (active ? "0 8px 18px rgba(0, 0, 0, 0.12)" : "0 8px 18px rgba(0, 0, 0, 0.04)")};
+  border: ${({ active, theme }) => (active ? `2px solid ${theme.colors.primary}` : `2px solid ${theme.colors.borderColor}`)};
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: ${({ active, theme }) => (active ? theme.colors.primaryHover : "rgba(0, 70, 42, 0.18)")};
+    color: ${({ active, theme }) => (active ? theme.colors.backgroundWhite : theme.colors.primary)};
+    transform: translateY(-1px);
+  }
+`;
+
 export const ExperienceContent = styled.div<{ isLeft: boolean }>`
   background: white;
   border-radius: 12px;
@@ -159,7 +196,7 @@ export const TagsContainer = styled.div`
   }
 `;
 
-export const Tag = styled.span<{ variant: "cse" | "edu" }>`
+export const Tag = styled.span<{ variant: "cse" | "edu" | "teaching" | "research" | "scholarship" | "academic" }>`
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 0.75rem;
@@ -177,6 +214,26 @@ export const Tag = styled.span<{ variant: "cse" | "edu" }>`
       case "edu":
         return `
           background: ${theme.colors.supportGreen};
+          color: white;
+        `;
+      case "teaching":
+        return `
+          background: ${theme.colors.primary};
+          color: white;
+        `;
+      case "research":
+        return `
+          background: ${theme.colors.primary};
+          color: white;
+        `;
+      case "scholarship":
+        return `
+          background: #397f6c;
+          color: white;
+        `;
+      case "academic":
+        return `
+          background: #5c9c8c;
           color: white;
         `;
       default:

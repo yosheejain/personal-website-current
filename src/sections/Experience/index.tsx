@@ -22,13 +22,15 @@ import {
   MobileOnlyBr,
   SmallMobileOnlyBr,
   TimelineDotDesktop,
+  YearFilterRow,
+  YearFilterPill,
 } from "./Experience.styles";
-import { SectionTitle } from "../../styles/section";
 import { experiences } from "./Experience.data";
 import { Container } from "../../styles/styled-components";
 
 const Experience: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [activeYear, setActiveYear] = useState<string>("all");
 
   const filteredExperiences = experiences.filter((exp) => {
     if (activeFilter === "all") return true;
@@ -47,7 +49,6 @@ const Experience: React.FC = () => {
   return (
     <Section id="experience">
       <SectionContainer>
-        <SectionTitle>Experience</SectionTitle>
         <FilterContainer>
           <FilterButton active={activeFilter === "all"} onClick={() => setActiveFilter("all")}>
             All
@@ -59,8 +60,22 @@ const Experience: React.FC = () => {
             EDU
           </FilterButton>
         </FilterContainer>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <YearFilterRow>
+            <YearFilterPill active={activeYear === "all"} onClick={() => setActiveYear("all")}>
+              All
+            </YearFilterPill>
+            {["2025", "2024", "2023", "2022"].map((year) => (
+              <YearFilterPill key={year} active={activeYear === year} onClick={() => setActiveYear(year)}>
+                {year}
+              </YearFilterPill>
+            ))}
+          </YearFilterRow>
+        </div>
         <Timeline>
-          {filteredExperiences.map((exp, index) => (
+          {filteredExperiences
+            .filter((exp) => activeYear === "all" || exp.roles.some((r) => r.duration?.includes(activeYear)))
+            .map((exp, index) => (
             <div key={index} style={{ position: "relative" }}>
               <ExperienceItem isLeft>
                 <OrgColumn>

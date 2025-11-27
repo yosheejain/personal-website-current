@@ -44,16 +44,15 @@ const NavLink = styled.a<{ isActive: boolean }>`
   font-size: 14px;
   padding: 10px 18px;
   border-radius: 999px;
-  border: 1px solid ${({ theme }) => theme.colors.borderColor};
-  background: ${({ isActive, theme }) => (isActive ? theme.colors.primary : "rgba(0, 70, 42, 0.06)")};
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  border: none;
+  background: ${({ isActive, theme }) => (isActive ? theme.colors.primary : "rgba(0, 70, 42, 0.09)")};
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
 
   &:hover {
-    background: ${({ isActive, theme }) => (isActive ? theme.colors.primaryHover : "rgba(0, 70, 42, 0.14)")};
+    background: ${({ isActive, theme }) => (isActive ? theme.colors.primaryHover : "rgba(0, 70, 42, 0.18)")};
     color: ${({ isActive, theme }) => (isActive ? theme.colors.backgroundWhite : theme.colors.primary)};
-    border-color: ${({ theme }) => theme.colors.supportGreen};
     transform: translateY(-1px);
   }
 
@@ -64,11 +63,13 @@ const NavLink = styled.a<{ isActive: boolean }>`
 `;
 
 interface NavBarProps {
-  activeSection: string;
-  onSectionChange: (section: string) => void;
+  activeSection?: string;
+  activePage?: string;
+  onSectionChange?: (section: string) => void;
+  onNavigatePage?: (page: string) => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ activeSection, onSectionChange }) => {
+const NavBar: React.FC<NavBarProps> = ({ activeSection, activePage, onSectionChange, onNavigatePage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -81,21 +82,26 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection, onSectionChange }) => {
   }, []);
 
   const navItems = [
-    { id: "about", label: "About", type: "scroll" as const, href: "#about" },
-    { id: "education", label: "Education", type: "link" as const, href: "./education.html" },
-    { id: "experience", label: "Experience", type: "link" as const, href: "./experience.html" },
-    { id: "awards", label: "Awards", type: "link" as const, href: "./awards.html" },
-    { id: "publications", label: "Publications", type: "link" as const, href: "./publications.html" },
-    { id: "teaching", label: "Teaching", type: "link" as const, href: "./teaching.html" },
-    { id: "service", label: "Service", type: "link" as const, href: "./service.html" },
+    { id: "about", label: "About", type: "section" as const, href: "#about" },
+    { id: "education", label: "Education", type: "page" as const, href: "/education" },
+    { id: "experience", label: "Experience", type: "page" as const, href: "/experience" },
+    { id: "publications", label: "Publications", type: "page" as const, href: "/publications" },
+    { id: "awards", label: "Honors", type: "page" as const, href: "/awards" },
+    { id: "teaching", label: "Teaching", type: "page" as const, href: "/teaching" },
+    { id: "service", label: "Service", type: "page" as const, href: "/service" },
   ];
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
-    onSectionChange(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (onSectionChange) {
+      onSectionChange(sectionId);
+    }
+  };
+
+  const handlePageClick = (e: React.MouseEvent<HTMLAnchorElement>, pageId: string) => {
+    e.preventDefault();
+    if (onNavigatePage) {
+      onNavigatePage(pageId);
     }
   };
 
@@ -104,12 +110,12 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection, onSectionChange }) => {
       <NavList>
         {navItems.map((item) => (
           <NavItem key={item.id}>
-            {item.type === "scroll" ? (
-              <NavLink href={item.href} isActive={activeSection === item.id} onClick={(e) => handleClick(e, item.id)}>
+            {item.type === "section" ? (
+              <NavLink href={item.href} isActive={activeSection === item.id} onClick={(e) => handleSectionClick(e, item.id)}>
                 {item.label}
               </NavLink>
             ) : (
-              <NavLink href={item.href} isActive={false}>
+              <NavLink href={item.href} isActive={activePage === item.id} onClick={(e) => handlePageClick(e, item.id)}>
                 {item.label}
               </NavLink>
             )}

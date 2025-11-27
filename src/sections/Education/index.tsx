@@ -18,89 +18,62 @@ import {
   Divider,
   DegreeItem,
   HighlightSubTitle,
+  FactList,
+  CourseTagRow,
+  CourseTag,
+  PhotoCard,
+  Photo,
+  PhotoCaption,
 } from "./Education.styles";
-import { SectionContainer, SectionTitle } from "../../styles/section";
+import { SectionContainer } from "../../styles/section";
 
 const Education: React.FC = () => {
   return (
     <Section id="education">
       <SectionContainer>
-        <SectionTitle>Education</SectionTitle>
         <List>
-          <Block>
-            <Row>
-              <LeftColumn>
-                <School>Ewha Womans University</School>
-                <Period>Mar 2021 ~</Period>
-                <Location>Seoul, South Korea</Location>
-              </LeftColumn>
-              <RightColumn>
-                <Details>
-                  <li>Total GPA 4.1 / 4.3</li>
-                  <li>Major GPA: 4.1 / 4.3</li>
-                </Details>
-                <DegreeGroup>
-                  <DegreeItem>
-                    <HighlightSubTitle>
-                      <InlineLink href="https://cse.ewha.ac.kr/cseeng/index.do" target="_blank" rel="noreferrer">
-                        B.S. in Computer Science & Engineering
-                      </InlineLink>
-                    </HighlightSubTitle>
-                    <Details>
-                      <li>Primary major</li>
-                    </Details>
-                  </DegreeItem>
-
-                  <DegreeItem>
-                    <HighlightSubTitle>
-                      <InlineLink href="https://scrantoncollege.ewha.ac.kr/escranton/shp/about-shp.do" target="_blank" rel="noreferrer">
-                        B.A. in Scranton Honors Program (Digital Humanities Track)
-                      </InlineLink>
-                    </HighlightSubTitle>
-                    <Details>
-                      <li>
-                        Scranton Honors Program: Liberal arts honors program emphasizing interdisciplinary studies—including philosophy, science, politics, law, and design—with a focus on global
-                        leadership.
-                      </li>
-                      <li>Digital Humanities Track: Specialized in digital content creation, UX/UI design, and integrating technology with the humanities and social sciences.</li>
-                    </Details>
-                  </DegreeItem>
-
-                  <DegreeItem>
-                    <HighlightSubTitle>
-                      <InlineLink href="https://www.ewha.ac.kr/ewha/bachelor/license01-1.do" target="_blank" rel="noreferrer">
-                        Teacher Certification Program
-                      </InlineLink>
-                    </HighlightSubTitle>
-                    <Details>
-                      <li>Qualified to teach computer science at secondary schools through a certification in Computer Science & Engineering.</li>
-                    </Details>
-                  </DegreeItem>
-                </DegreeGroup>
-              </RightColumn>
-            </Row>
-            <Divider />
-          </Block>
 
           <Block>
             <Row>
               <LeftColumn>
-                <School>Uppsala University</School>
-                <Period>Aug 2023 ~ Jan 2024</Period>
-                <Location>Uppsala, Sweden</Location>
+                <School>University of Illinois, Urbana-Champaign</School>
+                <Period>Aug 2022 ~ May 2026 (Expected)</Period>
+                <Location>Champaign, IL</Location>
               </LeftColumn>
               <RightColumn>
                 <DegreeGroup>
                   <DegreeItem>
-                    <HighlightSubTitle>Exchange student major in Computer Science</HighlightSubTitle>
-                    <Details>
-                      <li>Completed Human-Computer Interaction, Computer Networks, Computer Architecture, and Computer Programming courses.</li>
-                    </Details>
+                    <HighlightSubTitle>B.S. in Computer Science</HighlightSubTitle>
+                    <FactList>
+                      <li>Minor in Statistics</li>
+                      <li>GPA: 4.00 / 4.00</li>
+                      <li>Thesis: Domain-Specific Programming Plans</li>
+                    </FactList>
+                    <CourseTagRow>
+                      {[
+                        "HCI Methodological Pluralism",
+                        "CS Education Research",
+                        "Computational Social Science",
+                        "Statistical Programming",
+                        "Database Systems",
+                        "User Interface Design",
+                        "Algorithms",
+                        "Applied Machine Learning",
+                      ].map((course) => (
+                        <CourseTag key={course}>{course}</CourseTag>
+                      ))}
+                    </CourseTagRow>
                   </DegreeItem>
                 </DegreeGroup>
               </RightColumn>
             </Row>
           </Block>
+          <PhotoCard>
+            <Photo src="/img/Siebel.jpg" alt="Siebel Center for Computer Science" />
+            <PhotoCaption>
+              I must thank the Siebel Center for Computer Science, my second home in Champaign-Urbana, where I've spent countless days and nights. Its existence has made my productivity possible.
+            </PhotoCaption>
+          </PhotoCard>
         </List>
       </SectionContainer>
     </Section>
