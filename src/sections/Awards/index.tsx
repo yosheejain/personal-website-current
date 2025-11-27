@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { awards, AwardCategory } from "./Awards.data";
 import {
   Section,
@@ -12,14 +12,14 @@ import {
   ExperienceContent,
   FilterContainer,
   FilterButton,
-  YearFilterRow,
-  YearFilterPill,
+  YearPill,
   RoleTitle,
   Description,
   TagsContainer,
   Tag,
   TimelineDotDesktop,
 } from "../Experience/Experience.styles";
+import SectionDots from "../../components/SectionDots";
 
 const categoryOptions: { id: AwardCategory | "all"; label: string }[] = [
   { id: "all", label: "All" },
@@ -31,7 +31,7 @@ const categoryOptions: { id: AwardCategory | "all"; label: string }[] = [
 
 const Awards: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<"all" | AwardCategory>("all");
-  const [activeYear, setActiveYear] = useState<string>("all");
+  const [activeYearId, setActiveYearId] = useState<string>("");
 
   const years = useMemo(() => {
     const yearSet = new Set<string>();
@@ -42,17 +42,43 @@ const Awards: React.FC = () => {
     return Array.from(yearSet).sort((a, b) => Number(b) - Number(a));
   }, []);
 
+  useEffect(() => {
+    if (years.length) setActiveYearId(`year-${years[0]}`);
+  }, [years]);
+
   const filtered = useMemo(() => {
     return awards.filter((a) => {
       const matchCategory = activeCategory === "all" || a.categories.includes(activeCategory);
-      const year = a.date.split(" ").pop();
-      const matchYear = activeYear === "all" || year === activeYear;
-      return matchCategory && matchYear;
+      return matchCategory;
     });
-  }, [activeCategory, activeYear]);
+  }, [activeCategory]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      for (const year of years) {
+        const el = document.getElementById(`year-${year}`);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 160 && rect.bottom >= 160) {
+            setActiveYearId(`year-${year}`);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [years]);
+
+  const handleYearChange = (yearId: string) => {
+    setActiveYearId(yearId);
+    const el = document.getElementById(yearId);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <Section id="awards">
+      <SectionDots sections={years.map((y) => ({ id: `year-${y}`, label: y }))} activeSection={activeYearId} onSectionChange={handleYearChange} />
       <SectionContainer>
         <FilterContainer>
           {categoryOptions.map((opt) => (
@@ -61,43 +87,39 @@ const Awards: React.FC = () => {
             </FilterButton>
           ))}
         </FilterContainer>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <YearFilterRow>
-            <YearFilterPill active={activeYear === "all"} onClick={() => setActiveYear("all")}>
-              All
-            </YearFilterPill>
-            {years.map((y) => (
-              <YearFilterPill key={y} active={activeYear === y} onClick={() => setActiveYear(y)}>
-                {y}
-              </YearFilterPill>
-            ))}
-          </YearFilterRow>
-        </div>
-
         <Timeline>
-          {filtered.map((award, idx) => (
-            <div key={`${award.title}-${idx}`} style={{ position: "relative" }}>
-              <ExperienceItem isLeft>
-                <OrgColumn>
-                  <OrgLabel>{award.date}</OrgLabel>
-                  <OrgDescription>{award.org}</OrgDescription>
-                  <TimelineDot />
-                </OrgColumn>
-                <ExperienceContent isLeft>
-                  <TagsContainer>
-                    {award.categories.map((cat) => (
-                      <Tag key={cat} variant={cat}>
-                        {cat.toUpperCase()}
-                      </Tag>
-                    ))}
-                  </TagsContainer>
-                  <RoleTitle>{award.title}</RoleTitle>
-                  <Description>{award.description}</Description>
-                </ExperienceContent>
-                <TimelineDotDesktop />
-              </ExperienceItem>
-            </div>
-          ))}
+          {years.map((year) => {
+            const yearAwards = filtered.filter((a) => a.date.endsWith(year));
+            if (!yearAwards.length) return null;
+            return (
+              <div key={year} id={`year-${year}`} style={{ marginBottom: 32 }}>
+                <YearPill>{year}</YearPill>
+                {yearAwards.map((award, idx) => (
+                  <div key={`${award.title}-${idx}`} style={{ position: "relative" }}>
+                    <ExperienceItem isLeft>
+                      <OrgColumn>
+                        <OrgLabel>{award.org}</OrgLabel>
+                        <OrgDescription>{award.date}</OrgDescription>
+                        <TimelineDot />
+                      </OrgColumn>
+                      <ExperienceContent isLeft>
+                        <TagsContainer>
+                          {award.categories.map((cat) => (
+                            <Tag key={cat} variant={cat}>
+                              {cat.toUpperCase()}
+                            </Tag>
+                          ))}
+                        </TagsContainer>
+                        <RoleTitle>{award.title}</RoleTitle>
+                        <Description>{award.description}</Description>
+                      </ExperienceContent>
+                      <TimelineDotDesktop />
+                    </ExperienceItem>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
         </Timeline>
       </SectionContainer>
     </Section>

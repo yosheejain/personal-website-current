@@ -27,11 +27,12 @@ export const SectionContainer = styled(BaseSectionContainer)`
   }
 `;
 
-export const FilterStack = styled.div`
+export const FiltersBar = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   margin-bottom: 12px;
 `;
 
@@ -104,6 +105,20 @@ export const OrgLabel = styled.h3`
   }
 `;
 
+export const YearPill = styled.span`
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(0, 70, 42, 0.08);
+  color: #4b5563;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  align-self: flex-start;
+  transform: translateX(-120%);
+  margin-bottom: 8px;
+`;
+
 export const OrgDescription = styled.p`
   font-size: 0.9rem;
   color: #4b5563; /* neutral caption */
@@ -142,7 +157,7 @@ export const YearFilterRow = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 8px;
-  margin: 0 0 48px;
+  margin: 0;
 `;
 
 export const YearFilterPill = styled.button<{ active: boolean }>`
@@ -196,7 +211,7 @@ export const TagsContainer = styled.div`
   }
 `;
 
-export const Tag = styled.span<{ variant: "cse" | "edu" | "teaching" | "research" | "scholarship" | "academic" }>`
+export const Tag = styled.span<{ variant: "cse" | "edu" | "teaching" | "research" | "scholarship" | "academic" | "courses" | "mentoring" | "clubs" }>`
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 0.75rem;
@@ -235,6 +250,22 @@ export const Tag = styled.span<{ variant: "cse" | "edu" | "teaching" | "research
         return `
           background: #5c9c8c;
           color: white;
+        `;
+      case "courses":
+        return `
+          background: ${theme.colors.primary};
+          color: white;
+        `;
+      case "mentoring":
+        return `
+          background: ${theme.colors.supportGreen};
+          color: white;
+        `;
+      case "clubs":
+        return `
+          background: rgba(0, 70, 42, 0.14);
+          color: ${theme.colors.primary};
+          border: 1px solid ${theme.colors.borderColor};
         `;
       default:
         return `

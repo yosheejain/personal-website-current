@@ -84,11 +84,11 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection, activePage, onSectionCha
   const navItems = [
     { id: "about", label: "About", type: "section" as const, href: "#about" },
     { id: "education", label: "Education", type: "page" as const, href: "/education" },
-    { id: "experience", label: "Experience", type: "page" as const, href: "/experience" },
     { id: "publications", label: "Publications", type: "page" as const, href: "/publications" },
+    { id: "experience", label: "Experience", type: "page" as const, href: "/experience" },
     { id: "awards", label: "Honors", type: "page" as const, href: "/awards" },
     { id: "teaching", label: "Teaching", type: "page" as const, href: "/teaching" },
-    { id: "service", label: "Service", type: "page" as const, href: "/service" },
+    { id: "travel", label: "Travel", type: "page" as const, href: "/travel" },
   ];
 
   const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {

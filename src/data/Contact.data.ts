@@ -6,10 +6,10 @@ export interface ContactItemData {
 }
 
 export const contacts: ContactItemData[] = [
-  { icon: "📧", label: "Email", href: "mailto:yosheelr@gmail.com" },
-  { icon: "🐦", label: "Twitter", href: "https://twitter.com/" },
-  { icon: "🌌", label: "Bluesky", href: "https://bsky.app/" },
-  { icon: "💼", label: "LinkedIn", href: "https://www.linkedin.com/in/yoshee-doh-45102a252/" },
-  { icon: "🐙", label: "GitHub", href: "https://github.com/doh-ha" },
-  { icon: "🎓", label: "Google Scholar", href: "https://scholar.google.com/" },
+  { icon: "📧", label: "Email", href: "mailto:yosheej2@illinois.edu" },
+  { icon: "🐦", label: "Twitter", href: "https://x.com/yosheejain" },
+  { icon: "🌌", label: "Bluesky", href: "https://bsky.app/profile/yosheejain.bsky.social" },
+  { icon: "💼", label: "LinkedIn", href: "https://www.linkedin.com/in/yosheejain/" },
+  { icon: "🐙", label: "GitHub", href: "https://github.com/yosheejain" },
+  { icon: "🎓", label: "Google Scholar", href: "https://scholar.google.com/citations?user=HSgotCcAAAAJ&hl=en&oi=ao" },
 ];

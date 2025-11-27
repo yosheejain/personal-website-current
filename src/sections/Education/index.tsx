@@ -4,26 +4,17 @@ import {
   List,
   Block,
   Row,
-  Column,
   LeftColumn,
   RightColumn,
   School,
-  Degree,
-  Meta,
   Period,
   Location,
-  Details,
-  InlineLink,
   DegreeGroup,
-  Divider,
   DegreeItem,
   HighlightSubTitle,
   FactList,
   CourseTagRow,
   CourseTag,
-  PhotoCard,
-  Photo,
-  PhotoCaption,
 } from "./Education.styles";
 import { SectionContainer } from "../../styles/section";
 
@@ -68,12 +59,6 @@ const Education: React.FC = () => {
               </RightColumn>
             </Row>
           </Block>
-          <PhotoCard>
-            <Photo src="/img/Siebel.jpg" alt="Siebel Center for Computer Science" />
-            <PhotoCaption>
-              I must thank the Siebel Center for Computer Science, my second home in Champaign-Urbana, where I've spent countless days and nights. Its existence has made my productivity possible.
-            </PhotoCaption>
-          </PhotoCard>
         </List>
       </SectionContainer>
     </Section>

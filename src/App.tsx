@@ -11,6 +11,8 @@ import Education from "./sections/Education";
 import PageLayout from "./pages/PageLayout";
 import PublicationsPage from "./pages/PublicationsPage";
 import Awards from "./sections/Awards";
+import Teaching from "./sections/Teaching";
+import Travel from "./sections/Travel";
 
 const AppContainer = styled.div`
   font-family: "Lato", "Lato Black", "Lato Bold", "Lato Regular", "Helvetica Neue", Arial, sans-serif;
@@ -21,13 +23,9 @@ const AppContainer = styled.div`
   overflow-x: hidden;
 `;
 
-const SECTION_LIST = [
-  { id: "about", label: "About" },
-  { id: "project", label: "Projects" },
-  { id: "experience", label: "Experience" },
-];
+const SECTION_LIST = [{ id: "about", label: "About" }];
 
-type PageId = "home" | "education" | "experience" | "awards" | "publications" | "teaching" | "service";
+type PageId = "home" | "education" | "experience" | "awards" | "publications" | "teaching" | "travel";
 
 const PAGE_INFO: Record<Exclude<PageId, "home">, { title: string; description: string }> = {
   education: { title: "Education", description: "Coursework, programs, and milestones from Ewha, Uppsala, and beyond." },
@@ -35,7 +33,7 @@ const PAGE_INFO: Record<Exclude<PageId, "home">, { title: string; description: s
   awards: { title: "Awards", description: "Highlights and recognitions from the journey so far." },
   publications: { title: "Publications", description: "Papers, articles, and works-in-progress in HCI and education." },
   teaching: { title: "Teaching", description: "Workshops, mentorship, and classroom stories I am proud of." },
-  service: { title: "Service", description: "Community, volunteering, and service initiatives I support." },
+  travel: { title: "Travel", description: "Trips and adventures worth remembering." },
 };
 
 const App: React.FC = () => {
@@ -48,7 +46,7 @@ const App: React.FC = () => {
     const slug = path === "/" ? "" : path.replace(/^\//, "");
     if (!slug) {
       setCurrentPage("home");
-    } else if (["education", "experience", "awards", "publications", "teaching", "service"].includes(slug)) {
+    } else if (["education", "experience", "awards", "publications", "teaching", "travel"].includes(slug)) {
       setCurrentPage(slug as PageId);
     }
   }, []);
@@ -80,7 +78,7 @@ const App: React.FC = () => {
       const slug = path === "/" ? "" : path.replace(/^\//, "");
       if (!slug) {
         setCurrentPage("home");
-      } else if (["education", "experience", "awards", "publications", "teaching", "service"].includes(slug)) {
+      } else if (["education", "experience", "awards", "publications", "teaching", "travel"].includes(slug)) {
         setCurrentPage(slug as PageId);
       }
     };
@@ -100,7 +98,7 @@ const App: React.FC = () => {
   }, [pendingSection, currentPage]);
 
   const handleNavigatePage = (pageId: string) => {
-    const validPage = (["education", "experience", "awards", "publications", "teaching", "service"] as PageId[]).includes(pageId as PageId)
+    const validPage = (["education", "experience", "awards", "publications", "teaching", "travel"] as PageId[]).includes(pageId as PageId)
       ? (pageId as PageId)
       : "home";
     setCurrentPage(validPage);
@@ -130,8 +128,6 @@ const App: React.FC = () => {
           <NavBar activeSection={activeSection} activePage="home" onSectionChange={handleSectionChange} onNavigatePage={handleNavigatePage} />
           <SectionDots sections={SECTION_LIST} activeSection={activeSection} onSectionChange={handleSectionChange} />
           <About />
-          <Project />
-          <Experience />
           <Footer />
         </>
       );
@@ -162,6 +158,26 @@ const App: React.FC = () => {
         <>
           <NavBar activePage="awards" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
           <Awards />
+          <Footer />
+        </>
+      );
+    }
+
+    if (currentPage === "teaching") {
+      return (
+        <>
+          <NavBar activePage="teaching" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
+          <Teaching />
+          <Footer />
+        </>
+      );
+    }
+
+    if (currentPage === "travel") {
+      return (
+        <>
+          <NavBar activePage="travel" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
+          <Travel />
           <Footer />
         </>
       );
