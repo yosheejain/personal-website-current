@@ -38,7 +38,7 @@ export const DeckCard = styled.button`
 export const CardStack = styled.div`
   position: relative;
   height: 220px;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 `;
 
 export const CardLayer = styled.div<{ image: string; offset: number; rotate: number }>`

@@ -4,16 +4,18 @@ import { Section, Title, Subtitle, Card } from "../styles/styled-components";
 import { SectionContainer, SectionTitle } from "../styles/section";
 import { contacts } from "../data/Contact.data";
 import MonoIcon, { MonoIconName } from "../components/MonoIcon";
+import News from "../components/News";
 
 const AboutContent = styled.div`
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 40px;
-  align-items: start;
+  align-items: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
     gap: 24px;
+    justify-items: center;
   }
 `;
 
@@ -24,7 +26,8 @@ const ProfileImage = styled.div`
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows.lg};
   border: 4px solid ${({ theme }) => theme.colors.backgroundWhite};
-  margin-top: -60px;
+  margin-top: 0;
+  align-self: center;
 
   img {
     width: 100%;
@@ -99,33 +102,38 @@ const labelToIconName = (label: string): MonoIconName | null => {
 
 const About: React.FC = () => {
   return (
-    <Section id="about" background="gray">
+    <Section id="about" background="gray" style={{ paddingTop: "100px", paddingBottom: "32px" }}>
       <SectionContainer>
-        <Title>Yoshee Jain</Title>
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          <AboutContent>
+            <AboutText>
+              <Title>Yoshee Jain</Title>
+              <p style={{ fontSize: "1rem", color: "#374151", lineHeight: "1.7" }}>
+              In my research, I aim to design human-centered systems that can enable the transformation of computing as a core literacy for people
+from diverse backgrounds. I aim to create educational technology tools that allow all students to engage with computing in ways
+that align with their learning objectives and are meaningful to their future goals, using methods from human-computer interaction and
+machine learning.
+              </p>
+              <ContactRow>
+                {contacts.map((c, idx) => {
+                  const iconName = labelToIconName(c.label);
+                  return (
+                    <ContactChip key={idx} href={c.href || "#"} target={c.href?.startsWith("http") ? "_blank" : undefined} rel={c.href?.startsWith("http") ? "noreferrer" : undefined}>
+                      {iconName && <MonoIcon name={iconName} size={16} />}
+                      <ContactLabel>{c.label}</ContactLabel>
+                    </ContactChip>
+                  );
+                })}
+              </ContactRow>
+            </AboutText>
 
-        <AboutContent>
-          <AboutText>
-            <p style={{ fontSize: "1rem", color: "#374151", lineHeight: "1.7" }}>
-              My passion lies in bridging technology and people by making technology more accessible for marginalized communities. 🔗🫂 My research interests include Human-Computer Interaction (HCI),
-              Educational Technology, Large Language Models.
-            </p>
-            <ContactRow>
-              {contacts.map((c, idx) => {
-                const iconName = labelToIconName(c.label);
-                return (
-                  <ContactChip key={idx} href={c.href || "#"} target={c.href?.startsWith("http") ? "_blank" : undefined} rel={c.href?.startsWith("http") ? "noreferrer" : undefined}>
-                    {iconName && <MonoIcon name={iconName} size={16} />}
-                    <ContactLabel>{c.label}</ContactLabel>
-                  </ContactChip>
-                );
-              })}
-            </ContactRow>
-          </AboutText>
+            <ProfileImage>
+              <img src="/img/ProfileIMG.jpeg" alt="Yoshee Jain" />
+            </ProfileImage>
+          </AboutContent>
 
-          <ProfileImage>
-            <img src="/img/ProfileIMG.jpeg" alt="Yoshee Jain" />
-          </ProfileImage>
-        </AboutContent>
+          <News />
+        </div>
       </SectionContainer>
     </Section>
   );

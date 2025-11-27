@@ -13,6 +13,7 @@ import PublicationsPage from "./pages/PublicationsPage";
 import Awards from "./sections/Awards";
 import Teaching from "./sections/Teaching";
 import Travel from "./sections/Travel";
+import News from "./components/News";
 
 const AppContainer = styled.div`
   font-family: "Lato", "Lato Black", "Lato Bold", "Lato Regular", "Helvetica Neue", Arial, sans-serif;
