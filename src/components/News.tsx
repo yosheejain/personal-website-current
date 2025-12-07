@@ -44,7 +44,7 @@ const newsItems: NewsItem[] = [
 ];
 
 const StripSection = styled.section`
-  padding: 100px 0 8px;
+  padding: 40px 0 8px;
   background: transparent;
 `;
 
