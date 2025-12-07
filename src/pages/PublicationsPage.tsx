@@ -14,108 +14,123 @@ interface Publication {
   venue: string;
   links: PublicationLink[];
   year?: string;
+  card?: boolean; // whether to show this in the highlight cards
 }
 
 const publications: Publication[] = [
   {
-    title: "Generating Planning Feedback for Open-Ended Programming Exercises with LLMs",
-    thumb: "Planning Feedback",
-    description: "Detects plan-level gaps in student code to surface feedback beyond test cases, helping learners debug strategy as well as syntax.",
-    authors: "Yoshee Jain, Mehmet Arif Demirtaş, Claire Zheng, Max Fowler, Kathryn Cunningham",
-    venue: "26th International Conference on Artificial Intelligence in Education (AIED 2025)",
+    title: "Linguistic Comparison of AI- and Human-Written Responses to Online Mental Health Queries.",
+    thumb: "",
+    description: "",
+    authors: "Koustuv Saha, Yoshee Jain, Munmum De Choudhury",
+    venue: "Nature: Artificial Intelligence. Under Review.",
     year: "2025",
     links: [
-      { label: "Preprint", href: "#" },
-      { label: "GitHub", href: "#" },
+      { label: "arXiv", href: "https://arxiv.org/pdf/2504.09271" },
     ],
+    card: false,
   },
   {
-    title: "PLAID: Supporting Computing Instructors to Identify Domain-Specific Programming Plans at Scale",
-    thumb: "PLAID for Plans",
-    description: "Interviews, design sprints, and tool prototypes to help instructors surface common plan patterns in student submissions using LLMs.",
-    authors: "Yoshee Jain*, Mehmet Arif Demirtaş*, Kathryn Cunningham",
-    venue: "43rd ACM Conference on Human Factors in Computing Systems (CHI 2025)",
+    title: "Uncovering the Internet’s Hidden Values: An Empirical Study of Desirable Behavior Using Highly-Upvoted Content on Reddit.",
+    thumb: "",
+    description: "",
+    authors: "Agam Goyal, Charlotte Lambert, Yoshee Jain, Eshwar Chandrasekharan",
+    venue: "International AAAI Conference on Web and Social Media (ICWSM)",
+    year: "2026",
+    links: [
+      { label: "arXiv", href: "https://arxiv.org/pdf/2410.13036" },
+    ],
+    card: false,
+  },
+  {
+    title: "PLAID: Supporting Computing Instructors to Identify Domain-Specific Programming Plans at Scale.",
+    thumb: "PLAID: Supporting Computing Instructors to Identify Domain-Specific Programming Plans at Scale.",
+    description: "How do instructors identify common patterns in a computing domain? Can we help them by automating information gathering with LLMs? In this work, we interviewed 10 computing educators to understand their challenges in programming plan identification, and designed PLAID for supporting them in information gathering and refinement tasks through design workshops. An user study with 12 participants showed that PLAID helps instructors to identify programming plans faster, with smaller workload, and with more satisfaction.",
+    authors: "Yoshee Jain*, Mehmet Arif Demirtas*, Kathryn Cunningham",
+    venue: "ACM CHI Conference on Human Factors in Computing Systems (CHI)",
     year: "2025",
     links: [
-      { label: "DOI", href: "#" },
-      { label: "Demo", href: "#" },
-      { label: "Video", href: "#" },
-      { label: "GitHub", href: "#" },
+      { label: "DOI", href: "https://dl.acm.org/doi/10.1145/3706598.3713832" },
+      { label: "Demo", href: "https://tryplaid.web.illinois.edu/" },
+      { label: "Video", href: "https://www.youtube.com/watch?v=bMWQWTNqP-A" },
+      { label: "GitHub", href: "https://github.com/yosheejain/plaid-interface" },
     ],
+    card: true,
   },
   {
-    title: "Co-Designing AI Feedback for Intro CS Labs",
-    thumb: "AI Feedback Co-Design",
-    description: "Participatory design with students and TAs to specify transparency, pacing, and voice for AI teaching assistants in early programming courses.",
-    authors: "Yoshee Jain, Priya Raman, Daniel Cho, Sungho Lee",
-    venue: "Proceedings of the 56th ACM Technical Symposium on Computer Science Education (SIGCSE 2025)",
+    title: "Exploring the Potential of Large Language Models for Estimating the Reading Comprehension Question Difficulty.",
+    thumb: "",
+    description: "",
+    authors: "Yoshee Jain, John Hollander, Amber He, Sunny Tang, Liang Zhang, John Sabatini",
+    venue: "International Conference on Human-Computer Interaction (HCII)",
     year: "2025",
     links: [
-      { label: "Preprint", href: "#" },
-      { label: "Slides", href: "#" },
+      { label: "Paper", href: "https://link.springer.com/chapter/10.1007/978-3-031-92967-0_14" },
     ],
+    card: false,
   },
   {
-    title: "Mixed-Reality Sandboxes for Collaborative STEM Learning",
-    thumb: "MR STEM Sandbox",
-    description: "Evaluates how shared MR sandboxes impact turn-taking, idea formation, and inclusivity in middle-school STEM explorations.",
-    authors: "Yoshee Jain, Lina Park, Diego Alvarez, Sophia Kim",
-    venue: "Interaction Design & Children Conference (IDC 2024)",
-    year: "2024",
+    title: "Online Communities as a Support System for Alzheimer’s and Dementia Care: Large-scale Exploratory Study.",
+    thumb: "",
+    description: "",
+    authors: "Sidharth Kaliappan, Chunyu Liu, Yoshee Jain, Ravi Karkar, Koustuv Saha",
+    venue: "JMIR Aging 2025",
+    year: "2025",
     links: [
-      { label: "Paper", href: "#" },
-      { label: "Video", href: "#" },
+      { label: "Paper", href: "https://aging.jmir.org/2025/1/e68890" },
     ],
+    card: false,
   },
   {
-    title: "Transparent Tutoring Agents for K–12 Classrooms",
-    thumb: "Transparent Tutors",
-    description: "Designs an explainable AI tutor that reveals its reasoning steps to build student trust while maintaining learning gains.",
-    authors: "Yoshee Jain, Emily Brooks, Henry Su, Minji Choi",
-    venue: "ACM Conference on Learning at Scale (L@S 2024)",
-    year: "2024",
+    title: "AI vs Humans for Online Support: Comparing the Language of Responses from LLMs and Online Communities of Alzheimer’s Disease.",
+    thumb: "AI vs Humans for Online Support: Comparing the Language of Responses from LLMs and Online Communities of Alzheimer’s Disease.",
+    description: "AI can provide emotional and informational support like OCs, but they do not engage in deeper conversations, provide references, and share personal experiences. AI responses tend to be more verbose, readable, and complex. AI responses exhibited greater empathy, but more formal and analytical language, lacking personal narratives and linguistic diversity.",
+    authors: "Koustuv Saha, Yoshee Jain, Chunyu Liu, Sidharth Kaliappan, Ravi Karkar",
+    venue: "ACM Transactions on Computing for Healthcare 2025",
+    year: "2025",
     links: [
-      { label: "Preprint", href: "#" },
-      { label: "Poster", href: "#" },
+      { label: "DOI", href: "https://dl.acm.org/doi/abs/10.1145/3709366" },
     ],
+    card: true,
   },
   {
-    title: "Accessible Coding Workshops for Neurodiverse Learners",
-    thumb: "Accessible Coding",
-    description: "Studies sensory-friendly workshop formats and multimodal prompts that reduce cognitive load in community coding events.",
-    authors: "Yoshee Jain, Arjun Patel, Hana Kim",
-    venue: "ACM SIGACCESS Conference on Computers and Accessibility (ASSETS 2024)",
-    year: "2024",
+    title: "Examining the Efficacy of Hashtag-Based Bans on Instagram.",
+    thumb: "",
+    description: "",
+    authors: "Eunice Mok*, Yoshee Jain*, Sriya Gottiparthi*, Eshwar Chandrasekharan",
+    venue: "2025 ACM Conference on Computer-Supported Cooperative Work and Social Computing (CSCW)",
+    year: "2025",
     links: [
-      { label: "Paper", href: "#" },
-      { label: "Dataset", href: "#" },
+      { label: "DOI", href: "https://dl.acm.org/doi/abs/10.1145/3715070.3749259" },
+      { label: "Poster", href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
     ],
+    card: false,
   },
   {
-    title: "Rapid Rubrics: LLM-Assisted Assessment for Project Studios",
-    thumb: "Rapid Rubrics",
-    description: "Creates rubric drafts from project briefs, enabling instructors to iterate faster while keeping evaluation criteria transparent.",
-    authors: "Yoshee Jain, Michael Tan, Grace Oh",
-    venue: "Proceedings of the ACM on Human-Computer Interaction (CSCW 2024)",
+    title: "Investigating How Gilds Were Employed On Reddit.",
+    thumb: "",
+    description: "",
+    authors: "Charlotte Lambert, Yoshee Jain, Koustuv Saha, Eshwar Chandrasekharan",
+    venue: "2024 ACM Conference on Computer-Supported Cooperative Work and Social Computing (CSCW)",
     year: "2024",
     links: [
-      { label: "Preprint", href: "#" },
-      { label: "Code", href: "#" },
+      { label: "DOI", href: "https://dl.acm.org/doi/pdf/10.1145/3678884.3681916" },
     ],
+    card: false,
   },
   {
-    title: "Pattern Atlas: Mapping Novice Debugging Behaviors with LLMs",
-    thumb: "Pattern Atlas",
-    description: "Uses LLM-generated pattern mining to visualize common debugging paths in novice code, guiding targeted instructor interventions.",
-    authors: "Yoshee Jain, Felix Romero, Jade Nguyen",
-    venue: "International Learning Analytics & Knowledge Conference (LAK 2024)",
-    year: "2024",
+    title: "Towards Methods for Identifying High-Quality Domain-Specific Programming Patterns.",
+    thumb: "",
+    description: "",
+    authors: "Yoshee Jain, Kathryn Cunningham",
+    venue: "ACM International Computing Education Research Conference V.2 (ICER)",
+    year: "2023",
     links: [
-      { label: "Preprint", href: "#" },
-      { label: "GitHub", href: "#" },
-      { label: "Demo", href: "#" },
+      { label: "DOI", href: "https://dl.acm.org/doi/abs/10.1145/3568812.3603478" },
+      { label: "Poster", href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
     ],
-  },
+    card: false,
+  }
 ];
 
 const Wrapper = styled.div`
@@ -389,8 +404,8 @@ const CiteLinkTag = styled.a`
 `;
 
 const PublicationsPage: React.FC = () => {
-  const [highlightYear, setHighlightYear] = useState<string>("2025");
-  const [allYear, setAllYear] = useState<string>("2025");
+  const [highlightYear, setHighlightYear] = useState<string>("2026");
+  const [allYear, setAllYear] = useState<string>("2026");
 
   const years = useMemo(() => {
     const collected = publications.map((p) => p.year).filter(Boolean) as string[];
@@ -400,8 +415,8 @@ const PublicationsPage: React.FC = () => {
   }, []);
 
   const filteredHighlights = useMemo(() => {
-    if (highlightYear === "all") return publications;
-    return publications.filter((p) => p.year === highlightYear);
+    if (highlightYear === "all") return publications.filter((p) => p.card !== false);
+    return publications.filter((p) => p.year === highlightYear && p.card !== false);
   }, [highlightYear]);
 
   const filteredAll = useMemo(() => {
