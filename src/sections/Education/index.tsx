@@ -37,8 +37,9 @@ const Education: React.FC = () => {
                     <HighlightSubTitle>B.S. in Computer Science</HighlightSubTitle>
                     <FactList>
                       <li>Minor in Statistics</li>
+                      <li>Data Science Certificate</li>
                       <li>GPA: 4.00 / 4.00</li>
-                      <li>Thesis: Domain-Specific Programming Plans</li>
+                      <li>Thesis: Towards Identifying Domain-Specific Programming Plans at Scale: Needs, Challenges, and Solutions</li>
                     </FactList>
                     <CourseTagRow>
                       {[
@@ -47,6 +48,8 @@ const Education: React.FC = () => {
                         "Computational Social Science",
                         "Statistical Programming",
                         "Database Systems",
+                        "Text Mining",
+                        "Advanced Data Analysis",
                         "User Interface Design",
                         "Algorithms",
                         "Applied Machine Learning",
