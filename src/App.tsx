@@ -172,8 +172,13 @@ const App: React.FC = () => {
     if (currentPage === "teaching") {
       return (
         <>
-          <NavBar activePage="teaching" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-          <Teaching />
+          <PageLayout
+            title="To be updated"
+            description="Teaching content will be added here soon."
+            activePage="teaching"
+            onNavigatePage={handleNavigatePage}
+            onSectionChange={handleSectionChange}
+          />
           <Footer />
         </>
       );
