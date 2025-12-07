@@ -109,10 +109,8 @@ const About: React.FC = () => {
             <AboutText>
               <Title>Yoshee Jain</Title>
               <p style={{ fontSize: "1rem", color: "#374151", lineHeight: "1.7" }}>
-              In my research, I aim to design human-centered systems that can enable the transformation of computing as a core literacy for people
-from diverse backgrounds. I aim to create educational technology tools that allow all students to engage with computing in ways
-that align with their learning objectives and are meaningful to their future goals, using methods from human-computer interaction and
-machine learning.
+              My research interests lie at the intersection of <b>human-centered computing</b> and <b>computing education</b>, focusing on the design of interactive learning environments that support people from diverse back-
+grounds in learning computing. I aim to begin by <b>understanding</b> how students anticipate using computational knowledge in their future careers. I will then leverage learning science research to <b>theorize</b> and <b>prototype</b> pedagogical scaffolds that meaningfully support learners. After showing their potential, I hope to <b>develop</b> and <b>evaluate</b> user-centered systems that implement these instructional interventions at scale.
               </p>
               <ContactRow>
                 {contacts.map((c, idx) => {
