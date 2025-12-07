@@ -9,6 +9,7 @@ interface PublicationLink {
 interface Publication {
   title: string;
   thumb: string;
+  thumbImage?: string; // optional image for highlight card
   description: string;
   authors: string;
   venue: string;
@@ -23,7 +24,7 @@ const publications: Publication[] = [
     thumb: "",
     description: "",
     authors: "Koustuv Saha, Yoshee Jain, Munmum De Choudhury",
-    venue: "Nature: Artificial Intelligence. Under Review.",
+    venue: "Nature: Artificial Intelligence. Under Review. 2025",
     year: "2025",
     links: [
       { label: "arXiv", href: "https://arxiv.org/pdf/2504.09271" },
@@ -35,25 +36,27 @@ const publications: Publication[] = [
     thumb: "",
     description: "",
     authors: "Agam Goyal, Charlotte Lambert, Yoshee Jain, Eshwar Chandrasekharan",
-    venue: "International AAAI Conference on Web and Social Media (ICWSM)",
+    venue: "International AAAI Conference on Web and Social Media (ICWSM). 2026",
     year: "2026",
     links: [
       { label: "arXiv", href: "https://arxiv.org/pdf/2410.13036" },
     ],
     card: false,
   },
+  
   {
     title: "PLAID: Supporting Computing Instructors to Identify Domain-Specific Programming Plans at Scale.",
     thumb: "PLAID: Supporting Computing Instructors to Identify Domain-Specific Programming Plans at Scale.",
     description: "How do instructors identify common patterns in a computing domain? Can we help them by automating information gathering with LLMs? In this work, we interviewed 10 computing educators to understand their challenges in programming plan identification, and designed PLAID for supporting them in information gathering and refinement tasks through design workshops. An user study with 12 participants showed that PLAID helps instructors to identify programming plans faster, with smaller workload, and with more satisfaction.",
     authors: "Yoshee Jain*, Mehmet Arif Demirtas*, Kathryn Cunningham",
-    venue: "ACM CHI Conference on Human Factors in Computing Systems (CHI)",
+    venue: "ACM CHI Conference on Human Factors in Computing Systems (CHI). 2025",
     year: "2025",
     links: [
       { label: "DOI", href: "https://dl.acm.org/doi/10.1145/3706598.3713832" },
       { label: "Demo", href: "https://tryplaid.web.illinois.edu/" },
       { label: "Video", href: "https://www.youtube.com/watch?v=bMWQWTNqP-A" },
       { label: "GitHub", href: "https://github.com/yosheejain/plaid-interface" },
+      { label: "Poster", href: "https://github.com/yosheejain/personal-website-agentic/blob/main/public/CSLS%20SP25%20Poster.pptx%20(2)-1.pdf" },
     ],
     card: true,
   },
@@ -62,7 +65,7 @@ const publications: Publication[] = [
     thumb: "",
     description: "",
     authors: "Yoshee Jain, John Hollander, Amber He, Sunny Tang, Liang Zhang, John Sabatini",
-    venue: "International Conference on Human-Computer Interaction (HCII)",
+    venue: "International Conference on Human-Computer Interaction (HCII). 2025",
     year: "2025",
     links: [
       { label: "Paper", href: "https://link.springer.com/chapter/10.1007/978-3-031-92967-0_14" },
@@ -74,7 +77,7 @@ const publications: Publication[] = [
     thumb: "",
     description: "",
     authors: "Sidharth Kaliappan, Chunyu Liu, Yoshee Jain, Ravi Karkar, Koustuv Saha",
-    venue: "JMIR Aging 2025",
+    venue: "JMIR Aging. 2025",
     year: "2025",
     links: [
       { label: "Paper", href: "https://aging.jmir.org/2025/1/e68890" },
@@ -86,7 +89,7 @@ const publications: Publication[] = [
     thumb: "AI vs Humans for Online Support: Comparing the Language of Responses from LLMs and Online Communities of Alzheimer’s Disease.",
     description: "AI can provide emotional and informational support like OCs, but they do not engage in deeper conversations, provide references, and share personal experiences. AI responses tend to be more verbose, readable, and complex. AI responses exhibited greater empathy, but more formal and analytical language, lacking personal narratives and linguistic diversity.",
     authors: "Koustuv Saha, Yoshee Jain, Chunyu Liu, Sidharth Kaliappan, Ravi Karkar",
-    venue: "ACM Transactions on Computing for Healthcare 2025",
+    venue: "ACM Transactions on Computing for Healthcare. 2025",
     year: "2025",
     links: [
       { label: "DOI", href: "https://dl.acm.org/doi/abs/10.1145/3709366" },
@@ -98,11 +101,11 @@ const publications: Publication[] = [
     thumb: "",
     description: "",
     authors: "Eunice Mok*, Yoshee Jain*, Sriya Gottiparthi*, Eshwar Chandrasekharan",
-    venue: "2025 ACM Conference on Computer-Supported Cooperative Work and Social Computing (CSCW)",
+    venue: "2025 ACM Conference on Computer-Supported Cooperative Work and Social Computing (CSCW). 2025",
     year: "2025",
     links: [
       { label: "DOI", href: "https://dl.acm.org/doi/abs/10.1145/3715070.3749259" },
-      { label: "Poster", href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+      { label: "Poster", href: "https://github.com/yosheejain/personal-website-agentic/blob/main/public/SCUBA%20Research%20Poster%20STARS%2025-2.pdf" },
     ],
     card: false,
   },
@@ -111,7 +114,7 @@ const publications: Publication[] = [
     thumb: "",
     description: "",
     authors: "Charlotte Lambert, Yoshee Jain, Koustuv Saha, Eshwar Chandrasekharan",
-    venue: "2024 ACM Conference on Computer-Supported Cooperative Work and Social Computing (CSCW)",
+    venue: "2024 ACM Conference on Computer-Supported Cooperative Work and Social Computing (CSCW). 2024",
     year: "2024",
     links: [
       { label: "DOI", href: "https://dl.acm.org/doi/pdf/10.1145/3678884.3681916" },
@@ -123,11 +126,11 @@ const publications: Publication[] = [
     thumb: "",
     description: "",
     authors: "Yoshee Jain, Kathryn Cunningham",
-    venue: "ACM International Computing Education Research Conference V.2 (ICER)",
+    venue: "ACM International Computing Education Research Conference V.2 (ICER). 2023",
     year: "2023",
     links: [
       { label: "DOI", href: "https://dl.acm.org/doi/abs/10.1145/3568812.3603478" },
-      { label: "Poster", href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+      { label: "Poster", href: "https://github.com/yosheejain/personal-website-agentic/blob/main/public/ICER%20SU23%20Poster.pptx%20(1)-1.pdf" },
     ],
     card: false,
   }
@@ -245,14 +248,14 @@ const Card = styled.article`
   }
 `;
 
-const Thumb = styled.div`
+const Thumb = styled.div<{ image?: string }>`
   float: left;
   width: 34%;
   max-width: 200px;
   min-width: 150px;
   aspect-ratio: 4 / 3;
   border-radius: 16px;
-  background: radial-gradient(circle at 20% 20%, #f7fbf9, #d7e7df 60%, #c5dacf);
+  background: ${({ image }) => (image ? `center/cover no-repeat url(${image})` : "radial-gradient(circle at 20% 20%, #f7fbf9, #d7e7df 60%, #c5dacf)")};
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
   display: flex;
   align-items: center;
@@ -261,7 +264,7 @@ const Thumb = styled.div`
   padding: 12px;
   margin-right: 18px;
   margin-bottom: 14px;
-  color: #0f172a;
+  color: ${({ image }) => (image ? "transparent" : "#0f172a")};
   font-weight: 800;
   font-size: 13px;
   letter-spacing: -0.01em;
@@ -404,8 +407,8 @@ const CiteLinkTag = styled.a`
 `;
 
 const PublicationsPage: React.FC = () => {
-  const [highlightYear, setHighlightYear] = useState<string>("2026");
-  const [allYear, setAllYear] = useState<string>("2026");
+  const [highlightYear, setHighlightYear] = useState<string>("2025");
+  const [allYear, setAllYear] = useState<string>("2025");
 
   const years = useMemo(() => {
     const collected = publications.map((p) => p.year).filter(Boolean) as string[];
@@ -443,7 +446,7 @@ const PublicationsPage: React.FC = () => {
         {filteredHighlights.map((pub) => (
           <Card key={pub.title}>
             <div className="card-body">
-              <Thumb>{pub.thumb}</Thumb>
+              <Thumb image={pub.thumbImage}>{pub.thumb}</Thumb>
               <Title>{pub.title}</Title>
               <Desc>{pub.description}</Desc>
               <Authors>{pub.authors}</Authors>

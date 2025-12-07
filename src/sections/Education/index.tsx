@@ -15,6 +15,7 @@ import {
   FactList,
   CourseTagRow,
   CourseTag,
+  InlineLink,
 } from "./Education.styles";
 import { SectionContainer } from "../../styles/section";
 
@@ -39,7 +40,12 @@ const Education: React.FC = () => {
                       <li>Minor in Statistics</li>
                       <li>Data Science Certificate</li>
                       <li>GPA: 4.00 / 4.00</li>
-                      <li>Thesis: Towards Identifying Domain-Specific Programming Plans at Scale: Needs, Challenges, and Solutions</li>
+                      <li>
+                        Thesis:{" "}
+                        <InlineLink href="https://github.com/yosheejain/personal-website-agentic/blob/main/public/_CS_499__Undergraduate_Senior_Thesis%20(2).pdf" target="_blank" rel="noreferrer">
+                          Towards Identifying Domain-Specific Programming Plans at Scale: Needs, Challenges, and Solutions
+                        </InlineLink>
+                      </li>
                     </FactList>
                     <CourseTagRow>
                       {[
