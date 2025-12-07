@@ -46,7 +46,8 @@ const publications: Publication[] = [
   
   {
     title: "PLAID: Supporting Computing Instructors to Identify Domain-Specific Programming Plans at Scale.",
-    thumb: "PLAID: Supporting Computing Instructors to Identify Domain-Specific Programming Plans at Scale.",
+    thumb: "",
+    thumbImage: "/img/pubs/plaid.png",
     description: "How do instructors identify common patterns in a computing domain? Can we help them by automating information gathering with LLMs? In this work, we interviewed 10 computing educators to understand their challenges in programming plan identification, and designed PLAID for supporting them in information gathering and refinement tasks through design workshops. An user study with 12 participants showed that PLAID helps instructors to identify programming plans faster, with smaller workload, and with more satisfaction.",
     authors: "Yoshee Jain*, Mehmet Arif Demirtas*, Kathryn Cunningham",
     venue: "ACM CHI Conference on Human Factors in Computing Systems (CHI). 2025",
@@ -86,7 +87,8 @@ const publications: Publication[] = [
   },
   {
     title: "AI vs Humans for Online Support: Comparing the Language of Responses from LLMs and Online Communities of Alzheimer’s Disease.",
-    thumb: "AI vs Humans for Online Support: Comparing the Language of Responses from LLMs and Online Communities of Alzheimer’s Disease.",
+    thumb: "",
+    thumbImage: "/img/pubs/tochi.png",
     description: "AI can provide emotional and informational support like OCs, but they do not engage in deeper conversations, provide references, and share personal experiences. AI responses tend to be more verbose, readable, and complex. AI responses exhibited greater empathy, but more formal and analytical language, lacking personal narratives and linguistic diversity.",
     authors: "Koustuv Saha, Yoshee Jain, Chunyu Liu, Sidharth Kaliappan, Ravi Karkar",
     venue: "ACM Transactions on Computing for Healthcare. 2025",
@@ -248,33 +250,29 @@ const Card = styled.article`
   }
 `;
 
-const Thumb = styled.div<{ image?: string }>`
+const Thumb = styled.div`
   float: left;
-  width: 34%;
-  max-width: 200px;
-  min-width: 150px;
-  aspect-ratio: 4 / 3;
-  border-radius: 16px;
-  background: ${({ image }) => (image ? `center/cover no-repeat url(${image})` : "radial-gradient(circle at 20% 20%, #f7fbf9, #d7e7df 60%, #c5dacf)")};
-  border: 1px solid ${({ theme }) => theme.colors.borderColor};
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  max-width: 260px;
+  width: auto;
+  border-radius: 12px;
+  display: inline-block;
   text-align: center;
-  padding: 12px;
+  padding: 0;
   margin-right: 18px;
   margin-bottom: 14px;
-  color: ${({ image }) => (image ? "transparent" : "#0f172a")};
-  font-weight: 800;
-  font-size: 13px;
-  letter-spacing: -0.01em;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  overflow: hidden;
 
   @media (max-width: 720px) {
     float: none;
-    width: 100%;
+    width: auto;
     max-width: 100%;
     margin-right: 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 `;
 
@@ -367,6 +365,14 @@ const CiteAuthors = styled.div`
   margin-bottom: 4px;
 `;
 
+const NameHighlight = styled.span`
+  background: #ffd9a8;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: 800;
+  color: #8a3a00;
+`;
+
 const CiteVenue = styled.div`
   color: ${({ theme }) => theme.colors.primaryHover};
   font-weight: 700;
@@ -410,6 +416,22 @@ const PublicationsPage: React.FC = () => {
   const [highlightYear, setHighlightYear] = useState<string>("2025");
   const [allYear, setAllYear] = useState<string>("2025");
 
+  const highlightName = (text: string) => {
+    const regex = /Yoshee Jain/gi;
+    const parts = text.split(regex);
+    const matches = text.match(regex) || [];
+
+    return parts.flatMap((part, idx) => {
+      const items = [<React.Fragment key={`part-${idx}`}>{part}</React.Fragment>];
+      if (idx < matches.length) {
+        items.push(
+          <NameHighlight key={`hl-${idx}`}>{matches[idx]}</NameHighlight>
+        );
+      }
+      return items;
+    });
+  };
+
   const years = useMemo(() => {
     const collected = publications.map((p) => p.year).filter(Boolean) as string[];
     const unique = Array.from(new Set(collected));
@@ -446,10 +468,12 @@ const PublicationsPage: React.FC = () => {
         {filteredHighlights.map((pub) => (
           <Card key={pub.title}>
             <div className="card-body">
-              <Thumb image={pub.thumbImage}>{pub.thumb}</Thumb>
+              <Thumb>
+                {pub.thumbImage ? <img src={pub.thumbImage} alt={pub.title} /> : pub.thumb}
+              </Thumb>
               <Title>{pub.title}</Title>
               <Desc>{pub.description}</Desc>
-              <Authors>{pub.authors}</Authors>
+              <Authors>{highlightName(pub.authors)}</Authors>
               <Venue href="#">{pub.venue}</Venue>
               <Links>
                 {pub.links.map((link) => (
@@ -479,7 +503,7 @@ const PublicationsPage: React.FC = () => {
         {filteredAll.map((pub) => (
           <CiteItem key={`cite-${pub.title}`}>
             <CiteTitle>{pub.title}</CiteTitle>
-            <CiteAuthors>{pub.authors}</CiteAuthors>
+            <CiteAuthors>{highlightName(pub.authors)}</CiteAuthors>
             <CiteVenue>{pub.venue}</CiteVenue>
             <CiteLinks>
               {pub.links.map((link) => (

@@ -5,15 +5,10 @@ import NavBar from "./components/NavBar";
 import SectionDots from "./components/SectionDots";
 import Footer from "./components/Footer";
 import About from "./sections/About";
-import Project from "./sections/Project";
-import Experience from "./sections/Experience";
 import Education from "./sections/Education";
 import PageLayout from "./pages/PageLayout";
 import PublicationsPage from "./pages/PublicationsPage";
-import Awards from "./sections/Awards";
 import Teaching from "./sections/Teaching";
-import Travel from "./sections/Travel";
-import News from "./components/News";
 
 const AppContainer = styled.div`
   font-family: "Lato", "Lato Black", "Lato Bold", "Lato Regular", "Helvetica Neue", Arial, sans-serif;
@@ -147,8 +142,13 @@ const App: React.FC = () => {
     if (currentPage === "experience") {
       return (
         <>
-          <NavBar activePage="experience" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-          <Experience />
+          <PageLayout
+            title="To be updated"
+            description="Experience details are on the way. Check back soon."
+            activePage="experience"
+            onNavigatePage={handleNavigatePage}
+            onSectionChange={handleSectionChange}
+          />
           <Footer />
         </>
       );
@@ -157,8 +157,13 @@ const App: React.FC = () => {
     if (currentPage === "awards") {
       return (
         <>
-          <NavBar activePage="awards" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-          <Awards />
+          <PageLayout
+            title="To be updated"
+            description="Honors and awards will be shared here soon."
+            activePage="awards"
+            onNavigatePage={handleNavigatePage}
+            onSectionChange={handleSectionChange}
+          />
           <Footer />
         </>
       );
@@ -177,8 +182,13 @@ const App: React.FC = () => {
     if (currentPage === "travel") {
       return (
         <>
-          <NavBar activePage="travel" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-          <Travel />
+          <PageLayout
+            title="To be updated"
+            description="Travel stories and photos will be added soon."
+            activePage="travel"
+            onNavigatePage={handleNavigatePage}
+            onSectionChange={handleSectionChange}
+          />
           <Footer />
         </>
       );
