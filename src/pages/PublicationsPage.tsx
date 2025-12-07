@@ -379,11 +379,6 @@ const CiteVenue = styled.div`
   margin-bottom: 4px;
 `;
 
-const CiteMeta = styled.div`
-  color: ${({ theme }) => theme.colors.textSecondary};
-  font-size: 13px;
-`;
-
 const CiteLinks = styled.div`
   display: flex;
   flex-wrap: wrap;

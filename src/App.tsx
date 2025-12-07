@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle, theme } from "./styles/styled-components";
 import NavBar from "./components/NavBar";
@@ -8,7 +8,6 @@ import About from "./sections/About";
 import Education from "./sections/Education";
 import PageLayout from "./pages/PageLayout";
 import PublicationsPage from "./pages/PublicationsPage";
-import Teaching from "./sections/Teaching";
 
 const AppContainer = styled.div`
   font-family: "Lato", "Lato Black", "Lato Bold", "Lato Regular", "Helvetica Neue", Arial, sans-serif;
@@ -93,7 +92,7 @@ const App: React.FC = () => {
     }
   }, [pendingSection, currentPage]);
 
-  const handleNavigatePage = (pageId: string) => {
+  const handleNavigatePage = useCallback((pageId: string) => {
     const validPage = (["education", "experience", "awards", "publications", "teaching", "travel"] as PageId[]).includes(pageId as PageId)
       ? (pageId as PageId)
       : "home";
@@ -102,9 +101,10 @@ const App: React.FC = () => {
     if (validPage !== "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  };
+  }, []);
 
-  const handleSectionChange = (sectionId: string) => {
+  const handleSectionChange = useCallback(
+    (sectionId: string) => {
     if (currentPage !== "home") {
       setPendingSection(sectionId);
       handleNavigatePage("home");
@@ -115,7 +115,9 @@ const App: React.FC = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  };
+    },
+    [currentPage, handleNavigatePage]
+  );
 
   const renderPage = useMemo(() => {
     if (currentPage === "home") {
@@ -218,7 +220,7 @@ const App: React.FC = () => {
         <Footer />
       </>
     );
-  }, [currentPage, activeSection]);
+  }, [currentPage, activeSection, handleSectionChange, handleNavigatePage]);
 
   return (
     <ThemeProvider theme={theme}>

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Section, Title, Subtitle, Card } from "../styles/styled-components";
-import { SectionContainer, SectionTitle } from "../styles/section";
+import { Section, Title } from "../styles/styled-components";
+import { SectionContainer } from "../styles/section";
 import { contacts } from "../data/Contact.data";
 import MonoIcon, { MonoIconName } from "../components/MonoIcon";
 import News from "../components/News";
