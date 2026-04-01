@@ -19,6 +19,7 @@ interface Publication {
 }
 
 const publications: Publication[] = [
+  
   {
     title: "Linguistic Comparison of AI- and Human-Written Responses to Online Mental Health Queries.",
     thumb: "",
