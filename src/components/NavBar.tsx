@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const navItems = [
-  { id: "about",        label: "About",        type: "section" as const, href: "#about",        color: "#00462A" },
-  { id: "education",    label: "Education",    type: "page"    as const, href: "/education",    color: "#2563EB" },
-  { id: "publications", label: "Publications", type: "page"    as const, href: "/publications", color: "#00462A" },
-  { id: "experience",   label: "Experience",   type: "page"    as const, href: "/experience",   color: "#0D9488" },
-  { id: "awards",       label: "Honors",       type: "page"    as const, href: "/awards",       color: "#D97706" },
-  { id: "teaching",     label: "Teaching",     type: "page"    as const, href: "/teaching",     color: "#7C3AED" },
-  { id: "travel",       label: "Travel",       type: "page"    as const, href: "/travel",       color: "#DC2626" },
+  { id: "about",        label: "About",        href: "#about" },
+  { id: "education",    label: "Education",    href: "#education" },
+  { id: "publications", label: "Publications", href: "#publications" },
+  { id: "experience",   label: "Experience",   href: "#experience" },
+  { id: "awards",       label: "Honors",       href: "#awards" },
+  { id: "teaching",     label: "Teaching",     href: "#teaching" },
+  { id: "travel",       label: "Travel",       href: "#travel" },
 ];
 
 const NavOuter = styled.nav`
@@ -46,6 +46,14 @@ const GlassBar = styled.div<{ $scrolled: boolean }>`
       : "0 4px 18px rgba(0, 0, 0, 0.07)"};
   transition: background 0.25s ease, box-shadow 0.25s ease;
   pointer-events: auto;
+
+  @media (max-width: 768px) {
+    overflow-x: auto;
+    max-width: calc(100vw - 16px);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
 `;
 
 const NavList = styled.ul`
@@ -58,26 +66,26 @@ const NavList = styled.ul`
 
 const NavItem = styled.li``;
 
-const NavLink = styled.a<{ $isActive: boolean; $color: string }>`
+const NavLink = styled.a<{ $isActive: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: ${({ $isActive, $color }) => ($isActive ? "#ffffff" : "#64748b")};
+  color: ${({ $isActive, theme }) => ($isActive ? "#ffffff" : "#64748b")};
   font-weight: 600;
   font-size: 13.5px;
   padding: 8px 16px;
   border-radius: 999px;
-  background: ${({ $isActive, $color }) => ($isActive ? $color : "transparent")};
-  box-shadow: ${({ $isActive, $color }) =>
-    $isActive ? `0 2px 10px ${$color}44` : "none"};
+  background: ${({ $isActive, theme }) => ($isActive ? theme.colors.primary : "transparent")};
+  box-shadow: ${({ $isActive, theme }) =>
+    $isActive ? `0 2px 10px ${theme.colors.pageAccentShadow}` : "none"};
   transition: all 0.18s ease;
   white-space: nowrap;
 
   &:hover {
-    background: ${({ $isActive, $color }) =>
-      $isActive ? $color : `${$color}14`};
-    color: ${({ $isActive, $color }) => ($isActive ? "#ffffff" : $color)};
+    background: ${({ $isActive, theme }) =>
+      $isActive ? theme.colors.primary : theme.colors.pageAccentTint};
+    color: ${({ $isActive, theme }) => ($isActive ? "#ffffff" : theme.colors.primary)};
   }
 
   @media (max-width: 768px) {
@@ -100,7 +108,7 @@ const CVLink = styled.a`
   gap: 3px;
   font-weight: 700;
   font-size: 13.5px;
-  color: #00462A;
+  color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
   padding: 8px 14px;
   border-radius: 999px;
@@ -109,18 +117,16 @@ const CVLink = styled.a`
   letter-spacing: 0.01em;
 
   &:hover {
-    background: rgba(0, 70, 42, 0.08);
+    background: ${({ theme }) => theme.colors.pageAccentTint};
   }
 `;
 
 interface NavBarProps {
   activeSection?: string;
-  activePage?: string;
   onSectionChange?: (section: string) => void;
-  onNavigatePage?: (page: string) => void;
 }
 
-const NavBar: React.FC<NavBarProps> = ({ activeSection, activePage, onSectionChange, onNavigatePage }) => {
+const NavBar: React.FC<NavBarProps> = ({ activeSection, onSectionChange }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -134,30 +140,18 @@ const NavBar: React.FC<NavBarProps> = ({ activeSection, activePage, onSectionCha
     if (onSectionChange) onSectionChange(sectionId);
   };
 
-  const handlePageClick = (e: React.MouseEvent<HTMLAnchorElement>, pageId: string) => {
-    e.preventDefault();
-    if (onNavigatePage) onNavigatePage(pageId);
-  };
-
   return (
     <NavOuter>
       <GlassBar $scrolled={isScrolled}>
         <NavList>
           {navItems.map((item) => {
-            const isActive = item.type === "section"
-              ? activeSection === item.id
-              : activePage === item.id;
+            const isActive = activeSection === item.id;
             return (
               <NavItem key={item.id}>
                 <NavLink
                   href={item.href}
                   $isActive={isActive}
-                  $color={item.color}
-                  onClick={(e) =>
-                    item.type === "section"
-                      ? handleSectionClick(e, item.id)
-                      : handlePageClick(e, item.id)
-                  }
+                  onClick={(e) => handleSectionClick(e, item.id)}
                 >
                   {item.label}
                 </NavLink>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle, theme } from "./styles/styled-components";
 import NavBar from "./components/NavBar";
@@ -7,35 +7,8 @@ import SectionDots from "./components/SectionDots";
 import Footer from "./components/Footer";
 import About from "./sections/About";
 import Education from "./sections/Education";
-// import Experience from "./sections/Experience";
-// import Awards from "./sections/Awards";
-// import Teaching from "./sections/Teaching";
-import PageLayout from "./pages/PageLayout";
 import PublicationsPage from "./pages/PublicationsPage";
 import YosheeBot from "./components/YosheeBot";
-
-const PAGE_THEMES: Record<string, Partial<typeof theme["colors"]>> = {
-  education: {
-    primary: "#2563EB", primaryHover: "#1D4ED8",
-    pageAccentTint: "rgba(37, 99, 235, 0.06)", pageAccentBorder: "rgba(37, 99, 235, 0.15)", pageAccentShadow: "rgba(37, 99, 235, 0.20)",
-  },
-  experience: {
-    primary: "#0D9488", primaryHover: "#0F766E",
-    pageAccentTint: "rgba(13, 148, 136, 0.06)", pageAccentBorder: "rgba(13, 148, 136, 0.15)", pageAccentShadow: "rgba(13, 148, 136, 0.20)",
-  },
-  awards: {
-    primary: "#D97706", primaryHover: "#B45309",
-    pageAccentTint: "rgba(217, 119, 6, 0.06)", pageAccentBorder: "rgba(217, 119, 6, 0.15)", pageAccentShadow: "rgba(217, 119, 6, 0.20)",
-  },
-  teaching: {
-    primary: "#7C3AED", primaryHover: "#6D28D9",
-    pageAccentTint: "rgba(124, 58, 237, 0.06)", pageAccentBorder: "rgba(124, 58, 237, 0.15)", pageAccentShadow: "rgba(124, 58, 237, 0.20)",
-  },
-  travel: {
-    primary: "#DC2626", primaryHover: "#B91C1C",
-    pageAccentTint: "rgba(220, 38, 38, 0.06)", pageAccentBorder: "rgba(220, 38, 38, 0.15)", pageAccentShadow: "rgba(220, 38, 38, 0.20)",
-  },
-};
 
 const AppContainer = styled.div`
   font-family: "Lato", "Lato Black", "Lato Bold", "Lato Regular", "Helvetica Neue", Arial, sans-serif;
@@ -46,38 +19,101 @@ const AppContainer = styled.div`
   overflow-x: hidden;
 `;
 
-const SECTION_LIST = [{ id: "about", label: "About" }];
+const PageSection = styled.section`
+  min-height: 100vh;
+  padding: 140px 16px 100px;
+  background: #ffffff;
+  scroll-margin-top: 80px;
 
-type PageId = "home" | "education" | "experience" | "awards" | "publications" | "teaching" | "travel";
+  @media (max-width: 768px) {
+    padding: 110px 12px 72px;
+  }
+`;
 
-const PAGE_INFO: Record<Exclude<PageId, "home">, { title: string; description: string }> = {
-  education: { title: "Education", description: "Coursework, programs, and milestones from Ewha, Uppsala, and beyond." },
-  experience: { title: "Experience", description: "Roles, projects, and collaborations that shaped my practice." },
-  awards: { title: "Awards", description: "Highlights and recognitions from the journey so far." },
-  publications: { title: "Publications", description: "Papers, articles, and works-in-progress in HCI and education." },
-  teaching: { title: "Teaching", description: "Workshops, mentorship, and classroom stories I am proud of." },
-  travel: { title: "Travel", description: "Trips and adventures worth remembering." },
-};
+const PageInner = styled.div`
+  max-width: 1240px;
+  margin: 0 auto;
+`;
+
+const PageCard = styled.div`
+  background: ${({ theme }) => theme.colors.backgroundWhite};
+  border: 1px solid ${({ theme }) => theme.colors.pageAccentBorder};
+  border-radius: 22px;
+  padding: 40px 46px;
+  box-shadow: 0 4px 6px ${({ theme }) => theme.colors.pageAccentTint}, 0 16px 40px rgba(0, 0, 0, 0.07);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 15% 0%, ${({ theme }) => theme.colors.pageAccentTint} 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.pageAccentBorder});
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 28px 20px;
+    border-radius: 16px;
+  }
+`;
+
+const PageHeaderArea = styled.div`
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
+`;
+
+const PageTitle = styled.h2`
+  margin: 0 0 8px;
+  font-size: ${({ theme }) => theme.typography.fontSize["2xl"]};
+  color: ${({ theme }) => theme.colors.textPrimary};
+  letter-spacing: -0.02em;
+`;
+
+const PageSubtitle = styled.p`
+  margin: 0;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
+  font-size: ${({ theme }) => theme.typography.fontSize.base};
+`;
+
+const SECTION_LIST = [
+  { id: "about", label: "About" },
+  { id: "education", label: "Education" },
+  { id: "publications", label: "Publications" },
+  { id: "experience", label: "Experience" },
+  { id: "awards", label: "Honors" },
+  { id: "teaching", label: "Teaching" },
+  { id: "travel", label: "Travel" },
+];
+
+const PLACEHOLDER_SECTIONS: { id: string; title: string; description: string }[] = [
+  { id: "experience", title: "Experience", description: "Experience details will be added soon." },
+  { id: "awards", title: "Honors", description: "Awards and honors will be added soon." },
+  { id: "teaching", title: "Teaching", description: "Teaching highlights will be added soon." },
+  { id: "travel", title: "Travel", description: "Travel stories and photos will be added soon." },
+];
 
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<PageId>("home");
-  const [pendingSection, setPendingSection] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState(SECTION_LIST[0].id);
 
   useEffect(() => {
-    const path = window.location.pathname.replace(/\.html$/, "");
-    const slug = path === "/" ? "" : path.replace(/^\//, "");
-    if (!slug) {
-      setCurrentPage("home");
-    } else if (["education", "experience", "awards", "publications", "teaching", "travel"].includes(slug)) {
-      setCurrentPage(slug as PageId);
-    }
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
-      if (currentPage !== "home") return;
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 120;
 
       for (const section of SECTION_LIST) {
         const element = document.getElementById(section.id);
@@ -91,200 +127,62 @@ const App: React.FC = () => {
       }
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentPage]);
-
-  useEffect(() => {
-    const handlePop = () => {
-      const path = window.location.pathname.replace(/\.html$/, "");
-      const slug = path === "/" ? "" : path.replace(/^\//, "");
-      if (!slug) {
-        setCurrentPage("home");
-      } else if (["education", "experience", "awards", "publications", "teaching", "travel"].includes(slug)) {
-        setCurrentPage(slug as PageId);
-      }
-    };
-    window.addEventListener("popstate", handlePop);
-    return () => window.removeEventListener("popstate", handlePop);
   }, []);
 
   useEffect(() => {
-    if (pendingSection && currentPage === "home") {
-      const element = document.getElementById(pendingSection);
+    const hash = window.location.hash.replace(/^#/, "");
+    if (hash && SECTION_LIST.some((s) => s.id === hash)) {
+      const element = document.getElementById(hash);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => element.scrollIntoView({ behavior: "smooth" }), 100);
       }
-      setActiveSection(pendingSection);
-      setPendingSection(null);
-    }
-  }, [pendingSection, currentPage]);
-
-  const handleNavigatePage = useCallback((pageId: string) => {
-    const validPage = (["education", "experience", "awards", "publications", "teaching", "travel"] as PageId[]).includes(pageId as PageId)
-      ? (pageId as PageId)
-      : "home";
-    setCurrentPage(validPage);
-    window.history.pushState({}, "", validPage === "home" ? "/" : `/${validPage}`);
-    if (validPage !== "home") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, []);
 
-  const handleSectionChange = useCallback(
-    (sectionId: string) => {
-    if (currentPage !== "home") {
-      setPendingSection(sectionId);
-      handleNavigatePage("home");
-      return;
-    }
+  const handleSectionChange = useCallback((sectionId: string) => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    },
-    [currentPage, handleNavigatePage]
-  );
-
-  const renderPage = useMemo(() => {
-    if (currentPage === "home") {
-      return (
-        <>
-          <NavBar activeSection={activeSection} activePage="home" onSectionChange={handleSectionChange} onNavigatePage={handleNavigatePage} />
-          <SectionDots sections={SECTION_LIST} activeSection={activeSection} onSectionChange={handleSectionChange} />
-          <About />
-          <Footer />
-        </>
-      );
-    }
-
-    if (currentPage === "education") {
-      return (
-        <>
-          <NavBar activePage="education" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-          <Education />
-          <Footer />
-        </>
-      );
-    }
-
-    if (currentPage === "experience") {
-      return (
-        <>
-          <PageLayout
-            title="To be updated"
-            description="Experience details will be added soon."
-            activePage="experience"
-            onNavigatePage={handleNavigatePage}
-            onSectionChange={handleSectionChange}
-          />
-          <Footer />
-        </>
-      );
-      // return (
-      //   <>
-      //     <NavBar activePage="experience" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-      //     <Experience />
-      //     <Footer />
-      //   </>
-      // );
-    }
-
-    if (currentPage === "awards") {
-      return (
-        <>
-          <PageLayout
-            title="To be updated"
-            description="Awards and honors will be added soon."
-            activePage="awards"
-            onNavigatePage={handleNavigatePage}
-            onSectionChange={handleSectionChange}
-          />
-          <Footer />
-        </>
-      );
-      // return (
-      //   <>
-      //     <NavBar activePage="awards" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-      //     <Awards />
-      //     <Footer />
-      //   </>
-      // );
-    }
-
-    if (currentPage === "teaching") {
-      return (
-        <>
-          <PageLayout
-            title="To be updated"
-            description="Teaching highlights will be added soon."
-            activePage="teaching"
-            onNavigatePage={handleNavigatePage}
-            onSectionChange={handleSectionChange}
-          />
-          <Footer />
-        </>
-      );
-      // return (
-      //   <>
-      //     <NavBar activePage="teaching" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-      //     <Teaching />
-      //     <Footer />
-      //   </>
-      // );
-    }
-
-    if (currentPage === "travel") {
-      return (
-        <>
-          <PageLayout
-            title="To be updated"
-            description="Travel stories and photos will be added soon."
-            activePage="travel"
-            onNavigatePage={handleNavigatePage}
-            onSectionChange={handleSectionChange}
-          />
-          <Footer />
-        </>
-      );
-    }
-
-    const pageMeta = PAGE_INFO[currentPage as Exclude<PageId, "home">];
-    const isPublications = currentPage === "publications";
-    const pageBody = isPublications ? <PublicationsPage /> : null;
-
-    return (
-      <>
-        <PageLayout
-          title={pageMeta.title}
-          description={pageMeta.description}
-          activePage={currentPage}
-          onNavigatePage={handleNavigatePage}
-          onSectionChange={handleSectionChange}
-          variant={isPublications ? "bare" : "card"}
-        >
-          {pageBody}
-        </PageLayout>
-        <Footer />
-      </>
-    );
-  }, [currentPage, activeSection, handleSectionChange, handleNavigatePage]);
-
-  const activeTheme = useMemo(() => {
-    const overrides = PAGE_THEMES[currentPage];
-    if (!overrides) return theme;
-    return { ...theme, colors: { ...theme.colors, ...overrides } };
-  }, [currentPage]);
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <IntroSplash />
-      <ThemeProvider theme={activeTheme}>
-        <AppContainer>{renderPage}</AppContainer>
-        <YosheeBot />
-      </ThemeProvider>
+      <AppContainer>
+        <NavBar activeSection={activeSection} onSectionChange={handleSectionChange} />
+        <SectionDots sections={SECTION_LIST} activeSection={activeSection} onSectionChange={handleSectionChange} />
+
+        <About />
+        <Education />
+
+        <PageSection id="publications">
+          <PageInner>
+            <PublicationsPage />
+          </PageInner>
+        </PageSection>
+
+        {PLACEHOLDER_SECTIONS.map((s) => (
+          <PageSection key={s.id} id={s.id}>
+            <PageInner>
+              <PageCard>
+                <PageHeaderArea>
+                  <PageTitle>To be updated</PageTitle>
+                  <PageSubtitle>{s.description}</PageSubtitle>
+                </PageHeaderArea>
+              </PageCard>
+            </PageInner>
+          </PageSection>
+        ))}
+
+        <Footer />
+      </AppContainer>
+      <YosheeBot />
     </ThemeProvider>
   );
 };
