@@ -147,16 +147,11 @@ const About: React.FC = () => (
             <Name>Yoshee Jain</Name>
 
             <BioText>
+              I'm an incoming CS PhD student at UIUC starting in Fall 2026 (woot!).{" "}
               My research interests lie at the intersection of{" "}
-              <strong>human-centered computing</strong> and <strong>computing education</strong>,
+              <strong>human-centered AI</strong> and <strong>computing education</strong>,
               focusing on the design of interactive learning environments that support people from
-              diverse backgrounds in learning computing. I aim to begin by{" "}
-              <strong>understanding</strong> how students anticipate using computational knowledge
-              in their future careers. I will then leverage learning science research to{" "}
-              <strong>theorize</strong> and <strong>prototype</strong> pedagogical scaffolds that
-              meaningfully support learners. After showing their potential, I hope to{" "}
-              <strong>develop</strong> and <strong>evaluate</strong> user-centered systems that
-              implement these instructional interventions at scale.
+              diverse backgrounds in learning computing. 
             </BioText>
 
             <ContactRow>
