@@ -6,7 +6,7 @@ export const Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fafafa;
+  background: #ffffff;
 `;
 
 export const Container = styled.div`
@@ -15,7 +15,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.875rem; /* ~30px */
+  font-size: 1.875rem;
   font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
   color: ${({ theme }) => theme.colors.textPrimary};
   text-align: center;
@@ -34,7 +34,7 @@ export const Block = styled.div`
 
 export const Row = styled.div`
   display: grid;
-  grid-template-columns: 0.3fr 0.7fr; /* 4:6 ratio */
+  grid-template-columns: 0.3fr 0.7fr;
   gap: 16px;
   align-items: start;
 
@@ -50,15 +50,15 @@ export const Column = styled.div`
 `;
 
 export const LeftColumn = styled(Column)`
-  padding-left: 20px; /* align left edge with Experience OrgLabel */
+  padding-left: 20px;
 `;
 
 export const RightColumn = styled(Column)`
-  padding-left: 24px; /* match Experience card inner padding */
+  padding-left: 24px;
 `;
 
 export const School = styled.h3`
-  font-size: 1.25rem; /* 20px */
+  font-size: 1.25rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.textPrimary};
   margin: 0;
@@ -82,15 +82,18 @@ export const DegreeGroup = styled.div`
 `;
 
 export const HighlightSubTitle = styled.h3`
-  font-size: ${(props) => props.theme.typography.fontSize.lg};
-  font-weight: ${(props) => props.theme.typography.fontWeight.medium};
-  color: ${(props) => props.theme.colors.textPrimary};
-  background: none;
-  background-color: ${(props) => props.theme.colors.primary}12;
-  border-left: 4px solid ${(props) => props.theme.colors.primary};
-  padding: ${(props) => props.theme.spacing.xs} ${(props) => props.theme.spacing.sm};
-  border-radius: ${(props) => props.theme.borderRadius.sm};
-  margin: 0 0 4px; /* tighter bottom to couple with details */
+  font-size: ${({ theme }) => theme.typography.fontSize.lg};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+  color: ${({ theme }) => theme.colors.primary};
+  background: linear-gradient(
+    90deg,
+    ${({ theme }) => theme.colors.pageAccentTint} 0%,
+    transparent 100%
+  );
+  border-left: 3px solid ${({ theme }) => theme.colors.primary};
+  padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
+  border-radius: 0 ${({ theme }) => theme.borderRadius.sm} ${({ theme }) => theme.borderRadius.sm} 0;
+  margin: 0 0 4px;
   display: inline-block;
   width: fit-content;
 `;
@@ -118,7 +121,7 @@ export const Meta = styled.div`
 
 export const Period = styled.p`
   color: ${({ theme }) => theme.colors.textSecondary};
-  font-size: 0.975rem; /* ~15.6px */
+  font-size: 0.975rem;
   font-weight: 600;
   margin: 0;
 `;
@@ -131,11 +134,11 @@ export const Location = styled.p`
 `;
 
 export const Details = styled.ul`
-  margin: 2px 0 0; /* tighter top to couple with heading */
+  margin: 2px 0 0;
   padding-left: 1rem;
   color: ${({ theme }) => theme.colors.textMuted};
   line-height: 1.65;
-  font-size: 0.95rem; /* ~15px */
+  font-size: 0.95rem;
 
   li {
     margin: 1px 0;
@@ -162,7 +165,7 @@ export const InlineLink = styled.a`
 export const Divider = styled.hr`
   border: 0;
   height: 1px;
-  background: ${({ theme }) => theme.colors.gray200};
+  background: ${({ theme }) => theme.colors.borderColor};
   margin: 20px 0 0;
 `;
 
@@ -190,13 +193,20 @@ export const CourseTagRow = styled.div`
 `;
 
 export const CourseTag = styled.span`
-  padding: 6px 10px;
-  border-radius: 8px;
+  padding: 5px 12px;
+  border-radius: 999px;
   background: ${({ theme }) => theme.colors.backgroundLight};
   color: ${({ theme }) => theme.colors.textSecondary};
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.pageAccentTint};
+    color: ${({ theme }) => theme.colors.primary};
+    border-color: ${({ theme }) => theme.colors.pageAccentBorder};
+  }
 `;
 
 export const PhotoCard = styled.div`
@@ -204,7 +214,7 @@ export const PhotoCard = styled.div`
   background: ${({ theme }) => theme.colors.backgroundWhite};
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
   border-radius: 16px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
   overflow: hidden;
   max-width: 660px;
   margin-left: auto;

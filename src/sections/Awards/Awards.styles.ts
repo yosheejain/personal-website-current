@@ -48,7 +48,7 @@ export const FilterPill = styled.button<{ active: boolean }>`
   cursor: pointer;
 
   &:hover {
-    background: ${({ active, theme }) => (active ? theme.colors.primaryHover : "rgba(0, 70, 42, 0.18)")};
+    background: ${({ active, theme }) => (active ? theme.colors.primaryHover : theme.colors.pageAccentTint)};
     color: ${({ active, theme }) => (active ? theme.colors.backgroundWhite : theme.colors.primary)};
     transform: translateY(-1px);
   }
@@ -105,7 +105,7 @@ export const Dot = styled.span`
   height: 12px;
   border-radius: 50%;
   background: ${({ theme }) => theme.colors.primary};
-  box-shadow: 0 0 0 4px rgba(0, 70, 42, 0.12);
+  box-shadow: 0 0 0 4px ${({ theme }) => theme.colors.pageAccentBorder};
 `;
 
 export const DateLabel = styled.div`

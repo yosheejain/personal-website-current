@@ -8,7 +8,7 @@ export const Section = styled.section`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  background: #fafafa;
+  background: #ffffff;
   width: 100%;
 
   @media (max-width: 768px) {
@@ -20,7 +20,6 @@ export const Section = styled.section`
   }
 `;
 
-// Experience 전용 컨테이너: 모바일에서 좌우 40px 패딩 적용
 export const SectionContainer = styled(BaseSectionContainer)`
   ${media.mobile} {
     padding: 0 ${({ theme }) => theme.spacing["2xl"]};
@@ -32,15 +31,15 @@ export const FiltersBar = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   margin-bottom: 12px;
 `;
 
 export const Timeline = styled.div`
   position: relative;
-  min-height: 400px; /* 최소 높이 설정으로 레이아웃 폭 유지 */
-  width: 100%; /* 부모 요소의 전체 너비를 차지하도록 설정 */
-  max-width: 1200px; /* 최대 너비 제한으로 일정한 레이아웃 유지 */
+  min-height: 400px;
+  width: 100%;
+  max-width: 1200px;
 
   &::before {
     content: "";
@@ -49,18 +48,22 @@ export const Timeline = styled.div`
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #e5e7eb;
-    transform: none;
+    background: linear-gradient(
+      to bottom,
+      ${({ theme }) => theme.colors.pageAccentShadow} 0%,
+      ${({ theme }) => theme.colors.pageAccentBorder} 60%,
+      ${({ theme }) => theme.colors.pageAccentTint} 100%
+    );
   }
 `;
 
 export const ExperienceItem = styled.div<{ isLeft: boolean }>`
   display: grid;
-  grid-template-columns: 0.3fr 0.7fr; /* 4:6 ratio */
+  grid-template-columns: 0.3fr 0.7fr;
   column-gap: 24px;
   margin-bottom: 40px;
   position: relative;
-  padding-left: 24px; /* space for timeline line */
+  padding-left: 24px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -78,7 +81,7 @@ export const OrgColumn = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
-  padding-top: 20px; /* align with first line of card text */
+  padding-top: 20px;
   position: relative;
 
   @media (max-width: 768px) {
@@ -89,13 +92,13 @@ export const OrgColumn = styled.div`
 `;
 
 export const OrgLabel = styled.h3`
-  font-size: 1.125rem; /* smaller */
+  font-size: 1.05rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: ${({ theme }) => theme.colors.textPrimary};
   margin: 0;
-  align-self: start; /* align with first line of card */
+  align-self: start;
   line-height: 1.3;
-  padding-left: 20px; /* keep text clear from timeline dot */
+  padding-left: 20px;
 
   @media (max-width: 768px) {
     padding-left: 0;
@@ -108,22 +111,24 @@ export const OrgLabel = styled.h3`
 export const YearPill = styled.span`
   display: inline-flex;
   align-items: center;
-  padding: 6px 12px;
+  padding: 5px 12px;
   border-radius: 999px;
-  background: rgba(0, 70, 42, 0.08);
-  color: #4b5563;
+  background: ${({ theme }) => theme.colors.pageAccentTint};
+  color: ${({ theme }) => theme.colors.primary};
   font-weight: 800;
-  letter-spacing: 0.01em;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
   align-self: flex-start;
   transform: translateX(-120%);
   margin-bottom: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.pageAccentBorder};
 `;
 
 export const OrgDescription = styled.p`
-  font-size: 0.9rem;
-  color: #4b5563; /* neutral caption */
+  font-size: 0.88rem;
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin: 2px 0 0;
-  padding-left: 20px; /* align with label start */
+  padding-left: 20px;
   white-space: pre-line;
 
   @media (max-width: 768px) {
@@ -139,7 +144,7 @@ export const OrgLogo = styled.div`
   border-radius: 8px;
   background: ${({ theme }) => theme.colors.backgroundLight};
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
-  margin-left: 20px; /* align with OrgLabel text start */
+  margin-left: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,31 +168,41 @@ export const YearFilterRow = styled.div`
 export const YearFilterPill = styled.button<{ active: boolean }>`
   border: none;
   cursor: pointer;
-  padding: 8px 14px;
+  padding: 7px 14px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   letter-spacing: 0.01em;
-  background: ${({ active, theme }) => (active ? theme.colors.primary : "transparent")};
+  background: ${({ active, theme }) => (active ? theme.colors.primary : "rgba(255, 255, 255, 0.7)")};
   color: ${({ active, theme }) => (active ? theme.colors.backgroundWhite : theme.colors.textSecondary)};
-  box-shadow: ${({ active }) => (active ? "0 8px 18px rgba(0, 0, 0, 0.12)" : "0 8px 18px rgba(0, 0, 0, 0.04)")};
-  border: ${({ active, theme }) => (active ? `2px solid ${theme.colors.primary}` : `2px solid ${theme.colors.borderColor}`)};
-  transition: all 0.2s ease;
+  box-shadow: ${({ active, theme }) =>
+    active ? `0 4px 14px ${theme.colors.pageAccentShadow}` : "0 1px 4px rgba(0, 0, 0, 0.07)"};
+  border: 1px solid ${({ active, theme }) =>
+    active ? theme.colors.primary : theme.colors.borderColor};
+  transition: all 0.18s ease;
 
   &:hover {
-    background: ${({ active, theme }) => (active ? theme.colors.primaryHover : "rgba(0, 70, 42, 0.18)")};
-    color: ${({ active, theme }) => (active ? theme.colors.backgroundWhite : theme.colors.primary)};
+    background: ${({ active, theme }) =>
+      active ? theme.colors.primaryHover : theme.colors.pageAccentTint};
+    color: ${({ active, theme }) =>
+      active ? theme.colors.backgroundWhite : theme.colors.primary};
     transform: translateY(-1px);
+    border-color: ${({ active, theme }) => (active ? theme.colors.primaryHover : theme.colors.primary)};
   }
 `;
 
 export const ExperienceContent = styled.div<{ isLeft: boolean }>`
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
-  position: relative;
+  background: ${({ theme }) => theme.colors.backgroundWhite};
+  border-radius: 14px;
+  padding: 22px 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 2px ${({ theme }) => theme.colors.pageAccentTint};
+  border: 1px solid ${({ theme }) => theme.colors.borderColor};
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09), 0 2px 6px ${({ theme }) => theme.colors.pageAccentBorder};
+    transform: translateY(-1px);
+  }
 
   @media (max-width: 480px) {
     padding: 16px;
@@ -211,67 +226,42 @@ export const TagsContainer = styled.div`
   }
 `;
 
-export const Tag = styled.span<{ variant: "cse" | "edu" | "teaching" | "research" | "scholarship" | "academic" | "courses" | "mentoring" | "clubs" }>`
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 600;
+export const Tag = styled.span<{
+  variant: "cse" | "edu" | "teaching" | "research" | "scholarship" | "academic" | "courses" | "mentoring" | "clubs";
+}>`
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.04em;
 
   ${({ variant, theme }) => {
     switch (variant) {
       case "cse":
-        return `
-          background: ${theme.colors.primary};
-          color: white;
-        `;
+        return `background: ${theme.colors.primary}; color: white;`;
       case "edu":
-        return `
-          background: ${theme.colors.supportGreen};
-          color: white;
-        `;
+        return `background: ${theme.colors.supportGreen}; color: white;`;
       case "teaching":
-        return `
-          background: ${theme.colors.primary};
-          color: white;
-        `;
+        return `background: ${theme.colors.primary}; color: white;`;
       case "research":
-        return `
-          background: ${theme.colors.primary};
-          color: white;
-        `;
+        return `background: ${theme.colors.primary}; color: white;`;
       case "scholarship":
-        return `
-          background: #397f6c;
-          color: white;
-        `;
+        return `background: #2E7D5E; color: white;`;
       case "academic":
-        return `
-          background: #5c9c8c;
-          color: white;
-        `;
+        return `background: #4A9B87; color: white;`;
       case "courses":
-        return `
-          background: ${theme.colors.primary};
-          color: white;
-        `;
+        return `background: ${theme.colors.primary}; color: white;`;
       case "mentoring":
-        return `
-          background: ${theme.colors.supportGreen};
-          color: white;
-        `;
+        return `background: ${theme.colors.supportGreen}; color: white;`;
       case "clubs":
         return `
-          background: rgba(0, 70, 42, 0.14);
+          background: ${theme.colors.pageAccentTint};
           color: ${theme.colors.primary};
-          border: 1px solid ${theme.colors.borderColor};
+          border: 1px solid ${theme.colors.pageAccentBorder};
         `;
       default:
-        return `
-          background: ${theme.colors.gray200};
-          color: ${theme.colors.textSecondary};
-        `;
+        return `background: ${theme.colors.gray200}; color: ${theme.colors.textSecondary};`;
     }
   }}
 `;
@@ -287,7 +277,7 @@ export const CardHeader = styled.div`
 export const Organization = styled.h3`
   font-size: 0.8rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: ${({ theme }) => theme.colors.textPrimary};
   margin: 0;
 `;
 
@@ -295,13 +285,13 @@ export const RoleTitle = styled.p`
   color: ${({ theme }) => theme.colors.primary};
   font-weight: 800;
   margin: 2px 0 0;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
 `;
 
 export const RolePeriod = styled.span`
   color: ${({ theme }) => theme.colors.textSecondary};
   font-weight: 400;
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   margin-left: 8px;
   font-style: italic;
 `;
@@ -324,21 +314,20 @@ export const LogoSlot = styled.div`
   }
 `;
 
-// Mobile-only timeline dot (inside OrgColumn)
 export const TimelineDot = styled.div`
   position: absolute;
   left: 24px;
-  top: 34px; /* align with first line of card text */
+  top: 34px;
   transform: translate(-50%, -50%);
   width: 12px;
   height: 12px;
-  background: ${(props) => props.theme.colors.primary};
+  background: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   border: 3px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.pageAccentBorder}, 0 2px 6px rgba(0, 0, 0, 0.12);
 
   @media (max-width: 768px) {
-    top: 50%; /* center vertically within OrgColumn */
+    top: 50%;
     display: block;
   }
 
@@ -347,18 +336,17 @@ export const TimelineDot = styled.div`
   }
 `;
 
-// Desktop/tablet timeline dot (positioned relative to ExperienceItem)
 export const TimelineDotDesktop = styled.div`
   position: absolute;
   left: 24px;
-  top: 34px; /* align with first line of card text (duration line) */
+  top: 34px;
   transform: translate(-50%, -50%);
   width: 12px;
   height: 12px;
-  background: ${(props) => props.theme.colors.primary};
+  background: ${({ theme }) => theme.colors.primary};
   border-radius: 50%;
   border: 3px solid white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.pageAccentBorder}, 0 2px 6px rgba(0, 0, 0, 0.12);
 
   @media (max-width: 768px) {
     display: none;
@@ -366,19 +354,18 @@ export const TimelineDotDesktop = styled.div`
 `;
 
 export const Duration = styled.p`
-  color: #6b7280;
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 0.8rem;
   margin: 4px 0 12px;
 `;
 
 export const Description = styled.p`
-  color: #374151;
-  line-height: 1.6;
+  color: ${({ theme }) => theme.colors.textMuted};
+  line-height: 1.65;
   font-size: 0.9rem;
   white-space: pre-line;
 `;
 
-// Responsive line-break helpers
 export const MobileOnlyBr = styled.br`
   display: none;
   @media (max-width: 768px) {
@@ -405,26 +392,31 @@ export const Row = styled.div`
 
 export const FilterContainer = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 32px;
   justify-content: center;
   flex-wrap: wrap;
 `;
 
 export const FilterButton = styled.button<{ active: boolean }>`
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: 2px solid ${({ theme, active }) => (active ? theme.colors.primary : theme.colors.borderColor)};
-  background: ${({ theme, active }) => (active ? theme.colors.primary : "transparent")};
-  color: ${({ theme, active }) => (active ? "white" : theme.colors.textSecondary)};
+  padding: 7px 16px;
+  border-radius: 999px;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
+  background: ${({ theme, active }) => (active ? theme.colors.primary : "rgba(255, 255, 255, 0.7)")};
+  color: ${({ theme, active }) => (active ? "white" : theme.colors.textSecondary)};
+  border: 1px solid ${({ theme, active }) =>
+    active ? theme.colors.primary : theme.colors.borderColor};
+  box-shadow: ${({ active, theme }) =>
+    active ? `0 4px 14px ${theme.colors.pageAccentShadow}` : "0 1px 4px rgba(0, 0, 0, 0.06)"};
 
   &:hover {
     border-color: ${({ theme }) => theme.colors.primary};
-    background: ${({ theme, active }) => (active ? theme.colors.primary : theme.colors.backgroundLight)};
+    background: ${({ theme, active }) =>
+      active ? theme.colors.primaryHover : theme.colors.pageAccentTint};
     color: ${({ theme, active }) => (active ? "white" : theme.colors.primary)};
+    transform: translateY(-1px);
   }
 `;

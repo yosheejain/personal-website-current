@@ -6,15 +6,15 @@ import NavBar from "../components/NavBar";
 const PageSection = styled.section<{ compact?: boolean }>`
   min-height: 100vh;
   padding: ${({ compact }) => (compact ? "100px 2px 64px" : "140px 16px 100px")};
-  background: #fafafa;
+  background: #ffffff;
 `;
 
 const PageCard = styled.div`
   background: ${({ theme }) => theme.colors.backgroundWhite};
-  border: 1px solid rgba(0, 70, 42, 0.08);
+  border: 1px solid ${({ theme }) => theme.colors.pageAccentBorder};
   border-radius: 22px;
   padding: 40px 46px;
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px ${({ theme }) => theme.colors.pageAccentTint}, 0 16px 40px rgba(0, 0, 0, 0.07);
   position: relative;
   overflow: hidden;
 
@@ -22,8 +22,26 @@ const PageCard = styled.div`
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 20% 20%, rgba(0, 70, 42, 0.08), transparent 45%);
+    background: radial-gradient(ellipse at 15% 0%, ${({ theme }) => theme.colors.pageAccentTint} 0%, transparent 55%);
     pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.pageAccentBorder});
+    border-top-left-radius: 22px;
+    border-top-right-radius: 22px;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 28px 20px;
+    border-radius: 16px;
   }
 `;
 
@@ -33,8 +51,14 @@ const BareContainer = styled.div`
   padding: 0 2px;
 `;
 
+const PageHeaderArea = styled.div`
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
+`;
+
 const PageTitle = styled.h1`
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   font-size: ${({ theme }) => theme.typography.fontSize["2xl"]};
   color: ${({ theme }) => theme.colors.textPrimary};
   letter-spacing: -0.02em;
@@ -57,7 +81,15 @@ interface PageLayoutProps {
   variant?: "card" | "bare";
 }
 
-const PageLayout: React.FC<PageLayoutProps> = ({ title, description, activePage, onNavigatePage, onSectionChange, children, variant = "card" }) => {
+const PageLayout: React.FC<PageLayoutProps> = ({
+  title,
+  description,
+  activePage,
+  onNavigatePage,
+  onSectionChange,
+  children,
+  variant = "card",
+}) => {
   const isBare = variant === "bare";
 
   return (
@@ -69,8 +101,10 @@ const PageLayout: React.FC<PageLayoutProps> = ({ title, description, activePage,
         ) : (
           <Container>
             <PageCard>
-              <PageTitle>{title}</PageTitle>
-              <PageSubtitle>{description}</PageSubtitle>
+              <PageHeaderArea>
+                <PageTitle>{title}</PageTitle>
+                <PageSubtitle>{description}</PageSubtitle>
+              </PageHeaderArea>
               {children}
             </PageCard>
           </Container>

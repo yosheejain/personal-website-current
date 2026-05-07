@@ -1,6 +1,6 @@
 export interface TeachingItem {
   title: string;
-  date: string; // e.g., "May 2025"
+  date: string;
   org: string;
   description: string;
   categories: ("courses" | "mentoring" | "clubs")[];
@@ -8,24 +8,27 @@ export interface TeachingItem {
 
 export const teachingItems: TeachingItem[] = [
   {
-    title: "Lead Instructor, Intro to Programming Workshop",
-    date: "May 2025",
-    org: "CS 125 Outreach",
-    description: "Designed and delivered a 3-day Python bootcamp for 60 incoming freshmen, focusing on problem decomposition and debugging habits.",
+    title: "Course Assistant — CS 101: Intro Computing: Engrg & Sci.",
+    date: "Spring 2026",
+    org: "University of Illinois Urbana-Champaign",
+    description:
+      "Assisted students in an introductory computing course for engineering and science majors. Held office hours, graded assignments, and supported lab sessions. Also served in Fall 2025.",
     categories: ["courses"],
   },
   {
-    title: "Teaching Assistant, CS 225 Data Structures",
-    date: "Dec 2024",
-    org: "University of Illinois",
-    description: "Ran weekly discussions, created supplemental visualizations for balanced trees, and mentored 120+ students through office hours.",
-    categories: ["courses", "mentoring"],
+    title: "Course Assistant — CS 102: Little Bits to Big Ideas",
+    date: "Spring 2025",
+    org: "University of Illinois Urbana-Champaign",
+    description:
+      "Supported a non-major introductory computing course. Received the Outstanding Course Assistant Award for student impact and engagement.",
+    categories: ["courses"],
   },
   {
-    title: "Workshop Mentor, Girls Who Code",
-    date: "Aug 2024",
-    org: "Champaign Community",
-    description: "Guided high school students through web projects, emphasizing accessibility basics and inclusive design critiques.",
-    categories: ["mentoring", "clubs"],
+    title: "Project Manager — CS 124 Honors: Introduction to Computer Science I",
+    date: "Spring 2023",
+    org: "University of Illinois Urbana-Champaign",
+    description:
+      "Managed course projects and supported students in the honors section of the introductory CS course.",
+    categories: ["courses"],
   },
 ];

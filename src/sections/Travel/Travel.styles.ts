@@ -81,7 +81,7 @@ export const MetaPill = styled.span`
   align-items: center;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(0, 70, 42, 0.08);
+  background: ${({ theme }) => theme.colors.pageAccentTint};
   color: ${({ theme }) => theme.colors.primary};
   font-weight: 800;
   letter-spacing: 0.01em;

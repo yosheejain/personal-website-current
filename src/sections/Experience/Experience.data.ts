@@ -7,7 +7,6 @@ export interface ExperienceRole {
 export interface ExperienceItemData {
   organization: string;
   orgDescription?: string;
-
   roles: ExperienceRole[];
   logoUrl?: string;
   tags?: string[];
@@ -15,142 +14,97 @@ export interface ExperienceItemData {
 
 export const experiences: ExperienceItemData[] = [
   {
-    organization: "KIXLAB @KAIST",
-    orgDescription: "KAIST Interaction Lab (Prof. Juho Kim)",
-
+    organization: "UIUC — Dr. Max Fowler",
+    orgDescription: "University of Illinois Urbana-Champaign",
     tags: ["CSE", "EDU"],
     roles: [
       {
-        title: "HCI Research Intern",
-        duration: "Jun 2025 - Present",
-        description: "Research on LLM-based Diagnosis System of Math Problem Solving Skills",
-      },
-    ],
-  },
-  {
-    organization: "Jinseon Girls' Middle School",
-    orgDescription: "",
-
-    tags: ["CSE", "EDU"],
-    roles: [
-      {
-        title: "Information Science Teacher",
-        duration: "May 2025",
-        description: "Taught Block coding to 3rd grade students using Entry",
-      },
-    ],
-  },
-  {
-    organization: "HCIL @EWHA",
-    orgDescription: "Human-Computer Interaction Lab \n (Prof. Uran Oh)",
-
-    tags: ["CSE", "EDU"],
-    roles: [
-      {
-        title: "HCI Research Intern",
-        duration: "Jan 2025 - Present",
-        description: "Research on Designing AI Prompt Engineering in Educational Contexts",
-      },
-    ],
-  },
-  {
-    organization: "GDGoC",
-    orgDescription: "Google Developers Group on Campus",
-
-    tags: ["CSE"],
-    roles: [
-      {
-        title: "AI Member",
-        duration: "Sep 2024 - Jun 2025",
-        description: "Participated in AI study sessions and worked on AI projects.",
-      },
-      {
-        title: "DevRel Core Member",
-        duration: "Sep 2024 - Jun 2025",
+        title: "Undergraduate Research Assistant",
+        duration: "Jan 2026 – Present",
         description:
-          "Managed the club's Notion page, organized Part Exchange Sessions, MT and supported IT events such as Devfest 2024:Responsible AI in Action, co-hosted by GDG Pangyo, GDGoC Yonsei, and GDGoC Ewha.",
+          "CS Education, AI, Quantitative Analysis, Natural-Language Processing, Statistical Modeling",
       },
     ],
   },
   {
-    organization: "Ewha W.U. Elementary School",
-    orgDescription: "",
-
+    organization: "ETH Zürich",
+    orgDescription:
+      "Dr. April Yi Wang, Dr. Zihan Wu, Dr. Heejin Do [[BR_768]] Federal Institute of Technology Zurich",
     tags: ["CSE", "EDU"],
     roles: [
       {
-        title: "Teaching Assistant",
-        duration: "Mar 2024 - Jul 2024",
-        description: "Assisted regular computer classes for 3rd. 4th and 5th grade students using Scratch, Entry, Tinkercad, and Makey Makey.",
-      },
-    ],
-  },
-  {
-    organization: "EURON",
-    orgDescription: "Ewha AI & Data Analysis Club",
-
-    tags: ["CSE"],
-    roles: [
-      {
-        title: "ML Member",
-        duration: "Mar 2024 - Sep 2024",
-        description: "Participated in Machine Learning study sessions by delivering lectures to peers and worked on AI projects.",
-      },
-      {
-        title: "PR Team Executive",
-        duration: "Mar 2024 - Sep 2024",
-        description: "Managed the club's Notion page and supported the planning of the Homecoming Day event.",
-      },
-    ],
-  },
-  {
-    organization: "Self Design Challenge ",
-    orgDescription: "University Innovation Center Supported [[BR_768]] Program for Student-Designed Projects",
-
-    tags: ["CSE"],
-    roles: [
-      {
-        title: "Unity Developer",
-        duration: "Jan 2023 - Jul 2023",
+        title: "Undergraduate Summer Research Assistant",
+        duration: "May 2025 – Feb 2026",
         description:
-          "Worked on a project in collaboration with students from various academic backgrounds, while receiving support from industry mentors, faculty supervisors, and alumni mentors from previous project.",
-      },
-      {
-        title: "Mentor",
-        duration: "Mar 2024 - Jul 2024",
-        description: "Provided guidance and mentorship to participants in the Self Design Challenge.",
+          "Human-Computer Interaction, AI, CS Education, Experimental Research, Mixed-Methods Research",
       },
     ],
   },
-
   {
-    organization: "EFUB",
-    orgDescription: "Ewha Web Development Carrer Club",
-
+    organization: "KIXLAB, KAIST",
+    orgDescription:
+      "Dr. Juho Kim, Dr. Seungju Kim, Dr. Saelyne Yang, Chen Zhou [[BR_768]] Korea Advanced Institute of Science and Technology",
+    tags: ["CSE", "EDU"],
+    roles: [
+      {
+        title: "Undergraduate Summer Research Intern",
+        duration: "Jun 2025 – Dec 2025",
+        description:
+          "Human-Computer Interaction, Computer Vision, Multimodal LLMs, Education",
+      },
+    ],
+  },
+  {
+    organization: "HCII, Carnegie Mellon University",
+    orgDescription:
+      "Dr. Jionghao Lin, Dr. John Sabatini, Dr. John Hollander, Dr. Liang Zhang",
+    tags: ["CSE", "EDU"],
+    roles: [
+      {
+        title: "Undergraduate Research Intern",
+        duration: "May 2024 – Aug 2024",
+        description: "Human-Computer Interaction, AI, Education",
+      },
+    ],
+  },
+  {
+    organization: "CSLS Lab, UIUC",
+    orgDescription: "Dr. Katie Cunningham [[BR_768]] University of Illinois Urbana-Champaign",
+    tags: ["CSE", "EDU"],
+    roles: [
+      {
+        title: "Undergraduate Research Assistant",
+        duration: "Jan 2023 – Present",
+        description:
+          "CS Education, Human-Computer Interaction, AI, Experimental Research, Mixed-Methods Research",
+      },
+    ],
+  },
+  {
+    organization: "SCUBA Lab, UIUC",
+    orgDescription:
+      "Dr. Eshwar Chandrasekharan, Charlotte Lambert [[BR_768]] University of Illinois Urbana-Champaign",
     tags: ["CSE"],
     roles: [
       {
-        title: "Frontend Developer",
-        duration: "Mar 2022- Dec 2022",
-        description: "Developed Frontend development skills through seminars and projects.",
+        title: "Undergraduate Research Assistant",
+        duration: "Aug 2023 – Aug 2025",
+        description:
+          "Human-Computer Interaction, Social Computing, Data Science, Causal Inference",
       },
     ],
   },
   {
-    organization: "Spring Light",
-    orgDescription: "Yonsei, Ewha, Sogang University [[BR_768]]Education Voluntering Club",
-
-    tags: ["EDU"],
+    organization: "OnCARE Lab, UIUC",
+    orgDescription:
+      "Dr. Koustuv Saha, Dr. Ravi Karkar [[BR_768]] University of Illinois Urbana-Champaign",
+    tags: ["CSE"],
     roles: [
       {
-        title: "Tutoring Volunteer",
-        duration: "Mar 2021- Feb 2022",
-        description: "Tutored Mathematics and English to middle school students at community child center.",
-      },
-      {
-        title: "PR Team Executive",
-        duration: "Mar 2021- Feb 2022",
-        description: "Designed club promotional materials and participated in overall club operations.",
+        title: "Undergraduate Research Assistant",
+        duration: "Aug 2023 – May 2025",
+        description:
+          "Human-Computer Interaction, Social Computing, Data Science, AI, Mixed-Methods Research",
       },
     ],
   },

@@ -19,6 +19,9 @@ declare module "styled-components" {
       supportGreen: string;
       amber: string;
       coralRed: string;
+      pageAccentTint: string;
+      pageAccentBorder: string;
+      pageAccentShadow: string;
     };
     spacing: {
       xs: string;

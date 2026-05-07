@@ -15,7 +15,7 @@ export const theme = {
 
     // Backgrounds
     backgroundWhite: "#ffffff",
-    backgroundGray: "#F3F8F6", // map to sage/mint tint
+    backgroundGray: "#f9f9f9", // light neutral for section alternation
     backgroundLight: "#E8F1ED", // map to card background tint
 
     // Borders / dividers
@@ -30,6 +30,9 @@ export const theme = {
     supportGreen: "#6BAE9C", // tags/hover subtle
     amber: "#935F06", // highlight/warn
     coralRed: "#CC0000", // error/focus
+    pageAccentTint: "rgba(0, 70, 42, 0.06)",
+    pageAccentBorder: "rgba(0, 70, 42, 0.15)",
+    pageAccentShadow: "rgba(0, 70, 42, 0.20)",
   },
 
   spacing: {

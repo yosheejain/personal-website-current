@@ -1,26 +1,51 @@
 import React from "react";
 import styled from "styled-components";
 
-const FooterContainer = styled.footer`
-  background: ${({ theme }) => theme.colors.backgroundGray};
-  color: ${({ theme }) => theme.colors.backgroundWhite};
-  padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.md};
-  text-align: center;
+const FooterOuter = styled.footer`
+  background: ${({ theme }) => theme.colors.primary};
+  padding: 28px ${({ theme }) => theme.spacing.md};
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 `;
 
-const Copyright = styled.p`
+const Inner = styled.div`
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+`;
+
+const Name = styled.span`
   font-size: ${({ theme }) => theme.typography.fontSize.sm};
-  color: ${({ theme }) => theme.colors.textPrimary};
-  margin: 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.01em;
+`;
+
+const Copy = styled.span`
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  color: rgba(255, 255, 255, 0.55);
 `;
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <FooterContainer>
-      <Copyright>© {currentYear} Yoshee Jain. All rights reserved.</Copyright>
-    </FooterContainer>
+    <FooterOuter>
+      <Inner>
+        <Name>Yoshee Jain</Name>
+        <Copy>© {currentYear} · All rights reserved</Copy>
+      </Inner>
+    </FooterOuter>
   );
 };
 

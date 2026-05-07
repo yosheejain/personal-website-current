@@ -2,12 +2,40 @@ import React, { useState, useEffect, useMemo, useCallback } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle, theme } from "./styles/styled-components";
 import NavBar from "./components/NavBar";
+import IntroSplash from "./components/IntroSplash";
 import SectionDots from "./components/SectionDots";
 import Footer from "./components/Footer";
 import About from "./sections/About";
 import Education from "./sections/Education";
+import Experience from "./sections/Experience";
+import Awards from "./sections/Awards";
+import Teaching from "./sections/Teaching";
 import PageLayout from "./pages/PageLayout";
 import PublicationsPage from "./pages/PublicationsPage";
+import YosheeBot from "./components/YosheeBot";
+
+const PAGE_THEMES: Record<string, Partial<typeof theme["colors"]>> = {
+  education: {
+    primary: "#2563EB", primaryHover: "#1D4ED8",
+    pageAccentTint: "rgba(37, 99, 235, 0.06)", pageAccentBorder: "rgba(37, 99, 235, 0.15)", pageAccentShadow: "rgba(37, 99, 235, 0.20)",
+  },
+  experience: {
+    primary: "#0D9488", primaryHover: "#0F766E",
+    pageAccentTint: "rgba(13, 148, 136, 0.06)", pageAccentBorder: "rgba(13, 148, 136, 0.15)", pageAccentShadow: "rgba(13, 148, 136, 0.20)",
+  },
+  awards: {
+    primary: "#D97706", primaryHover: "#B45309",
+    pageAccentTint: "rgba(217, 119, 6, 0.06)", pageAccentBorder: "rgba(217, 119, 6, 0.15)", pageAccentShadow: "rgba(217, 119, 6, 0.20)",
+  },
+  teaching: {
+    primary: "#7C3AED", primaryHover: "#6D28D9",
+    pageAccentTint: "rgba(124, 58, 237, 0.06)", pageAccentBorder: "rgba(124, 58, 237, 0.15)", pageAccentShadow: "rgba(124, 58, 237, 0.20)",
+  },
+  travel: {
+    primary: "#DC2626", primaryHover: "#B91C1C",
+    pageAccentTint: "rgba(220, 38, 38, 0.06)", pageAccentBorder: "rgba(220, 38, 38, 0.15)", pageAccentShadow: "rgba(220, 38, 38, 0.20)",
+  },
+};
 
 const AppContainer = styled.div`
   font-family: "Lato", "Lato Black", "Lato Bold", "Lato Regular", "Helvetica Neue", Arial, sans-serif;
@@ -144,13 +172,8 @@ const App: React.FC = () => {
     if (currentPage === "experience") {
       return (
         <>
-          <PageLayout
-            title="To be updated"
-            description="Experience details are on the way. Check back soon."
-            activePage="experience"
-            onNavigatePage={handleNavigatePage}
-            onSectionChange={handleSectionChange}
-          />
+          <NavBar activePage="experience" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
+          <Experience />
           <Footer />
         </>
       );
@@ -159,13 +182,8 @@ const App: React.FC = () => {
     if (currentPage === "awards") {
       return (
         <>
-          <PageLayout
-            title="To be updated"
-            description="Honors and awards will be shared here soon."
-            activePage="awards"
-            onNavigatePage={handleNavigatePage}
-            onSectionChange={handleSectionChange}
-          />
+          <NavBar activePage="awards" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
+          <Awards />
           <Footer />
         </>
       );
@@ -174,13 +192,8 @@ const App: React.FC = () => {
     if (currentPage === "teaching") {
       return (
         <>
-          <PageLayout
-            title="To be updated"
-            description="Teaching content will be added here soon."
-            activePage="teaching"
-            onNavigatePage={handleNavigatePage}
-            onSectionChange={handleSectionChange}
-          />
+          <NavBar activePage="teaching" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
+          <Teaching />
           <Footer />
         </>
       );
@@ -222,10 +235,20 @@ const App: React.FC = () => {
     );
   }, [currentPage, activeSection, handleSectionChange, handleNavigatePage]);
 
+  const activeTheme = useMemo(() => {
+    const overrides = PAGE_THEMES[currentPage];
+    if (!overrides) return theme;
+    return { ...theme, colors: { ...theme.colors, ...overrides } };
+  }, [currentPage]);
+
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <AppContainer>{renderPage}</AppContainer>
+      <IntroSplash />
+      <ThemeProvider theme={activeTheme}>
+        <AppContainer>{renderPage}</AppContainer>
+        <YosheeBot />
+      </ThemeProvider>
     </ThemeProvider>
   );
 };
