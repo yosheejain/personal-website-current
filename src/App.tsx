@@ -7,9 +7,9 @@ import SectionDots from "./components/SectionDots";
 import Footer from "./components/Footer";
 import About from "./sections/About";
 import Education from "./sections/Education";
-import Experience from "./sections/Experience";
-import Awards from "./sections/Awards";
-import Teaching from "./sections/Teaching";
+// import Experience from "./sections/Experience";
+// import Awards from "./sections/Awards";
+// import Teaching from "./sections/Teaching";
 import PageLayout from "./pages/PageLayout";
 import PublicationsPage from "./pages/PublicationsPage";
 import YosheeBot from "./components/YosheeBot";
@@ -172,31 +172,67 @@ const App: React.FC = () => {
     if (currentPage === "experience") {
       return (
         <>
-          <NavBar activePage="experience" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-          <Experience />
+          <PageLayout
+            title="To be updated"
+            description="Experience details will be added soon."
+            activePage="experience"
+            onNavigatePage={handleNavigatePage}
+            onSectionChange={handleSectionChange}
+          />
           <Footer />
         </>
       );
+      // return (
+      //   <>
+      //     <NavBar activePage="experience" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
+      //     <Experience />
+      //     <Footer />
+      //   </>
+      // );
     }
 
     if (currentPage === "awards") {
       return (
         <>
-          <NavBar activePage="awards" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-          <Awards />
+          <PageLayout
+            title="To be updated"
+            description="Awards and honors will be added soon."
+            activePage="awards"
+            onNavigatePage={handleNavigatePage}
+            onSectionChange={handleSectionChange}
+          />
           <Footer />
         </>
       );
+      // return (
+      //   <>
+      //     <NavBar activePage="awards" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
+      //     <Awards />
+      //     <Footer />
+      //   </>
+      // );
     }
 
     if (currentPage === "teaching") {
       return (
         <>
-          <NavBar activePage="teaching" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
-          <Teaching />
+          <PageLayout
+            title="To be updated"
+            description="Teaching highlights will be added soon."
+            activePage="teaching"
+            onNavigatePage={handleNavigatePage}
+            onSectionChange={handleSectionChange}
+          />
           <Footer />
         </>
       );
+      // return (
+      //   <>
+      //     <NavBar activePage="teaching" onNavigatePage={handleNavigatePage} onSectionChange={handleSectionChange} />
+      //     <Teaching />
+      //     <Footer />
+      //   </>
+      // );
     }
 
     if (currentPage === "travel") {
