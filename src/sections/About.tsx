@@ -44,10 +44,10 @@ const ProfileImage = styled.div`
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  border: 4px solid #ffffff;
+  border: 4px solid ${({ theme }) => theme.colors.cardBg};
   box-shadow:
-    0 0 0 6px rgba(0, 70, 42, 0.10),
-    0 0 0 11px rgba(0, 70, 42, 0.04),
+    0 0 0 6px ${({ theme }) => theme.colors.pageAccentTint},
+    0 0 0 11px ${({ theme }) => theme.colors.pageAccentTint},
     0 20px 48px rgba(0, 0, 0, 0.14);
 
   img {
@@ -81,7 +81,7 @@ const Name = styled.h1`
 
 const BioText = styled.p`
   font-size: 0.97rem;
-  color: #3d4a42;
+  color: ${({ theme }) => theme.colors.textMuted};
   line-height: 1.75;
   margin: 0;
 `;
@@ -99,7 +99,7 @@ const ContactChip = styled.a`
   padding: 6px 13px;
   border-radius: 9999px;
   text-decoration: none;
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.cardBg};
   color: ${({ theme }) => theme.colors.textSecondary};
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -109,9 +109,9 @@ const ContactChip = styled.a`
 
   &:hover {
     background: ${({ theme }) => theme.colors.primary};
-    color: #ffffff;
+    color: ${({ theme }) => (theme.mode === "dark" ? theme.colors.backgroundGray : "#ffffff")};
     border-color: ${({ theme }) => theme.colors.primary};
-    box-shadow: 0 4px 14px rgba(0, 70, 42, 0.2);
+    box-shadow: 0 4px 14px ${({ theme }) => theme.colors.pageAccentShadow};
     transform: translateY(-1px);
   }
 `;
@@ -133,7 +133,7 @@ const About: React.FC = () => (
   <Section
     id="about"
     background="gray"
-    style={{ paddingTop: "96px", paddingBottom: "72px", background: "#f8faf9" }}
+    style={{ paddingTop: "96px", paddingBottom: "72px" }}
   >
     <SectionContainer>
       <AboutLayout>

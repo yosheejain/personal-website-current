@@ -1,40 +1,6 @@
-import styled, { createGlobalStyle, css } from "styled-components";
+import styled, { createGlobalStyle, css, DefaultTheme } from "styled-components";
 
-// Theme Configuration
-export const theme = {
-  colors: {
-    // Primary brand
-    primary: "#00462A", // main CTA/link
-    primaryHover: "#006B42", // hover state
-
-    // Text
-    textPrimary: "#1a1a1a", // keep black-ish as requested
-    textSecondary: "#4A5D57", // use provided caption tone
-    textMuted: "#374151",
-    textAccent: "#36AE92", // 강조 텍스트 색상
-
-    // Backgrounds
-    backgroundWhite: "#ffffff",
-    backgroundGray: "#f9f9f9", // light neutral for section alternation
-    backgroundLight: "#E8F1ED", // map to card background tint
-
-    // Borders / dividers
-    borderColor: "#CDE1D9", // map to provided divider color
-    borderLight: "#f3f4f6",
-
-    // Neutral grays
-    gray400: "#9CA3AF",
-    gray200: "#E5E7EB",
-
-    // Supporting accents
-    supportGreen: "#6BAE9C", // tags/hover subtle
-    amber: "#935F06", // highlight/warn
-    coralRed: "#CC0000", // error/focus
-    pageAccentTint: "rgba(0, 70, 42, 0.06)",
-    pageAccentBorder: "rgba(0, 70, 42, 0.15)",
-    pageAccentShadow: "rgba(0, 70, 42, 0.20)",
-  },
-
+const sharedTokens = {
   spacing: {
     xs: "4px",
     sm: "8px",
@@ -45,7 +11,6 @@ export const theme = {
     "3xl": "60px",
     "4xl": "100px",
   },
-
   borderRadius: {
     sm: "6px",
     md: "8px",
@@ -53,13 +18,11 @@ export const theme = {
     xl: "16px",
     full: "50%",
   },
-
   shadows: {
     sm: "0 1px 3px rgba(0, 0, 0, 0.1)",
     md: "0 4px 12px rgba(0, 0, 0, 0.15)",
     lg: "0 6px 24px rgba(0, 0, 0, 0.1)",
   },
-
   typography: {
     fontSize: {
       xs: "0.8rem",
@@ -82,19 +45,116 @@ export const theme = {
       relaxed: 1.7,
     },
   },
-
   transitions: {
     fast: "0.2s ease",
     normal: "0.3s ease",
     slow: "0.5s ease",
   },
-
   breakpoints: {
     mobile: "768px",
     tablet: "1024px",
     desktop: "1200px",
   },
 };
+
+export const lightTheme: DefaultTheme = {
+  mode: "light",
+  ...sharedTokens,
+  colors: {
+    // Brand
+    primary: "#00462A",
+    primaryHover: "#006B42",
+    // Text
+    textPrimary: "#1a1a1a",
+    textSecondary: "#4A5D57",
+    textMuted: "#374151",
+    textAccent: "#36AE92",
+    // Backgrounds
+    backgroundWhite: "#ffffff",
+    backgroundGray: "#f9f9f9",
+    backgroundLight: "#E8F1ED",
+    // Borders
+    borderColor: "#CDE1D9",
+    borderLight: "#f3f4f6",
+    // Neutrals
+    gray400: "#9CA3AF",
+    gray200: "#E5E7EB",
+    // Accents
+    supportGreen: "#6BAE9C",
+    amber: "#935F06",
+    coralRed: "#CC0000",
+    pageAccentTint: "rgba(0, 70, 42, 0.06)",
+    pageAccentBorder: "rgba(0, 70, 42, 0.15)",
+    pageAccentShadow: "rgba(0, 70, 42, 0.20)",
+    // Surfaces
+    pageBg: "#ffffff",
+    pageBgAlt: "#f4f8f6",
+    cardBg: "#fefefe",
+    cardBorder: "#e2e8f0",
+    slateHeadingBg: "#1e293b",
+    slateHeadingText: "#f8fafc",
+    pillInactiveBg: "#ffffff",
+    pillInactiveText: "#64748b",
+    mutedSurface: "#fafaf8",
+    headingDark: "#0f172a",
+    navBarBg: "rgba(248, 252, 250, 0.82)",
+    navBarBgScrolled: "rgba(248, 252, 250, 0.94)",
+    focusRing: "#00462A",
+    nameHighlightBg: "#fde8c8",
+    nameHighlightText: "#7c3a00",
+  },
+};
+
+export const darkTheme: DefaultTheme = {
+  mode: "dark",
+  ...sharedTokens,
+  colors: {
+    // Brand: brighter green for legibility on dark
+    primary: "#36AE92",
+    primaryHover: "#5BC4AB",
+    // Text
+    textPrimary: "#f1f5f4",
+    textSecondary: "#a8b8b1",
+    textMuted: "#c5d3cc",
+    textAccent: "#6BD8B6",
+    // Backgrounds
+    backgroundWhite: "#0e1714",
+    backgroundGray: "#0a120f",
+    backgroundLight: "#16221d",
+    // Borders
+    borderColor: "#243530",
+    borderLight: "#1a2925",
+    // Neutrals
+    gray400: "#a8b8b1",
+    gray200: "#374b44",
+    // Accents
+    supportGreen: "#5BC4AB",
+    amber: "#E0B266",
+    coralRed: "#FF6B6B",
+    pageAccentTint: "rgba(54, 174, 146, 0.10)",
+    pageAccentBorder: "rgba(54, 174, 146, 0.28)",
+    pageAccentShadow: "rgba(54, 174, 146, 0.28)",
+    // Surfaces
+    pageBg: "#0e1714",
+    pageBgAlt: "#0a120f",
+    cardBg: "#16201d",
+    cardBorder: "#243530",
+    slateHeadingBg: "#cbd5e1",
+    slateHeadingText: "#0f172a",
+    pillInactiveBg: "#16201d",
+    pillInactiveText: "#a8b8b1",
+    mutedSurface: "#0f1816",
+    headingDark: "#f1f5f4",
+    navBarBg: "rgba(14, 23, 20, 0.78)",
+    navBarBgScrolled: "rgba(14, 23, 20, 0.94)",
+    focusRing: "#6BD8B6",
+    nameHighlightBg: "rgba(224, 178, 102, 0.22)",
+    nameHighlightText: "#E0B266",
+  },
+};
+
+// Backwards-compatible alias for any existing import sites
+export const theme = lightTheme;
 
 // Global Styles
 export const GlobalStyle = createGlobalStyle`
@@ -112,12 +172,12 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Lato", "Lato Black", "Lato Bold", "Lato Regular", "Helvetica Neue", Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: ${({ theme }) => theme.colors.backgroundWhite};
+    background-color: ${({ theme }) => theme.colors.pageBg};
     color: ${({ theme }) => theme.colors.textPrimary};
     line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
-  /* Typography */
   h1, h2, h3, h4, h5, h6 {
     font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
     line-height: ${({ theme }) => theme.typography.lineHeight.tight};
@@ -130,10 +190,79 @@ export const GlobalStyle = createGlobalStyle`
 
   p { line-height: ${({ theme }) => theme.typography.lineHeight.relaxed}; }
 
-  /* Selection Styles */
   ::selection {
-    background-color: rgba(0, 70, 42, 0.2);
+    background-color: ${({ theme }) => theme.colors.pageAccentTint};
     color: ${({ theme }) => theme.colors.textPrimary};
+  }
+
+  /* Skip link for keyboard users */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 12px;
+    background: ${({ theme }) => theme.colors.primary};
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    z-index: 10000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 12px;
+    outline: 3px solid ${({ theme }) => theme.colors.focusRing};
+    outline-offset: 2px;
+  }
+
+  /* Accessibility mode: bumps base size, kills motion, forces visible focus, raises contrast */
+  body.a11y-mode {
+    font-size: 18px;
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001s !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001s !important;
+      scroll-behavior: auto !important;
+    }
+
+    *:focus-visible {
+      outline: 3px solid ${({ theme }) => theme.colors.focusRing} !important;
+      outline-offset: 3px !important;
+      border-radius: 4px;
+    }
+
+    a:not(.no-underline) {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+  }
+
+  /* Honor system preference even outside the toggle */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001s !important;
+      transition-duration: 0.001s !important;
+    }
+  }
+
+  /* High-contrast overrides applied alongside a11y-mode (per theme) */
+  body.a11y-mode.theme-light {
+    --hc-text: #000000;
+    --hc-secondary: #1a1a1a;
+    --hc-border: #1a2a24;
+  }
+  body.a11y-mode.theme-dark {
+    --hc-text: #ffffff;
+    --hc-secondary: #f1f5f4;
+    --hc-border: #c5d3cc;
   }
 `;
 
@@ -150,11 +279,11 @@ export const Section = styled.section<{ background?: "white" | "gray" }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme, background = "white" }) => (background === "gray" ? theme.colors.backgroundGray : theme.colors.backgroundWhite)};
+  background: ${({ theme, background = "white" }) => (background === "gray" ? theme.colors.pageBgAlt : theme.colors.pageBg)};
 `;
 
 export const Card = styled.div<{ hover?: boolean }>`
-  background: ${({ theme }) => theme.colors.backgroundWhite};
+  background: ${({ theme }) => theme.colors.cardBg};
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   padding: ${({ theme }) => theme.spacing["2xl"]};
   box-shadow: ${({ theme }) => theme.shadows.sm};
@@ -268,7 +397,6 @@ export const Subtitle = styled.p`
   font-weight: ${({ theme }) => theme.typography.fontWeight.normal};
 `;
 
-// Grid Components
 export const Grid = styled.div<{ columns?: number; gap?: string }>`
   display: grid;
   grid-template-columns: ${({ columns = 3 }) => `repeat(${columns}, 1fr)`};
@@ -283,25 +411,22 @@ export const Grid = styled.div<{ columns?: number; gap?: string }>`
   }
 `;
 
-// Responsive utilities
 export const media = {
-  mobile: `@media (max-width: ${theme.breakpoints.mobile})`,
-  tablet: `@media (max-width: ${theme.breakpoints.tablet})`,
-  desktop: `@media (min-width: ${theme.breakpoints.desktop})`,
+  mobile: `@media (max-width: ${lightTheme.breakpoints.mobile})`,
+  tablet: `@media (max-width: ${lightTheme.breakpoints.tablet})`,
+  desktop: `@media (min-width: ${lightTheme.breakpoints.desktop})`,
 };
 
-// Responsive Section
 export const ResponsiveSection = styled(Section)`
   ${media.mobile} {
     padding: ${({ theme }) => theme.spacing["3xl"]} ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing["2xl"]};
   }
 `;
 
-// Responsive Container
 export const ResponsiveContainer = styled(Container)`
   ${media.mobile} {
     padding: 0 ${({ theme }) => theme.spacing.sm};
   }
 `;
 
-export default theme;
+export default lightTheme;

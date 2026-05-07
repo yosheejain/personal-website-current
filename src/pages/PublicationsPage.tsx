@@ -138,6 +138,7 @@ const publications: Publication[] = [
 ];
 
 const CURRENT_YEAR = new Date().getFullYear();
+const COLLAPSE_THRESHOLD = 5;
 
 // ─── Styled Components ──────────────────────────────────────────────────────
 
@@ -159,14 +160,13 @@ const HeadingRow = styled.div`
   }
 `;
 
-// Dark slate heading pill — green is reserved for active filters
 const SectionPill = styled.span`
   display: inline-flex;
   align-items: center;
   padding: 10px 20px;
   border-radius: 999px;
-  background: #1e293b;
-  color: #f8fafc;
+  background: ${({ theme }) => theme.colors.slateHeadingBg};
+  color: ${({ theme }) => theme.colors.slateHeadingText};
   font-weight: 800;
   letter-spacing: 0.015em;
   font-size: 15px;
@@ -180,7 +180,6 @@ const YearRow = styled.div`
   margin-top: -2px;
 `;
 
-// Inactive: white bg, green hover. Active: brand green.
 const YearPill = styled.button<{ active?: boolean }>`
   border: 1px solid
     ${({ active, theme }) => (active ? theme.colors.primary : theme.colors.borderColor)};
@@ -191,9 +190,9 @@ const YearPill = styled.button<{ active?: boolean }>`
   letter-spacing: 0.01em;
   font-size: 13.5px;
   background: ${({ active, theme }) =>
-    active ? theme.colors.primary : "#ffffff"};
+    active ? theme.colors.primary : theme.colors.pillInactiveBg};
   color: ${({ active, theme }) =>
-    active ? theme.colors.backgroundWhite : "#64748b"};
+    active ? (theme.mode === "dark" ? theme.colors.backgroundGray : "#ffffff") : theme.colors.pillInactiveText};
   box-shadow: ${({ active, theme }) =>
     active ? `0 4px 14px ${theme.colors.pageAccentShadow}` : "0 1px 3px rgba(0,0,0,0.06)"};
   transition: all 0.18s ease;
@@ -202,7 +201,7 @@ const YearPill = styled.button<{ active?: boolean }>`
     background: ${({ active, theme }) =>
       active ? theme.colors.primaryHover : theme.colors.pageAccentTint};
     color: ${({ active, theme }) =>
-      active ? theme.colors.backgroundWhite : theme.colors.primary};
+      active ? (theme.mode === "dark" ? theme.colors.backgroundGray : "#ffffff") : theme.colors.primary};
     transform: translateY(-1px);
     border-color: ${({ active, theme }) => (active ? theme.colors.primaryHover : theme.colors.pageAccentBorder)};
   }
@@ -223,10 +222,9 @@ const Grid = styled.div`
   }
 `;
 
-// Card uses a warm-white base + slate accent strip instead of all-green
 const Card = styled.article`
-  background: #fefefe;
-  border: 1px solid #e2e8f0;
+  background: ${({ theme }) => theme.colors.cardBg};
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   border-radius: 18px;
   padding: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.06);
@@ -241,7 +239,7 @@ const Card = styled.article`
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #1e293b 0%, #475569 60%, ${({ theme }) => theme.colors.primary} 100%);
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.slateHeadingBg} 0%, ${({ theme }) => theme.colors.borderColor} 60%, ${({ theme }) => theme.colors.primary} 100%);
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
   }
@@ -249,7 +247,7 @@ const Card = styled.article`
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.09), 0 16px 40px rgba(0, 0, 0, 0.08);
-    border-color: #cbd5e1;
+    border-color: ${({ theme }) => theme.colors.pageAccentBorder};
   }
 
   .card-body::after {
@@ -287,14 +285,14 @@ const PubTitle = styled.h2`
   margin: 0 0 10px;
   font-size: 18px;
   font-weight: 700;
-  color: #0f172a;
+  color: ${({ theme }) => theme.colors.headingDark};
   letter-spacing: -0.01em;
   line-height: 1.45;
 `;
 
 const Desc = styled.p`
   margin: 0 0 14px;
-  color: #475569;
+  color: ${({ theme }) => theme.colors.textMuted};
   line-height: 1.65;
   font-size: 14.5px;
 `;
@@ -303,7 +301,7 @@ const Authors = styled.p`
   margin: 0 0 6px;
   font-style: italic;
   font-size: 14px;
-  color: #334155;
+  color: ${({ theme }) => theme.colors.textSecondary};
 `;
 
 const Venue = styled.span`
@@ -326,12 +324,12 @@ const Tag = styled.a`
   justify-content: center;
   padding: 6px 13px;
   border-radius: 999px;
-  background: #ffffff;
-  color: #475569;
+  background: ${({ theme }) => theme.colors.pillInactiveBg};
+  color: ${({ theme }) => theme.colors.pillInactiveText};
   font-weight: 600;
   text-decoration: none;
   font-size: 12.5px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
 
   &:hover {
@@ -342,7 +340,14 @@ const Tag = styled.a`
   }
 `;
 
-// ─── Cite list ──────────────────────────────────────────────────────────────
+const YearGroupLabel = styled.h3`
+  margin: 12px 0 4px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+`;
 
 const CiteList = styled.ol`
   list-style: none;
@@ -354,8 +359,8 @@ const CiteList = styled.ol`
 `;
 
 const CiteItem = styled.li`
-  background: #fefefe;
-  border: 1px solid #e2e8f0;
+  background: ${({ theme }) => theme.colors.cardBg};
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   border-left: 3px solid ${({ theme }) => theme.colors.pageAccentBorder};
   border-radius: 0 12px 12px 0;
   padding: 15px 18px;
@@ -372,7 +377,7 @@ const CiteItem = styled.li`
 const CiteTitle = styled.div`
   font-weight: 700;
   font-size: 14.5px;
-  color: #0f172a;
+  color: ${({ theme }) => theme.colors.headingDark};
   margin-bottom: 5px;
   line-height: 1.45;
 `;
@@ -380,17 +385,17 @@ const CiteTitle = styled.div`
 const CiteAuthors = styled.div`
   font-style: italic;
   font-size: 13.5px;
-  color: #475569;
+  color: ${({ theme }) => theme.colors.textMuted};
   margin-bottom: 4px;
 `;
 
 const NameHighlight = styled.span`
-  background: #fde8c8;
+  background: ${({ theme }) => theme.colors.nameHighlightBg};
   padding: 1px 6px;
   border-radius: 5px;
   font-weight: 800;
   font-style: normal;
-  color: #7c3a00;
+  color: ${({ theme }) => theme.colors.nameHighlightText};
 `;
 
 const CiteVenue = styled.div`
@@ -412,12 +417,12 @@ const CiteLinkTag = styled.a`
   align-items: center;
   padding: 4px 11px;
   border-radius: 999px;
-  background: #ffffff;
-  color: #64748b;
+  background: ${({ theme }) => theme.colors.pillInactiveBg};
+  color: ${({ theme }) => theme.colors.pillInactiveText};
   font-weight: 600;
   text-decoration: none;
   font-size: 12px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid ${({ theme }) => theme.colors.cardBorder};
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
 
   &:hover {
@@ -428,7 +433,25 @@ const CiteLinkTag = styled.a`
   }
 `;
 
-// ─── Empty state ─────────────────────────────────────────────────────────────
+const ToggleMoreButton = styled.button`
+  margin-top: 8px;
+  align-self: flex-start;
+  border: 1px solid ${({ theme }) => theme.colors.pageAccentBorder};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.primary};
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background 0.18s ease, transform 0.18s ease;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.pageAccentTint};
+    transform: translateY(-1px);
+  }
+`;
 
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(6px); }
@@ -442,8 +465,8 @@ const EmptyStateBox = styled.div`
   justify-content: center;
   gap: 10px;
   padding: 48px 24px;
-  background: #fafaf8;
-  border: 1px dashed #cbd5e1;
+  background: ${({ theme }) => theme.colors.mutedSurface};
+  border: 1px dashed ${({ theme }) => theme.colors.borderColor};
   border-radius: 16px;
   animation: ${fadeIn} 0.3s ease both;
 `;
@@ -454,7 +477,7 @@ const EmptyEmoji = styled.span`
 
 const EmptyText = styled.p`
   margin: 0;
-  color: #64748b;
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 15px;
   font-style: italic;
   text-align: center;
@@ -465,6 +488,16 @@ const EmptyText = styled.p`
 
 const PublicationsPage: React.FC = () => {
   const [selectedYear, setSelectedYear] = useState<string>("2025");
+  const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set());
+
+  const toggleYear = (year: string) => {
+    setExpandedYears((prev) => {
+      const next = new Set(prev);
+      if (next.has(year)) next.delete(year);
+      else next.add(year);
+      return next;
+    });
+  };
 
   const highlightName = (text: string) => {
     const regex = /Yoshee Jain/gi;
@@ -500,24 +533,49 @@ const PublicationsPage: React.FC = () => {
     return publications.filter((p) => p.year === selectedYear && p.card !== false);
   }, [selectedYear]);
 
-  const filteredAll = useMemo(() => {
-    if (selectedYear === "all") return publications;
-    return publications.filter((p) => p.year === selectedYear);
+  const allByYear = useMemo(() => {
+    const visible = selectedYear === "all"
+      ? publications
+      : publications.filter((p) => p.year === selectedYear);
+    const groups = new Map<string, Publication[]>();
+    for (const pub of visible) {
+      const key = pub.year || "Other";
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key)!.push(pub);
+    }
+    return Array.from(groups.entries()).sort((a, b) => Number(b[0]) - Number(a[0]));
   }, [selectedYear]);
 
   const emptyMsg = getEmptyMessage(selectedYear);
 
+  const renderCiteItem = (pub: Publication) => (
+    <CiteItem key={`cite-${pub.title}`}>
+      <CiteTitle>{pub.title}</CiteTitle>
+      <CiteAuthors>{highlightName(pub.authors)}</CiteAuthors>
+      <CiteVenue>{pub.venue}</CiteVenue>
+      <CiteLinks>
+        {pub.links.map((link) => (
+          <CiteLinkTag key={link.label} href={link.href} target="_blank" rel="noreferrer">
+            {link.label}
+          </CiteLinkTag>
+        ))}
+      </CiteLinks>
+    </CiteItem>
+  );
+
+  const totalAll = allByYear.reduce((acc, [, items]) => acc + items.length, 0);
+  const showYearLabels = selectedYear === "all";
+
   return (
     <Wrapper>
-      {/* Highlights heading + shared year filter on same row */}
       <HeadingRow>
         <SectionPill>Highlights</SectionPill>
-        <YearRow>
-          <YearPill active={selectedYear === "all"} onClick={() => setSelectedYear("all")}>
+        <YearRow role="tablist" aria-label="Filter publications by year">
+          <YearPill active={selectedYear === "all"} onClick={() => setSelectedYear("all")} aria-pressed={selectedYear === "all"}>
             All
           </YearPill>
           {years.map((y) => (
-            <YearPill key={y} active={selectedYear === y} onClick={() => setSelectedYear(y)}>
+            <YearPill key={y} active={selectedYear === y} onClick={() => setSelectedYear(y)} aria-pressed={selectedYear === y}>
               {y}
             </YearPill>
           ))}
@@ -554,32 +612,39 @@ const PublicationsPage: React.FC = () => {
         </Grid>
       )}
 
-      {/* All publications section */}
       <HeadingRow>
         <SectionPill>All Publications</SectionPill>
       </HeadingRow>
 
-      {filteredAll.length === 0 ? (
+      {totalAll === 0 ? (
         <EmptyStateBox>
           <EmptyEmoji>{emptyMsg.emoji}</EmptyEmoji>
           <EmptyText>{emptyMsg.text}</EmptyText>
         </EmptyStateBox>
       ) : (
         <CiteList>
-          {filteredAll.map((pub) => (
-            <CiteItem key={`cite-${pub.title}`}>
-              <CiteTitle>{pub.title}</CiteTitle>
-              <CiteAuthors>{highlightName(pub.authors)}</CiteAuthors>
-              <CiteVenue>{pub.venue}</CiteVenue>
-              <CiteLinks>
-                {pub.links.map((link) => (
-                  <CiteLinkTag key={link.label} href={link.href} target="_blank" rel="noreferrer">
-                    {link.label}
-                  </CiteLinkTag>
-                ))}
-              </CiteLinks>
-            </CiteItem>
-          ))}
+          {allByYear.map(([year, items]) => {
+            const expanded = expandedYears.has(year);
+            const overflow = items.length > COLLAPSE_THRESHOLD;
+            const visibleItems = overflow && !expanded ? items.slice(0, COLLAPSE_THRESHOLD) : items;
+            const hiddenCount = items.length - COLLAPSE_THRESHOLD;
+
+            return (
+              <React.Fragment key={`group-${year}`}>
+                {showYearLabels && <YearGroupLabel>{year}</YearGroupLabel>}
+                {visibleItems.map(renderCiteItem)}
+                {overflow && (
+                  <ToggleMoreButton
+                    type="button"
+                    onClick={() => toggleYear(year)}
+                    aria-expanded={expanded}
+                  >
+                    {expanded ? "Show less" : `Show ${hiddenCount} more`}
+                  </ToggleMoreButton>
+                )}
+              </React.Fragment>
+            );
+          })}
         </CiteList>
       )}
     </Wrapper>

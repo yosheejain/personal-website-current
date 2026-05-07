@@ -84,8 +84,8 @@ const CountBadge = styled.span`
   font-size: 0.68rem;
   font-weight: 600;
   color: ${({ theme }) => theme.colors.textSecondary};
-  background: rgba(0, 70, 42, 0.06);
-  border: 1px solid rgba(0, 70, 42, 0.14);
+  background: ${({ theme }) => theme.colors.pageAccentTint};
+  border: 1px solid ${({ theme }) => theme.colors.pageAccentBorder};
   border-radius: 999px;
   padding: 2px 9px;
 `;
@@ -109,7 +109,7 @@ const Feed = styled.div`
 `;
 
 const Card = styled.div<{ $accent: string; $bg: string }>`
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.cardBg};
   border: 1px solid ${({ theme }) => theme.colors.borderColor};
   border-top: 3px solid ${({ $accent }) => $accent};
   border-radius: 10px;

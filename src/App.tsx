@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { GlobalStyle, theme } from "./styles/styled-components";
+import { GlobalStyle, lightTheme, darkTheme } from "./styles/styled-components";
 import NavBar from "./components/NavBar";
 import IntroSplash from "./components/IntroSplash";
 import SectionDots from "./components/SectionDots";
@@ -19,11 +19,12 @@ const AppContainer = styled.div`
   overflow-x: hidden;
 `;
 
-const PageSection = styled.section`
+const PageSection = styled.section<{ $alt?: boolean }>`
   min-height: 100vh;
   padding: 140px 16px 100px;
-  background: #ffffff;
+  background: ${({ $alt, theme }) => ($alt ? theme.colors.pageBgAlt : theme.colors.pageBg)};
   scroll-margin-top: 80px;
+  transition: background-color 0.25s ease;
 
   @media (max-width: 768px) {
     padding: 110px 12px 72px;
@@ -35,86 +36,41 @@ const PageInner = styled.div`
   margin: 0 auto;
 `;
 
-const PageCard = styled.div`
-  background: ${({ theme }) => theme.colors.backgroundWhite};
-  border: 1px solid ${({ theme }) => theme.colors.pageAccentBorder};
-  border-radius: 22px;
-  padding: 40px 46px;
-  box-shadow: 0 4px 6px ${({ theme }) => theme.colors.pageAccentTint}, 0 16px 40px rgba(0, 0, 0, 0.07);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 15% 0%, ${({ theme }) => theme.colors.pageAccentTint} 0%, transparent 55%);
-    pointer-events: none;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.pageAccentBorder});
-    border-top-left-radius: 22px;
-    border-top-right-radius: 22px;
-    pointer-events: none;
-  }
-
-  @media (max-width: 768px) {
-    padding: 28px 20px;
-    border-radius: 16px;
-  }
-`;
-
-const PageHeaderArea = styled.div`
-  margin-bottom: 28px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
-`;
-
-const PageTitle = styled.h2`
-  margin: 0 0 8px;
-  font-size: ${({ theme }) => theme.typography.fontSize["2xl"]};
-  color: ${({ theme }) => theme.colors.textPrimary};
-  letter-spacing: -0.02em;
-`;
-
-const PageSubtitle = styled.p`
-  margin: 0;
-  color: ${({ theme }) => theme.colors.textSecondary};
-  line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
-  font-size: ${({ theme }) => theme.typography.fontSize.base};
-`;
-
 const SECTION_LIST = [
   { id: "about", label: "About" },
   { id: "education", label: "Education" },
   { id: "publications", label: "Publications" },
-  { id: "experience", label: "Experience" },
-  { id: "awards", label: "Honors" },
-  { id: "teaching", label: "Teaching" },
-  { id: "travel", label: "Travel" },
 ];
 
-const PLACEHOLDER_SECTIONS: { id: string; title: string; description: string }[] = [
-  { id: "experience", title: "Experience", description: "Experience details will be added soon." },
-  { id: "awards", title: "Honors", description: "Awards and honors will be added soon." },
-  { id: "teaching", title: "Teaching", description: "Teaching highlights will be added soon." },
-  { id: "travel", title: "Travel", description: "Travel stories and photos will be added soon." },
-];
+type ThemeMode = "light" | "dark";
+
+const readInitialThemeMode = (): ThemeMode => {
+  try {
+    const saved = localStorage.getItem("themeMode");
+    if (saved === "dark" || saved === "light") return saved;
+  } catch {}
+  if (typeof window !== "undefined" && window.matchMedia?.("(prefers-color-scheme: dark)").matches) {
+    return "dark";
+  }
+  return "light";
+};
+
+const readInitialA11yMode = (): boolean => {
+  try {
+    return localStorage.getItem("a11yMode") === "1";
+  } catch {
+    return false;
+  }
+};
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState(SECTION_LIST[0].id);
+  const [themeMode, setThemeMode] = useState<ThemeMode>(readInitialThemeMode);
+  const [a11yMode, setA11yMode] = useState<boolean>(readInitialA11yMode);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 120;
-
       for (const section of SECTION_LIST) {
         const element = document.getElementById(section.id);
         if (element) {
@@ -126,7 +82,6 @@ const App: React.FC = () => {
         }
       }
     };
-
     handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -142,6 +97,21 @@ const App: React.FC = () => {
     }
   }, []);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem("themeMode", themeMode);
+    } catch {}
+    document.body.classList.toggle("theme-dark", themeMode === "dark");
+    document.body.classList.toggle("theme-light", themeMode === "light");
+  }, [themeMode]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("a11yMode", a11yMode ? "1" : "0");
+    } catch {}
+    document.body.classList.toggle("a11y-mode", a11yMode);
+  }, [a11yMode]);
+
   const handleSectionChange = useCallback((sectionId: string) => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
@@ -150,35 +120,41 @@ const App: React.FC = () => {
     }
   }, []);
 
+  const toggleThemeMode = useCallback(() => {
+    setThemeMode((prev) => (prev === "dark" ? "light" : "dark"));
+  }, []);
+
+  const toggleA11yMode = useCallback(() => {
+    setA11yMode((prev) => !prev);
+  }, []);
+
+  const activeTheme = useMemo(() => (themeMode === "dark" ? darkTheme : lightTheme), [themeMode]);
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={activeTheme}>
       <GlobalStyle />
-      <IntroSplash />
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      {!a11yMode && <IntroSplash />}
       <AppContainer>
-        <NavBar activeSection={activeSection} onSectionChange={handleSectionChange} />
+        <NavBar
+          activeSection={activeSection}
+          onSectionChange={handleSectionChange}
+          themeMode={themeMode}
+          a11yMode={a11yMode}
+          onThemeToggle={toggleThemeMode}
+          onA11yToggle={toggleA11yMode}
+        />
         <SectionDots sections={SECTION_LIST} activeSection={activeSection} onSectionChange={handleSectionChange} />
 
-        <About />
-        <Education />
-
-        <PageSection id="publications">
-          <PageInner>
-            <PublicationsPage />
-          </PageInner>
-        </PageSection>
-
-        {PLACEHOLDER_SECTIONS.map((s) => (
-          <PageSection key={s.id} id={s.id}>
+        <main id="main-content">
+          <About />
+          <Education />
+          <PageSection id="publications" $alt>
             <PageInner>
-              <PageCard>
-                <PageHeaderArea>
-                  <PageTitle>To be updated</PageTitle>
-                  <PageSubtitle>{s.description}</PageSubtitle>
-                </PageHeaderArea>
-              </PageCard>
+              <PublicationsPage />
             </PageInner>
           </PageSection>
-        ))}
+        </main>
 
         <Footer />
       </AppContainer>

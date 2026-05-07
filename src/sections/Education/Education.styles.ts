@@ -6,7 +6,9 @@ export const Section = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
+  background: ${({ theme }) => theme.colors.pageBg};
+  scroll-margin-top: 80px;
+  transition: background-color 0.25s ease;
 `;
 
 export const Container = styled.div`

@@ -2,6 +2,7 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    mode: "light" | "dark";
     colors: {
       primary: string;
       primaryHover: string;
@@ -22,6 +23,21 @@ declare module "styled-components" {
       pageAccentTint: string;
       pageAccentBorder: string;
       pageAccentShadow: string;
+      pageBg: string;
+      pageBgAlt: string;
+      cardBg: string;
+      cardBorder: string;
+      slateHeadingBg: string;
+      slateHeadingText: string;
+      pillInactiveBg: string;
+      pillInactiveText: string;
+      mutedSurface: string;
+      headingDark: string;
+      navBarBg: string;
+      navBarBgScrolled: string;
+      focusRing: string;
+      nameHighlightBg: string;
+      nameHighlightText: string;
     };
     spacing: {
       xs: string;
