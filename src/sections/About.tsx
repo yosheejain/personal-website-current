@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Section, Title } from "../styles/styled-components";
+import { Section } from "../styles/styled-components";
 import { SectionContainer } from "../styles/section";
 import { contacts } from "../data/Contact.data";
-import MonoIcon, { MonoIconName } from "../components/MonoIcon";
+import MonoIcon from "../components/MonoIcon";
 import News from "../components/News";
 
 // Two zones: left (photo + bio) | right (sidebar)

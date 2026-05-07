@@ -57,34 +57,6 @@ const CountBadge = styled.span`
   border-radius: 999px;
 `;
 
-// ─── Filter row ───────────────────────────────────────────────────────────────
-
-const FilterRow = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 32px;
-`;
-
-const FilterPill = styled.button<{ $active: boolean; $color: string }>`
-  padding: 7px 15px;
-  border-radius: 999px;
-  border: 1px solid ${({ $active, $color }) => ($active ? $color : "#e2e8f0")};
-  background: ${({ $active, $color }) => ($active ? $color : "#ffffff")};
-  color: ${({ $active }) => ($active ? "#ffffff" : "#64748b")};
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.18s ease;
-
-  &:hover {
-    border-color: ${({ $color }) => $color};
-    background: ${({ $active, $color }) => ($active ? $color : `${$color}18`)};
-    color: ${({ $active, $color }) => ($active ? "#ffffff" : $color)};
-    transform: translateY(-1px);
-  }
-`;
-
 // ─── Card grid ────────────────────────────────────────────────────────────────
 
 const CardGrid = styled.div`
