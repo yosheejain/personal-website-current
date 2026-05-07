@@ -152,11 +152,9 @@ const HeadingRow = styled.div`
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
-  padding-top: 8px;
-  border-top: 1px solid ${({ theme }) => theme.colors.borderColor};
+  padding-top: 24px;
 
   &:first-child {
-    border-top: none;
     padding-top: 0;
   }
 `;
