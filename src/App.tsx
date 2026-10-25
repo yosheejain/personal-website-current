@@ -7,7 +7,7 @@ import Footer from "./components/Footer";
 import About from "./sections/About";
 import Education from "./sections/Education";
 import PublicationsPage from "./pages/PublicationsPage";
-import YosheeBot from "./components/YosheeBot";
+// import YosheeBot from "./components/YosheeBot";
 
 const AppContainer = styled.div`
   font-family: "Lato", "Lato Black", "Lato Bold", "Lato Regular", "Helvetica Neue", Arial, sans-serif;
@@ -136,7 +136,7 @@ const App: React.FC = () => {
 
         <Footer />
       </AppContainer>
-      <YosheeBot />
+      {/* <YosheeBot /> */}
     </ThemeProvider>
   );
 };
