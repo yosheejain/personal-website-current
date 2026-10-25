@@ -30,16 +30,6 @@ const publications: Publication[] = [
     card: false,
   },
   {
-    title: "Exploring the Role of Tracing in AI-Supported Planning for Algorithmic Reasoning.",
-    thumb: "",
-    description: "",
-    authors: "Yoshee Jain, Heejin Do, Zihan Wu, April Yi Wang",
-    venue: "arXiv Preprint. Submitted Feb 2026.",
-    year: "2026",
-    links: [{ label: "arXiv", href: "https://arxiv.org" }],
-    card: false,
-  },
-  {
     title: "Uncovering the Internet's Hidden Values: An Empirical Study of Desirable Behavior Using Highly-Upvoted Content on Reddit.",
     thumb: "",
     description: "",
