@@ -15,6 +15,8 @@ const newsItems: NewsItem[] = [
   { title: "Plan-tracing interface paper accepted at SIGCSE TS 2027 🎉", month: "Sep", year: "2026", category: "Publications" },
   { title: "Starting my CS PhD at UIUC! 🎓", month: "Aug", year: "2026", category: "Education" },
   { title: "Reached 100 citations on my work! 📈", month: "Aug", year: "2026", category: "Publications" },
+  { title: "Visiting CMU for PhD visit days! ✈️", month: "Mar", year: "2026", category: "Travel" },
+  { title: "Visiting UCSD for PhD visit days! 🌴", month: "Mar", year: "2026", category: "Travel" },
   // { title: "Outstanding Course Assistant Award (CS 102) 🏅", month: "Nov", year: "2025", category: "Awards" },
   { title: "Traveling to Bergen, Norway to present at CSCW 2025! ✈️", month: "Oct", year: "2025", category: "Travel" },
   // { title: "Finalist in the ACM Undergraduate Student Research Competition 🧠", month: "Sep", year: "2025", category: "Awards" },
