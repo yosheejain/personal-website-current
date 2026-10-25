@@ -17,19 +17,37 @@ import {
   CourseTag,
   InlineLink,
 } from "./Education.styles";
-import { SectionContainer } from "../../styles/section";
+import { SectionContainer, SectionTitle } from "../../styles/section";
 
 const Education: React.FC = () => {
   return (
     <Section id="education">
       <SectionContainer>
+        <SectionTitle>Education</SectionTitle>
         <List>
 
           <Block>
             <Row>
               <LeftColumn>
                 <School>University of Illinois, Urbana-Champaign</School>
-                <Period>Aug 2022 ~ May 2026 (Expected)</Period>
+                <Period>Aug 2026 ~ Present</Period>
+                <Location>Champaign, IL</Location>
+              </LeftColumn>
+              <RightColumn>
+                <DegreeGroup>
+                  <DegreeItem>
+                    <HighlightSubTitle>Ph.D. in Computer Science</HighlightSubTitle>
+                  </DegreeItem>
+                </DegreeGroup>
+              </RightColumn>
+            </Row>
+          </Block>
+
+          <Block>
+            <Row>
+              <LeftColumn>
+                <School>University of Illinois, Urbana-Champaign</School>
+                <Period>Aug 2022 ~ May 2026</Period>
                 <Location>Champaign, IL</Location>
               </LeftColumn>
               <RightColumn>
