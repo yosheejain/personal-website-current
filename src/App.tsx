@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { GlobalStyle, lightTheme, darkTheme } from "./styles/styled-components";
 import NavBar from "./components/NavBar";
-import IntroSplash from "./components/IntroSplash";
 import SectionDots from "./components/SectionDots";
 import Footer from "./components/Footer";
 import About from "./sections/About";
@@ -116,7 +115,6 @@ const App: React.FC = () => {
     <ThemeProvider theme={activeTheme}>
       <GlobalStyle />
       <a className="skip-link" href="#main-content">Skip to main content</a>
-      <IntroSplash />
       <AppContainer>
         <NavBar
           activeSection={activeSection}
