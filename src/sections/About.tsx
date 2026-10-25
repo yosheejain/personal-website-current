@@ -148,13 +148,12 @@ const About: React.FC = () => (
 
             <BioText>
               I'm a first-year PhD student in Computer Science at the University of Illinois
-              Urbana-Champaign. My research focuses on designing instructional experiences that
-              prepare people from diverse backgrounds to learn computing independently and apply it
-              to their work.
-            </BioText>
-            <BioText>
-              I enjoy building interactive systems and evaluating other systems and models to explore
-              how technology can support learning.
+              Urbana-Champaign. My research lies at the intersection of{" "}
+              <strong>human-centered AI</strong> and <strong>computing education</strong>, focusing
+              on designing instructional experiences that prepare people from diverse backgrounds to
+              learn computing independently and apply it to their work. I enjoy building interactive
+              systems and evaluating other systems and models to explore how technology can support
+              learning.
             </BioText>
 
             <ContactRow>
