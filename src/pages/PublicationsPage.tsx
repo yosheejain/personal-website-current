@@ -26,7 +26,7 @@ const publications: Publication[] = [
     authors: "Yoshee Jain, Heejin Do, Zihan Wu, April Yi Wang",
     venue: "ACM Technical Symposium on Computer Science Education (SIGCSE TS). 2027.",
     year: "2027",
-    links: [],
+    links: [{ label: "arXiv", href: "https://arxiv.org/abs/2602.03197" }],
     card: false,
   },
   {
