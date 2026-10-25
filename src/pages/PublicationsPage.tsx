@@ -487,7 +487,7 @@ const EmptyText = styled.p`
 // ─── Component ───────────────────────────────────────────────────────────────
 
 const PublicationsPage: React.FC = () => {
-  const [selectedYear, setSelectedYear] = useState<string>("2025");
+  const [selectedYear, setSelectedYear] = useState<string>("all");
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set());
 
   const toggleYear = (year: string) => {
