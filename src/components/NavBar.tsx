@@ -117,7 +117,7 @@ const CVLink = styled.a`
   }
 `;
 
-const IconButton = styled.button<{ $active?: boolean }>`
+const IconButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -126,14 +126,13 @@ const IconButton = styled.button<{ $active?: boolean }>`
   border-radius: 999px;
   border: none;
   cursor: pointer;
-  background: ${({ $active, theme }) => ($active ? theme.colors.primary : "transparent")};
-  color: ${({ $active, theme }) => ($active ? "#ffffff" : theme.colors.primary)};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.primary};
   transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
   flex-shrink: 0;
 
   &:hover {
-    background: ${({ $active, theme }) =>
-      $active ? theme.colors.primaryHover : theme.colors.pageAccentTint};
+    background: ${({ theme }) => theme.colors.pageAccentTint};
     transform: scale(1.05);
   }
 
@@ -148,9 +147,7 @@ interface NavBarProps {
   activeSection?: string;
   onSectionChange?: (section: string) => void;
   themeMode: "light" | "dark";
-  a11yMode: boolean;
   onThemeToggle: () => void;
-  onA11yToggle: () => void;
 }
 
 const SunIcon = () => (
@@ -166,22 +163,11 @@ const MoonIcon = () => (
   </svg>
 );
 
-const A11yIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <circle cx="12" cy="4.5" r="1.6" fill="currentColor" />
-    <path d="M5 8.5h14" />
-    <path d="M12 8.5v5" />
-    <path d="M9 21l3-7.5L15 21" />
-  </svg>
-);
-
 const NavBar: React.FC<NavBarProps> = ({
   activeSection,
   onSectionChange,
   themeMode,
-  a11yMode,
   onThemeToggle,
-  onA11yToggle,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -228,16 +214,6 @@ const NavBar: React.FC<NavBarProps> = ({
           title={themeMode === "dark" ? "Light mode" : "Dark mode"}
         >
           {themeMode === "dark" ? <SunIcon /> : <MoonIcon />}
-        </IconButton>
-        <IconButton
-          type="button"
-          onClick={onA11yToggle}
-          aria-label={a11yMode ? "Disable accessibility mode" : "Enable accessibility mode"}
-          aria-pressed={a11yMode}
-          title={a11yMode ? "Accessibility on" : "Accessibility off"}
-          $active={a11yMode}
-        >
-          <A11yIcon />
         </IconButton>
       </GlassBar>
     </NavOuter>

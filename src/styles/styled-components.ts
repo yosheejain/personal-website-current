@@ -216,33 +216,7 @@ export const GlobalStyle = createGlobalStyle`
     outline-offset: 2px;
   }
 
-  /* Accessibility mode: bumps base size, kills motion, forces visible focus, raises contrast */
-  body.a11y-mode {
-    font-size: 18px;
-
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.001s !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001s !important;
-      scroll-behavior: auto !important;
-    }
-
-    *:focus-visible {
-      outline: 3px solid ${({ theme }) => theme.colors.focusRing} !important;
-      outline-offset: 3px !important;
-      border-radius: 4px;
-    }
-
-    a:not(.no-underline) {
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
-    }
-  }
-
-  /* Honor system preference even outside the toggle */
+  /* Honor system preference for reduced motion */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *,
@@ -251,18 +225,6 @@ export const GlobalStyle = createGlobalStyle`
       animation-duration: 0.001s !important;
       transition-duration: 0.001s !important;
     }
-  }
-
-  /* High-contrast overrides applied alongside a11y-mode (per theme) */
-  body.a11y-mode.theme-light {
-    --hc-text: #000000;
-    --hc-secondary: #1a1a1a;
-    --hc-border: #1a2a24;
-  }
-  body.a11y-mode.theme-dark {
-    --hc-text: #ffffff;
-    --hc-secondary: #f1f5f4;
-    --hc-border: #c5d3cc;
   }
 `;
 

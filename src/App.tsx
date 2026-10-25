@@ -55,18 +55,9 @@ const readInitialThemeMode = (): ThemeMode => {
   return "light";
 };
 
-const readInitialA11yMode = (): boolean => {
-  try {
-    return localStorage.getItem("a11yMode") === "1";
-  } catch {
-    return false;
-  }
-};
-
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState(SECTION_LIST[0].id);
   const [themeMode, setThemeMode] = useState<ThemeMode>(readInitialThemeMode);
-  const [a11yMode, setA11yMode] = useState<boolean>(readInitialA11yMode);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -100,17 +91,12 @@ const App: React.FC = () => {
   useEffect(() => {
     try {
       localStorage.setItem("themeMode", themeMode);
+      localStorage.removeItem("a11yMode");
     } catch {}
     document.body.classList.toggle("theme-dark", themeMode === "dark");
     document.body.classList.toggle("theme-light", themeMode === "light");
+    document.body.classList.remove("a11y-mode");
   }, [themeMode]);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem("a11yMode", a11yMode ? "1" : "0");
-    } catch {}
-    document.body.classList.toggle("a11y-mode", a11yMode);
-  }, [a11yMode]);
 
   const handleSectionChange = useCallback((sectionId: string) => {
     setActiveSection(sectionId);
@@ -124,25 +110,19 @@ const App: React.FC = () => {
     setThemeMode((prev) => (prev === "dark" ? "light" : "dark"));
   }, []);
 
-  const toggleA11yMode = useCallback(() => {
-    setA11yMode((prev) => !prev);
-  }, []);
-
   const activeTheme = useMemo(() => (themeMode === "dark" ? darkTheme : lightTheme), [themeMode]);
 
   return (
     <ThemeProvider theme={activeTheme}>
       <GlobalStyle />
       <a className="skip-link" href="#main-content">Skip to main content</a>
-      {!a11yMode && <IntroSplash />}
+      <IntroSplash />
       <AppContainer>
         <NavBar
           activeSection={activeSection}
           onSectionChange={handleSectionChange}
           themeMode={themeMode}
-          a11yMode={a11yMode}
           onThemeToggle={toggleThemeMode}
-          onA11yToggle={toggleA11yMode}
         />
         <SectionDots sections={SECTION_LIST} activeSection={activeSection} onSectionChange={handleSectionChange} />
 
