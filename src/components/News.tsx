@@ -33,7 +33,7 @@ const newsItems: NewsItem[] = [
   // { title: "Travel grants from OUR and CHP for PLAID awarded 🎟️", month: "Mar", year: "2025", category: "Awards" },
   { title: "LLMs for reading comprehension paper accepted at HCII 2025 📚", month: "Jan", year: "2025", category: "Publications" },
   { title: "PLAID (first author) accepted at CHI 2025 🎉", month: "Jan", year: "2025", category: "Publications" },
-  { title: "First citation on my work at ICER 2023! 🔍", month: "Jan", year: "2025", category: "Publications" },
+  { title: "First citation on my work! 🔍", month: "Jan", year: "2025", category: "Publications" },
   { title: "AI vs. Humans for Online Mental Health Support accepted at ACM HEALTH 📝", month: "Dec", year: "2024", category: "Publications" },
   // { title: "Illinois Engineering Achievement and Outstanding Scholarships awarded 🎁", month: "May", year: "2024", category: "Awards" },
   // { title: "Interning at HCII, CMU with Dr. Jionghao Lin 💪🏻", month: "May", year: "2024", category: "Experience" },
