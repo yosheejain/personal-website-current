@@ -20,6 +20,16 @@ interface Publication {
 
 const publications: Publication[] = [
   {
+    title: "A Plan-Tracing Interface for AI-Supported Algorithm Planning.",
+    thumb: "",
+    description: "",
+    authors: "Yoshee Jain, Heejin Do, Zihan Wu, April Yi Wang",
+    venue: "ACM Technical Symposium on Computer Science Education (SIGCSE TS). 2027.",
+    year: "2027",
+    links: [],
+    card: false,
+  },
+  {
     title: "Exploring the Role of Tracing in AI-Supported Planning for Algorithmic Reasoning.",
     thumb: "",
     description: "",
@@ -515,6 +525,9 @@ const PublicationsPage: React.FC = () => {
   const getEmptyMessage = (year: string): { emoji: string; text: string } => {
     const y = Number(year);
     if (year === "all") return { emoji: "🔍", text: "Nothing here yet." };
+    if (year === "2026") {
+      return { emoji: "🎓", text: "Yoshee was focusing on applying to grad schools while working on her projects!" };
+    }
     if (y >= CURRENT_YEAR) {
       return { emoji: "🌿", text: "Yoshee is working hard on her current projects!" };
     }
