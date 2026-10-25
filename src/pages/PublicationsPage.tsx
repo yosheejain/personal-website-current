@@ -625,10 +625,6 @@ const PublicationsPage: React.FC = () => {
         </Grid>
       )}
 
-      <HeadingRow>
-        <SectionPill>All Publications</SectionPill>
-      </HeadingRow>
-
       {totalAll === 0 ? (
         <EmptyStateBox>
           <EmptyEmoji>{emptyMsg.emoji}</EmptyEmoji>
