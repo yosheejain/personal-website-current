@@ -37,6 +37,11 @@ const Education: React.FC = () => {
                 <DegreeGroup>
                   <DegreeItem>
                     <HighlightSubTitle>Ph.D. in Computer Science</HighlightSubTitle>
+                    <CourseTagRow>
+                      {["Human-Centered AI"].map((course) => (
+                        <CourseTag key={course}>{course}</CourseTag>
+                      ))}
+                    </CourseTagRow>
                   </DegreeItem>
                 </DegreeGroup>
               </RightColumn>

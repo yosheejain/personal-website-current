@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const Section = styled.section`
-  min-height: 100vh;
-  padding: 160px 12px 40px;
+  padding: 56px 12px 40px;
   display: flex;
-  align-items: center;
   justify-content: center;
   background: ${({ theme }) => theme.colors.pageBg};
   scroll-margin-top: 80px;
