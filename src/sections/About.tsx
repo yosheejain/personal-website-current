@@ -160,17 +160,17 @@ const About: React.FC = () => (
               I'm a first-year PhD student in Computer Science at the University of Illinois
               Urbana-Champaign, advised by{" "}
               <a href="https://www.kicunningham.com/" target="_blank" rel="noreferrer">
-                Dr. Katie Cunningham
+                Dr.&nbsp;Katie Cunningham
               </a>{" "}
               and{" "}
               <a href="https://talaugust.github.io/" target="_blank" rel="noreferrer">
-                Dr. Tal August
+                Dr.&nbsp;Tal August
               </a>
               . My research sits at the intersection of
               human-centered AI and computing education. I study
               how people from non-computer science backgrounds can use generative AI for{" "}
               <strong>
-                <em>self-directed reskilling in computing</em>
+                <em>self-directed upskilling in computing</em>
               </strong>
               . I enjoy both building interactive systems and
               empirically evaluating educational interventions and AI models in service of this
