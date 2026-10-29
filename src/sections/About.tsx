@@ -166,13 +166,11 @@ const About: React.FC = () => (
               <a href="https://talaugust.github.io/" target="_blank" rel="noreferrer">
                 Dr. Tal August
               </a>
-              . My research lies at the intersection of{" "}
-              <strong>human-centered AI</strong> and <strong>computing education</strong>, focusing
-              on preparing students for self-regulated reskilling and upskilling with computing
-              expertise, focusing on people from traditionally non-computer science backgrounds. I
-              enjoy building interactive
-              systems and evaluating other systems and models to explore how technology can support
-              learning.
+              . My research sits at the intersection of{" "}
+              <strong>human-centered AI</strong> and <strong>computing education</strong>. I study
+              how to support people from non-computer science backgrounds in self-directed
+              reskilling in computing. I enjoy both building interactive systems and empirically
+              evaluating educational interventions and AI models to serve this goal.
             </BioText>
 
             <ContactRow>
