@@ -37,6 +37,18 @@ const Education: React.FC = () => {
                 <DegreeGroup>
                   <DegreeItem>
                     <HighlightSubTitle>Ph.D. in Computer Science</HighlightSubTitle>
+                    <FactList>
+                      <li>
+                        Advisors:{" "}
+                        <InlineLink href="https://www.kicunningham.com/" target="_blank" rel="noreferrer">
+                          Dr. Katie Cunningham
+                        </InlineLink>
+                        {" "}and{" "}
+                        <InlineLink href="https://talaugust.github.io/" target="_blank" rel="noreferrer">
+                          Dr. Tal August
+                        </InlineLink>
+                      </li>
+                    </FactList>
                     <CourseTagRow>
                       {["Human-Centered AI"].map((course) => (
                         <CourseTag key={course}>{course}</CourseTag>
