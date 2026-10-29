@@ -166,9 +166,7 @@ const About: React.FC = () => (
               <a href="https://talaugust.github.io/" target="_blank" rel="noreferrer">
                 Dr.&nbsp;Tal August
               </a>
-              . My research sits at the intersection of
-              human-centered AI and computing education. I study
-              how people from non-computer science backgrounds can use generative AI for{" "}
+              . I study how people from non-computer science backgrounds can use generative AI for{" "}
               <strong>
                 <em>self-directed upskilling in computing</em>
               </strong>
