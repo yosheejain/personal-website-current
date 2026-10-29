@@ -168,8 +168,11 @@ const About: React.FC = () => (
               </a>
               . My research sits at the intersection of{" "}
               <strong>human-centered AI</strong> and <strong>computing education</strong>. I study
-              how people from non-computer science backgrounds can use generative AI for
-              self-directed reskilling in computing. I enjoy both building interactive systems and
+              how people from non-computer science backgrounds can use generative AI for{" "}
+              <strong>
+                <em>self-directed reskilling in computing</em>
+              </strong>
+              . I enjoy both building interactive systems and
               empirically evaluating educational interventions and AI models in service of this
               goal.
             </BioText>
