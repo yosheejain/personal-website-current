@@ -168,8 +168,9 @@ const About: React.FC = () => (
               </a>
               . My research lies at the intersection of{" "}
               <strong>human-centered AI</strong> and <strong>computing education</strong>, focusing
-              on designing instructional experiences that prepare people from diverse backgrounds to
-              learn computing independently and apply it to their work. I enjoy building interactive
+              on preparing students for self-regulated reskilling and upskilling with computing
+              expertise, focusing on people from traditionally non-computer science backgrounds. I
+              enjoy building interactive
               systems and evaluating other systems and models to explore how technology can support
               learning.
             </BioText>
