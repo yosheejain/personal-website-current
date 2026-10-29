@@ -84,6 +84,16 @@ const BioText = styled.p`
   color: ${({ theme }) => theme.colors.textMuted};
   line-height: 1.75;
   margin: 0;
+
+  a {
+    color: ${({ theme }) => theme.colors.primary};
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const ContactRow = styled.div`
@@ -148,7 +158,15 @@ const About: React.FC = () => (
 
             <BioText>
               I'm a first-year PhD student in Computer Science at the University of Illinois
-              Urbana-Champaign. My research lies at the intersection of{" "}
+              Urbana-Champaign, advised by{" "}
+              <a href="https://www.kicunningham.com/" target="_blank" rel="noreferrer">
+                Dr. Katie Cunningham
+              </a>{" "}
+              and{" "}
+              <a href="https://talaugust.github.io/" target="_blank" rel="noreferrer">
+                Dr. Tal August
+              </a>
+              . My research lies at the intersection of{" "}
               <strong>human-centered AI</strong> and <strong>computing education</strong>, focusing
               on designing instructional experiences that prepare people from diverse backgrounds to
               learn computing independently and apply it to their work. I enjoy building interactive
