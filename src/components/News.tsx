@@ -11,6 +11,7 @@ interface NewsItem {
 }
 
 const newsItems: NewsItem[] = [
+  { title: "Doctoral Consortium titled \"Preparing Non-CS Majors for Future Computing Learning\" accepted to SIGCSE 2027! 🎉", month: "Nov", year: "2026", category: "Publications" },
   { title: "Traveling to Salt Lake City to attend CSCW 2026! ✈️", month: "Oct", year: "2026", category: "Travel" },
   { title: "Plan-tracing interface paper accepted at SIGCSE TS 2027 🎉", month: "Sep", year: "2026", category: "Publications" },
   { title: "Starting my CS PhD at UIUC! 🎓", month: "Aug", year: "2026", category: "Education" },
