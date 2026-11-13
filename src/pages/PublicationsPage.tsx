@@ -30,6 +30,16 @@ const publications: Publication[] = [
     card: false,
   },
   {
+    title: "Preparing Non-CS Majors for Future Computing Learning.",
+    thumb: "",
+    description: "",
+    authors: "Yoshee Jain",
+    venue: "ACM Technical Symposium on Computer Science Education V.2 (SIGCSE TS), Doctoral Consortium. 2027.",
+    year: "2027",
+    links: [],
+    card: false,
+  },
+  {
     title: "Uncovering the Internet's Hidden Values: An Empirical Study of Desirable Behavior Using Highly-Upvoted Content on Reddit.",
     thumb: "",
     description: "",
