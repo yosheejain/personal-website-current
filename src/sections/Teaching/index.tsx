@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Section, SectionContainer } from "../Experience/Experience.styles";
-import { teachingItems } from "./Teaching.data";
+import { Section } from "../Education/Education.styles";
+import { teachingItems, CourseTag } from "./Teaching.data";
+import { SectionContainer, SectionTitle } from "../../styles/section";
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -10,10 +11,7 @@ const extractCourseCode = (title: string) => {
   return m ? m[0] : null;
 };
 
-const extractRole = (title: string) => {
-  const parts = title.split("—");
-  return parts[0].trim();
-};
+const extractRole = (title: string) => title.split("—")[0].trim();
 
 const extractCourseName = (title: string) => {
   const parts = title.split(/—|:/);
@@ -22,110 +20,61 @@ const extractCourseName = (title: string) => {
   return title;
 };
 
-const CAT_COLORS: Record<string, { accent: string; tint: string; label: string }> = {
-  courses:   { accent: "#2563EB", tint: "rgba(37,99,235,0.07)",  label: "Course"    },
-  mentoring: { accent: "#0D9488", tint: "rgba(13,148,136,0.07)", label: "Mentoring" },
-  clubs:     { accent: "#7C3AED", tint: "rgba(124,58,237,0.07)", label: "Service"   },
-};
+// ─── Carousel ────────────────────────────────────────────────────────────────
 
-// ─── Page header ─────────────────────────────────────────────────────────────
-
-const PageHeader = styled.div`
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin-bottom: 28px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.borderColor};
-`;
-
-const PageTitle = styled.h1`
-  font-size: 1.85rem;
-  font-weight: 800;
-  color: ${({ theme }) => theme.colors.textPrimary};
-  letter-spacing: -0.03em;
-  margin: 0;
-`;
-
-const CountBadge = styled.span`
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: ${({ theme }) => theme.colors.primary};
-  background: ${({ theme }) => theme.colors.pageAccentTint};
-  border: 1px solid ${({ theme }) => theme.colors.pageAccentBorder};
-  padding: 4px 12px;
-  border-radius: 999px;
-`;
-
-// ─── Card grid ────────────────────────────────────────────────────────────────
-
-const CardGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-
-  @media (max-width: 900px)  { grid-template-columns: repeat(2, 1fr); }
-  @media (max-width: 560px)  { grid-template-columns: 1fr; }
-`;
-
-const Card = styled.article<{ $accent: string }>`
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid ${({ theme }) => theme.colors.borderColor};
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  display: flex;
-  flex-direction: column;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
-  }
-`;
-
-const CardAccentBar = styled.div<{ $accent: string; $tint: string }>`
-  background: ${({ $tint }) => $tint};
-  border-bottom: 1px solid ${({ $accent }) => $accent}30;
-  padding: 18px 20px 14px;
+const CarouselWrap = styled.div`
   position: relative;
 `;
 
-const CourseCode = styled.div<{ $accent: string }>`
-  font-size: 2rem;
+const Track = styled.div`
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 6px 2px 14px;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+`;
+
+const Card = styled.article`
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  background: ${({ theme }) => theme.colors.cardBg};
+  border-radius: 18px;
+  border: 1px solid ${({ theme }) => theme.colors.borderColor};
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: ${({ theme }) => theme.colors.pageAccentBorder};
+    box-shadow: 0 10px 28px ${({ theme }) => theme.colors.pageAccentShadow};
+  }
+
+  @media (max-width: 560px) {
+    flex-basis: 78%;
+  }
+`;
+
+const CardTop = styled.div`
+  background: ${({ theme }) => theme.colors.pageAccentTint};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.pageAccentBorder};
+  padding: 18px 20px 14px;
+`;
+
+const CourseCode = styled.div`
+  font-size: 1.9rem;
   font-weight: 900;
   letter-spacing: -0.04em;
-  color: ${({ $accent }) => $accent};
+  color: ${({ theme }) => theme.colors.primary};
   line-height: 1;
-  margin-bottom: 2px;
-  opacity: 0.85;
-`;
-
-const CourseCodeAlt = styled.div<{ $accent: string }>`
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: ${({ $accent }) => $accent};
-  line-height: 1;
-  margin-bottom: 2px;
-  opacity: 0.85;
-`;
-
-const CategoryBadge = styled.span<{ $accent: string; $tint: string }>`
-  display: inline-block;
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 999px;
-  border: 1px solid ${({ $accent }) => $accent}55;
-  color: ${({ $accent }) => $accent};
-  background: #ffffff;
 `;
 
 const CardBody = styled.div`
-  padding: 16px 20px 18px;
+  padding: 14px 20px 18px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -137,80 +86,166 @@ const RoleLabel = styled.p`
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.primary};
   margin: 0;
 `;
 
 const CourseName = styled.h3`
-  font-size: 0.93rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.textPrimary};
   margin: 0;
   line-height: 1.35;
 `;
 
+const Org = styled.p`
+  font-size: 0.75rem;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  margin: 0;
+`;
+
+const PeriodRow = styled.div`
+  margin-top: auto;
+  padding-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+`;
+
 const PeriodChip = styled.span`
-  display: inline-flex;
-  align-items: center;
   font-size: 0.7rem;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.textSecondary};
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  padding: 3px 9px;
+  color: ${({ theme }) => theme.colors.primary};
+  background: ${({ theme }) => theme.colors.pageAccentTint};
+  border: 1px solid ${({ theme }) => theme.colors.pageAccentBorder};
+  padding: 3px 10px;
   border-radius: 999px;
   width: fit-content;
 `;
 
-const Desc = styled.p`
-  font-size: 0.78rem;
-  color: ${({ theme }) => theme.colors.textSecondary};
-  margin: 4px 0 0;
-  line-height: 1.6;
+const TAG_COLORS: Record<CourseTag, { light: string; dark: string }> = {
+  Graduate:      { light: "#6D28D9", dark: "#C4B5FD" },
+  Research:      { light: "#0F766E", dark: "#5EEAD4" },
+  Undergraduate: { light: "#1D4ED8", dark: "#93C5FD" },
+  Introductory:  { light: "#B45309", dark: "#FCD34D" },
+  Large:         { light: "#BE185D", dark: "#F9A8D4" },
+};
+
+const TagPill = styled.span<{ $tag: CourseTag }>`
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  width: fit-content;
+  ${({ $tag, theme }) => {
+    const c = theme.mode === "dark" ? TAG_COLORS[$tag].dark : TAG_COLORS[$tag].light;
+    return `
+      color: ${c};
+      background: ${c}14;
+      border: 1px solid ${c}40;
+    `;
+  }}
+`;
+
+const Controls = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 4px;
+`;
+
+const ArrowButton = styled.button`
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1.5px solid ${({ theme }) => theme.colors.primary};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, opacity 0.18s ease;
+
+  &:hover:not(:disabled) {
+    background: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.backgroundWhite};
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
 `;
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
 const Teaching: React.FC = () => {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(false);
+
+  const updateArrows = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    setCanPrev(el.scrollLeft > 4);
+    setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    updateArrows();
+    window.addEventListener("resize", updateArrows);
+    return () => window.removeEventListener("resize", updateArrows);
+  }, [updateArrows]);
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * (276), behavior: "smooth" });
+  };
+
   return (
     <Section id="teaching">
       <SectionContainer>
-        <PageHeader>
-          <PageTitle>Teaching</PageTitle>
-          <CountBadge>{teachingItems.length} courses</CountBadge>
-        </PageHeader>
+        <SectionTitle>Teaching</SectionTitle>
 
-        <CardGrid>
-          {teachingItems.map((item, idx) => {
-            const primaryCat = item.categories[0];
-            const cfg = CAT_COLORS[primaryCat] ?? CAT_COLORS.courses;
-            const code = extractCourseCode(item.title);
-            const role = extractRole(item.title);
-            const courseName = extractCourseName(item.title);
+        <CarouselWrap>
+          <Track ref={trackRef} onScroll={updateArrows}>
+            {teachingItems.map((item, idx) => {
+              const code = extractCourseCode(item.title);
+              const role = extractRole(item.title);
+              return (
+                <Card key={`${item.title}-${idx}`}>
+                  <CardTop>
+                    <CourseCode>{code ? code.replace("CS ", "CS ") : role}</CourseCode>
+                  </CardTop>
+                  <CardBody>
+                    <RoleLabel>{role}</RoleLabel>
+                    <CourseName>{code ? extractCourseName(item.title) : item.title}</CourseName>
+                    {item.org && <Org>{item.org}</Org>}
+                    <PeriodRow>
+                      {item.date.split(" · ").map((d) => (
+                        <PeriodChip key={d}>{d}</PeriodChip>
+                      ))}
+                      {item.tags?.map((t) => (
+                        <TagPill key={t} $tag={t}>{t}</TagPill>
+                      ))}
+                    </PeriodRow>
+                  </CardBody>
+                </Card>
+              );
+            })}
+          </Track>
 
-            return (
-              <Card key={`${item.title}-${idx}`} $accent={cfg.accent}>
-                <CardAccentBar $accent={cfg.accent} $tint={cfg.tint}>
-                  {code
-                    ? <CourseCode $accent={cfg.accent}>{code.replace("CS ", "CS\u00A0")}</CourseCode>
-                    : <CourseCodeAlt $accent={cfg.accent}>{role.split(" ").slice(0, 2).join(" ")}</CourseCodeAlt>
-                  }
-                  <CategoryBadge $accent={cfg.accent} $tint={cfg.tint}>{cfg.label}</CategoryBadge>
-                </CardAccentBar>
-
-                <CardBody>
-                  <RoleLabel>{role}</RoleLabel>
-                  <CourseName>{code ? courseName : item.title}</CourseName>
-                  <PeriodChip>{item.date}</PeriodChip>
-                  {item.org && (
-                    <p style={{ fontSize: "0.74rem", color: "#94a3b8", margin: 0 }}>{item.org}</p>
-                  )}
-                  <Desc>{item.description}</Desc>
-                </CardBody>
-              </Card>
-            );
-          })}
-        </CardGrid>
+          {(canPrev || canNext) && (
+            <Controls>
+              <ArrowButton type="button" aria-label="Previous" onClick={() => scrollBy(-1)} disabled={!canPrev}>
+                ‹
+              </ArrowButton>
+              <ArrowButton type="button" aria-label="Next" onClick={() => scrollBy(1)} disabled={!canNext}>
+                ›
+              </ArrowButton>
+            </Controls>
+          )}
+        </CarouselWrap>
       </SectionContainer>
     </Section>
   );

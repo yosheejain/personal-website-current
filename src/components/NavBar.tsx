@@ -5,6 +5,7 @@ const navItems = [
   { id: "about",        label: "About",        href: "#about" },
   { id: "education",    label: "Education",    href: "#education" },
   { id: "publications", label: "Publications", href: "#publications" },
+  { id: "teaching",     label: "Teaching",     href: "#teaching" },
 ];
 
 const NavOuter = styled.nav`

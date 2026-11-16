@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { SectionTitle } from "../styles/section";
 
 interface PublicationLink {
   label: string;
@@ -156,6 +157,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
+
+  & > ${SectionTitle} {
+    margin-bottom: 0;
+  }
+
+  & > ${SectionTitle} + * {
+    padding-top: 0;
+  }
 `;
 
 const HeadingRow = styled.div`
@@ -496,7 +505,7 @@ const EmptyText = styled.p`
 
 // ─── Component ───────────────────────────────────────────────────────────────
 
-const PublicationsPage: React.FC = () => {
+const PublicationsPage: React.FC<{ highlightsOnly?: boolean }> = ({ highlightsOnly }) => {
   const [selectedYear, setSelectedYear] = useState<string>("all");
   const [expandedYears, setExpandedYears] = useState<Set<string>>(new Set());
 
@@ -546,6 +555,8 @@ const PublicationsPage: React.FC = () => {
     return publications.filter((p) => p.year === selectedYear && p.card !== false);
   }, [selectedYear]);
 
+  const allHighlights = useMemo(() => publications.filter((p) => p.card !== false), []);
+
   const allByYear = useMemo(() => {
     const visible = selectedYear === "all"
       ? publications
@@ -579,28 +590,29 @@ const PublicationsPage: React.FC = () => {
   const totalAll = allByYear.reduce((acc, [, items]) => acc + items.length, 0);
   const showYearLabels = selectedYear === "all";
 
-  return (
-    <Wrapper>
-      <HeadingRow>
-        <SectionPill>Highlights</SectionPill>
-        <YearRow role="tablist" aria-label="Filter publications by year">
-          <YearPill active={selectedYear === "all"} onClick={() => setSelectedYear("all")} aria-pressed={selectedYear === "all"}>
-            All
-          </YearPill>
-          {years.map((y) => (
-            <YearPill key={y} active={selectedYear === y} onClick={() => setSelectedYear(y)} aria-pressed={selectedYear === y}>
-              {y}
+  if (highlightsOnly) {
+    return (
+      <Wrapper>
+        <SectionTitle>Publications</SectionTitle>
+        <HeadingRow>
+          <SectionPill>Highlights</SectionPill>
+          <YearRow role="tablist" aria-label="Filter publications by year">
+            <YearPill active={selectedYear === "all"} onClick={() => setSelectedYear("all")} aria-pressed={selectedYear === "all"}>
+              All
             </YearPill>
-          ))}
-        </YearRow>
-      </HeadingRow>
-
-      {filteredHighlights.length === 0 ? (
-        <EmptyStateBox>
-          <EmptyEmoji>{emptyMsg.emoji}</EmptyEmoji>
-          <EmptyText>{emptyMsg.text}</EmptyText>
-        </EmptyStateBox>
-      ) : (
+            {years.map((y) => (
+              <YearPill key={y} active={selectedYear === y} onClick={() => setSelectedYear(y)} aria-pressed={selectedYear === y}>
+                {y}
+              </YearPill>
+            ))}
+          </YearRow>
+        </HeadingRow>
+        {filteredHighlights.length === 0 ? (
+          <EmptyStateBox>
+            <EmptyEmoji>{getEmptyMessage(selectedYear).emoji}</EmptyEmoji>
+            <EmptyText>{getEmptyMessage(selectedYear).text}</EmptyText>
+          </EmptyStateBox>
+        ) : (
         <Grid>
           {filteredHighlights.map((pub) => (
             <Card key={pub.title}>
@@ -623,7 +635,56 @@ const PublicationsPage: React.FC = () => {
             </Card>
           ))}
         </Grid>
+        )}
+      </Wrapper>
+    );
+  }
+
+  return (
+    <Wrapper>
+      <SectionTitle>Publications</SectionTitle>
+      <HeadingRow>
+        <SectionPill>Highlights</SectionPill>
+      </HeadingRow>
+
+      {allHighlights.length > 0 && (
+        <Grid>
+          {allHighlights.map((pub) => (
+            <Card key={pub.title}>
+              <div className="card-body">
+                <Thumb>
+                  {pub.thumbImage ? <img src={pub.thumbImage} alt={pub.title} /> : pub.thumb}
+                </Thumb>
+                <PubTitle>{pub.title}</PubTitle>
+                <Desc>{pub.description}</Desc>
+                <Authors>{highlightName(pub.authors)}</Authors>
+                <Venue>{pub.venue}</Venue>
+                <Links>
+                  {pub.links.map((link) => (
+                    <Tag key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                      {link.label}
+                    </Tag>
+                  ))}
+                </Links>
+              </div>
+            </Card>
+          ))}
+        </Grid>
       )}
+
+      <HeadingRow style={{ marginTop: 36 }}>
+        <SectionPill>All Publications</SectionPill>
+        <YearRow role="tablist" aria-label="Filter publications by year">
+          <YearPill active={selectedYear === "all"} onClick={() => setSelectedYear("all")} aria-pressed={selectedYear === "all"}>
+            All
+          </YearPill>
+          {years.map((y) => (
+            <YearPill key={y} active={selectedYear === y} onClick={() => setSelectedYear(y)} aria-pressed={selectedYear === y}>
+              {y}
+            </YearPill>
+          ))}
+        </YearRow>
+      </HeadingRow>
 
       {totalAll === 0 ? (
         <EmptyStateBox>
