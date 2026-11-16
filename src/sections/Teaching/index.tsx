@@ -1,8 +1,25 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Section } from "../Education/Education.styles";
+import { Section as EduSection } from "../Education/Education.styles";
 import { teachingItems, CourseTag } from "./Teaching.data";
-import { SectionContainer, SectionTitle } from "../../styles/section";
+import { SectionTitle } from "../../styles/section";
+
+// Match the Publications section width (PageInner: 1240px, 16px gutters)
+const Section = styled(EduSection)`
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media (max-width: 768px) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+`;
+
+const SectionContainer = styled.div`
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+`;
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -38,7 +55,7 @@ const Track = styled.div`
 `;
 
 const Card = styled.article`
-  flex: 0 0 260px;
+  flex: 1 0 260px;
   scroll-snap-align: start;
   background: ${({ theme }) => theme.colors.cardBg};
   border-radius: 18px;
