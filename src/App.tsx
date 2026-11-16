@@ -157,17 +157,22 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 120;
+      // Viewport-relative positions work even when a section sits inside a
+      // positioned wrapper (e.g. the collapsible Education clip).
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (atBottom) {
+        setActiveSection(SECTION_LIST[SECTION_LIST.length - 1].id);
+        return;
+      }
+      let current = SECTION_LIST[0].id;
       for (const section of SECTION_LIST) {
         const element = document.getElementById(section.id);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section.id);
-            break;
-          }
+        if (element && element.getBoundingClientRect().top <= 120) {
+          current = section.id;
         }
       }
+      setActiveSection(current);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll);
