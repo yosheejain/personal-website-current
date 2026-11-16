@@ -129,6 +129,12 @@ const PeriodRow = styled.div`
   gap: 6px;
 `;
 
+const TagRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+`;
+
 const PeriodChip = styled.span`
   font-size: 0.7rem;
   font-weight: 600;
@@ -242,10 +248,14 @@ const Teaching: React.FC = () => {
                       {item.date.split(" · ").map((d) => (
                         <PeriodChip key={d}>{d}</PeriodChip>
                       ))}
-                      {item.tags?.map((t) => (
-                        <TagPill key={t} $tag={t}>{t}</TagPill>
-                      ))}
                     </PeriodRow>
+                    {item.tags && item.tags.length > 0 && (
+                      <TagRow>
+                        {item.tags.map((t) => (
+                          <TagPill key={t} $tag={t}>{t}</TagPill>
+                        ))}
+                      </TagRow>
+                    )}
                   </CardBody>
                 </Card>
               );
