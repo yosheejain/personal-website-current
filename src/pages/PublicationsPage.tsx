@@ -35,7 +35,7 @@ const publications: Publication[] = [
     thumb: "",
     description: "",
     authors: "Yoshee Jain",
-    venue: "ACM Technical Symposium on Computer Science Education V.2 (SIGCSE TS), Doctoral Consortium. 2027.",
+    venue: "ACM Technical Symposium on Computer Science Education V.2 (SIGCSE TS). 2027.",
     year: "2027",
     links: [],
     card: false,
