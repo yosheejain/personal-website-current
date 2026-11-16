@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { SectionTitle } from "../styles/section";
 
@@ -230,20 +230,45 @@ const YearPill = styled.button<{ active?: boolean }>`
   }
 `;
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
-  column-gap: 20px;
-  row-gap: 28px;
-
-  @media (max-width: 1100px) {
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  }
-
-  @media (max-width: 720px) {
-    grid-template-columns: 1fr;
-  }
+const GridRow = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
 `;
+
+const GridColumn = styled.div`
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+`;
+
+const useColumnCount = () => {
+  const get = () => (typeof window !== "undefined" && window.innerWidth <= 720 ? 1 : 2);
+  const [count, setCount] = useState(get);
+  useEffect(() => {
+    const onResize = () => setCount(get());
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  return count;
+};
+
+// Masonry-style wall: items alternate across columns, each column stacks tightly.
+const Grid: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const count = useColumnCount();
+  const items = React.Children.toArray(children);
+  const columns: React.ReactNode[][] = Array.from({ length: count }, () => []);
+  items.forEach((child, i) => columns[i % count].push(child));
+  return (
+    <GridRow>
+      {columns.map((col, i) => (
+        <GridColumn key={i}>{col}</GridColumn>
+      ))}
+    </GridRow>
+  );
+};
 
 const Card = styled.article`
   background: ${({ theme }) => theme.colors.cardBg};
