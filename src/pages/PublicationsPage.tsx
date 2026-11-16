@@ -11,7 +11,7 @@ interface Publication {
   title: string;
   thumb: string;
   thumbImage?: string;
-  description: string;
+  description: React.ReactNode;
   authors: string;
   venue: string;
   links: PublicationLink[];
@@ -33,12 +33,16 @@ const publications: Publication[] = [
   {
     title: "Preparing Non-CS Majors for Future Computing Learning.",
     thumb: "",
-    description: "",
+    description: (
+      <>
+        In my work, I ask: <em>How can we design computing curricula for non-CS majors that prepare them for future computing learning with AI?</em> I propose one potential approach to this question, for which I (1) elicit the computing concepts, tasks, and challenges that non-computing professionals encounter at work, (2) use these authentic practices to design instructional material, and (3) evaluate whether the resulting curriculum prepares students to learn novel computing concepts with AI.
+      </>
+    ),
     authors: "Yoshee Jain",
     venue: "ACM Technical Symposium on Computer Science Education V.2 (SIGCSE TS). 2027.",
     year: "2027",
     links: [],
-    card: false,
+    card: true,
   },
   {
     title: "Uncovering the Internet's Hidden Values: An Empirical Study of Desirable Behavior Using Highly-Upvoted Content on Reddit.",
@@ -617,9 +621,11 @@ const PublicationsPage: React.FC<{ highlightsOnly?: boolean }> = ({ highlightsOn
           {filteredHighlights.map((pub) => (
             <Card key={pub.title}>
               <div className="card-body">
-                <Thumb>
-                  {pub.thumbImage ? <img src={pub.thumbImage} alt={pub.title} /> : pub.thumb}
-                </Thumb>
+                {(pub.thumbImage || pub.thumb) && (
+                  <Thumb>
+                    {pub.thumbImage ? <img src={pub.thumbImage} alt={pub.title} /> : pub.thumb}
+                  </Thumb>
+                )}
                 <PubTitle>{pub.title}</PubTitle>
                 <Desc>{pub.description}</Desc>
                 <Authors>{highlightName(pub.authors)}</Authors>
@@ -652,9 +658,11 @@ const PublicationsPage: React.FC<{ highlightsOnly?: boolean }> = ({ highlightsOn
           {allHighlights.map((pub) => (
             <Card key={pub.title}>
               <div className="card-body">
-                <Thumb>
-                  {pub.thumbImage ? <img src={pub.thumbImage} alt={pub.title} /> : pub.thumb}
-                </Thumb>
+                {(pub.thumbImage || pub.thumb) && (
+                  <Thumb>
+                    {pub.thumbImage ? <img src={pub.thumbImage} alt={pub.title} /> : pub.thumb}
+                  </Thumb>
+                )}
                 <PubTitle>{pub.title}</PubTitle>
                 <Desc>{pub.description}</Desc>
                 <Authors>{highlightName(pub.authors)}</Authors>
